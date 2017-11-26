@@ -1,7 +1,7 @@
 body{
     display: block;
-    padding: 0px;
     font-family: 'Open Sans Condensed', sans-serif;
+    margin: 0 auto;
 }
 
 .container{
@@ -12,11 +12,11 @@ body{
 nav {
     display: inline-block;
     width: 100%;
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.69);
 }
 
 nav h1 {
-    display: inline-block;
+    display: inline;
     text-align: left;
     color: rgba(39, 33, 199, 0.79);
     letter-spacing: 5px;
@@ -24,15 +24,32 @@ nav h1 {
 }
 
 nav ul {
-    float: right;
-    padding-left: 15px;
-    font-family: Times, sans-serif;
-    color: rgb(37, 112, 255);
     list-style-type: none;
+    padding: 0;
+    margin-right: 5px;
+    vertical-align: middle;
+    background-color: #333; 
+    float:right;
+    font-family: Times, sans-serif;
 }
 
 nav ul li {
+    display: inline;
+}
+
+nav ul li a{
     display: inline-block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+nav ul li a.active {
+    background-color: #4CAF50;
+}
+
+nav ul li a:hover:not(.active) {
+    background-color: #111;
 }
 
 form {
@@ -40,5 +57,6 @@ form {
 }
 
 footer ul {
-    
+    list-style-type: none;
+
 }
