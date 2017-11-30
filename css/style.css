@@ -1,14 +1,19 @@
 body{
     display: flex;
-    font-family: 'Open Sans Condensed', sans-serif;
-    margin: 0 auto;
-    min-height: 100vh;
     flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0 auto; 
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+header {
+    width: 100%;
 }
 
 nav {
     display: flex;
-    background-color: rgba(54, 8, 170, 0.212);
+    background-color: rgb(247, 234, 220);
 }
 
 .nav-container{
@@ -23,18 +28,19 @@ nav {
 }
 
 nav h1 {
-    margin: 0 0 0 0;
+    margin: 0 0 0 2vw;
     display: inline;
-    color: #333;
+    color: #C63D0F;
     letter-spacing: 5px;
-    font-size: 50px
+    font-size: 50px;
+    font-family: trenchFont;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin: 0 5px 0 0;
-    background-color: #333; 
+    margin: 0 2vw 0 0;
+    background-color: #7E8F7C; 
     font-family: Times, sans-serif;
     display: flex;
 }
@@ -54,30 +60,42 @@ nav ul li a{
 }
 
 nav ul li.active {
-    background-color: #4CAF50;
+    background-color: #3B3738;
 }
 
 nav ul li:hover:not(.active) {
-    background-color: #111;
+    background-color: #3B3738;
+}
+
+.wrap-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: url(../img/party.jpeg); /*Credit to pexels.com*/
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .container {
     max-width: 960px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 150px;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+}
+
+.container h1, h2 {
+    color: #FDF3E7;
 }
 
 .container h2 {
     font-size: 100%;
 }
 
-form {
-}
-
 footer {
+    width: 100%;    
     margin: auto auto 0 auto;   /*Sticky footer*/ 
+    background-color: rgb(253, 253, 231)
 }
 
 footer ul {
@@ -90,4 +108,9 @@ footer ul {
 
 footer ul li {
     padding: 10px;
+}
+
+@font-face {
+    font-family: trenchFont;
+    src: url(./trench100free.ttf);
 }
