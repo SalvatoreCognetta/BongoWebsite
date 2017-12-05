@@ -17,7 +17,7 @@ nav {
 }
 
 .nav-container{
-    width: 960px;
+    width: 960px;  /*Grid System di Nathan Smith*/
 	margin: 0 auto;
 	
     display: flex;
@@ -27,8 +27,12 @@ nav {
     align-items: center;
 }
 
+ul {
+    list-style-type: none;
+}
+
 nav h1 {
-    margin: 0 0 0 2vw;
+    margin: 0 0 0 2px;
     display: inline;
     color: #C63D0F;
     letter-spacing: 5px;
@@ -37,10 +41,8 @@ nav h1 {
 }
 
 nav ul {
-    list-style-type: none;
     padding: 0;
-    margin: 0 2vw 0 0;
-    background-color: #7E8F7C; 
+    margin: 0 2px 0 0;
     font-family: Times, sans-serif;
     display: flex;
 }
@@ -53,17 +55,18 @@ nav ul li {
 
 nav ul li a{
 	display: flex;
-    color: white;
+    color: #7E8F7C;
     text-decoration: none;
 	justify-content: center;
 	align-items: center;
 }
 
+/*
 nav ul li.active {
-    background-color: #3B3738;
-}
+    background-color: #white;
+}*/
 
-nav ul li:hover:not(.active) {
+nav ul li:hover {
     background-color: #3B3738;
 }
 
@@ -71,9 +74,8 @@ nav ul li:hover:not(.active) {
     width: 100%;
     display: flex;
     justify-content: center;
-    background: url(../img/party.jpeg); /*Credit to pexels.com*/
+    background: url(../img/party.jpeg) no-repeat; /*Credit to pexels.com*/
     background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .container {
@@ -99,7 +101,6 @@ footer {
 }
 
 footer ul {
-    list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,4 +114,10 @@ footer ul li {
 @font-face {
     font-family: trenchFont;
     src: url(./trench100free.ttf);
+}
+
+
+.filter-container {
+    width: 960px;
+    margin: 0 auto;
 }
