@@ -1,0 +1,15 @@
+* {
+	box-sizing: border-box; /* La proprietà box-sizing: border-box ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border.*/
+}
+
+.main-nav {
+	grid-area: nav;
+}
+
+.side {
+	grid-area: sidebar;
+}
+
+.main-footer {
+	grid-area: footer;
+}
