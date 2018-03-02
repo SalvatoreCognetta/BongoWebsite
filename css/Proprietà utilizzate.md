@@ -1,0 +1,2 @@
+# Proprietà
+La proprietà **box-sizing: border-box** ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border. Se due elementi aventi stessa altezza e larghezza, ma padding differente, senza questa proprietà avranno dimensioni diverse. [W3C](https://www.w3schools.com/css/css3_box-sizing.asp)
