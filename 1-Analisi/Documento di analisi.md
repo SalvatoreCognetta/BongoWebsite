@@ -5,3 +5,7 @@ Il progetto ha lo scopo di dare la possibilità all'utente di ricercare gli even
 - i secondi, presumibilmente gli organizzatori degli eventi stessi, che inseriscono l'evento per dargli maggiore visibilità via internet.
 
 Ovviamente le due categorie non sono mutuamente esclusive, quindi un organizzatore che sponsorizza i propri eventi può tranquillamente partecipare ad altri. 
+
+
+## Stile
+Ho deciso di adottare come layout la grid system com larghezza massima di 1240px...
