@@ -2,14 +2,133 @@
 	box-sizing: border-box; /* La proprietà box-sizing: border-box ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border.*/
 }
 
-.main-nav {
-	grid-area: nav;
+html, body {
+	height: 100%;
 }
 
-.side {
-	grid-area: sidebar;
+body {	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	font-family: 'Open Sans Condensed', sans-serif;
 }
+
+li {
+	background-color: hotpink;
+}
+
+.content {
+	width:100%;
+	flex: 1 0 auto;
+}
+
+header {
+	/* width: 100%; */
+	background-color: rgb(247, 234, 220);
+}
+
+.main-nav {
+	max-width: 1240px;;
+	margin: 0 auto;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo{
+	margin: 0;
+	color: #C63D0F;
+	letter-spacing: 5px;
+	font-size: 50px;
+	font-family: trenchFont;
+}
+
+.nav-list-container {
+	border: 5px solid red;
+
+	display: inherit;
+	padding: 0;
+}
+
+.nav-list-container li {
+	margin-right: 3px;
+}
+
+.nav-list-container > :last-child{
+	margin-right: 0;
+}
+
+
+
+
+
+.filter-container {
+	border: 5px solid;
+
+	margin: 0 auto;	
+	max-width: 1240px;
+}
+
+
+
+
+
+
+.card {
+	margin: 20px 10px;;
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+	box-sizing: content-box;
+	display: flex;
+	border-radius: 5px;
+	max-height: 150px;
+	/* justify-content: space-between; */
+
+}
+
+.card img {
+	width: 200px;
+	height: 150px;
+	border-radius: 5px 0 0 5px;
+}
+
+.card-info {
+	margin: 5px;
+	width: 500px;
+	overflow: auto;
+	flex-grow: 2;
+}
+
+.card-info h2 {
+	color: #007489;
+	font-family: trenchFont;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.card-date {
+	margin: 5px 5px 5px 0;
+	flex-grow: 1;
+}
+
+
+
 
 .main-footer {
-	grid-area: footer;
+	max-width: 1240px;
+	display: flex;
+	flex-shrink: 0;	
+}
+
+.main-footer ul{
+	display: flex;
+	flex-direction: row;
+}
+
+
+@font-face {
+	font-family: trenchFont;
+	src: url(./trench100free.ttf);
 }

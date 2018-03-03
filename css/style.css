@@ -9,15 +9,13 @@ body{
 
 header {
     width: 100%;
-}
-
-nav {
-    display: flex;
     background-color: rgb(247, 234, 220);
 }
 
+
+
 .nav-container{
-    width: 960px;  /*Grid System di Nathan Smith*/
+    max-width: 960px;  /*Grid System di Nathan Smith*/
 	margin: 0 auto;
 	
     display: flex;
