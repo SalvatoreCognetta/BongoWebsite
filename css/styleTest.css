@@ -15,12 +15,14 @@ body {
 }
 
 li {
-	background-color: hotpink;
+	border: 3px solid orange;
+
+	margin-right: 3px;
 }
 
 .content {
 	width:100%;
-	flex: 1 0 auto;
+	flex: 1 0 auto;	/*Necessario per lo sticky footer.*/
 }
 
 header {
@@ -36,6 +38,7 @@ header {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	height:50px;
 }
 
 .logo{
@@ -49,12 +52,22 @@ header {
 .nav-list-container {
 	border: 5px solid red;
 
-	display: inherit;
-	padding: 0;
+	display: flex;
+	height: 100%;
+	/* align-items: center; */
 }
 
 .nav-list-container li {
-	margin-right: 3px;
+	display: flex;;
+	align-items: center;
+	height: 100%;
+}
+
+.nav-list-container li a {
+	font-family: trenchFont;
+	font-size: 1.2em;
+	text-decoration: none;
+	color: red;
 }
 
 .nav-list-container > :last-child{
@@ -65,32 +78,30 @@ header {
 
 
 
-.filter-container {
-	border: 5px solid;
+
+
+
+.cards {
+	border: 3px solid;
 
 	margin: 0 auto;	
 	max-width: 1240px;
 }
 
-
-
-
-
-
 .card {
-	margin: 20px 10px;;
+	margin: 20px 10px;
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
 	box-sizing: content-box;
 	display: flex;
 	border-radius: 5px;
-	max-height: 150px;
+	max-height: 100px;
 	/* justify-content: space-between; */
 
 }
 
 .card img {
-	width: 200px;
-	height: 150px;
+	width: 13%;
+	height: 100px;
 	border-radius: 5px 0 0 5px;
 }
 
@@ -111,7 +122,41 @@ header {
 .card-date {
 	margin: 5px 5px 5px 0;
 	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	position: relative;
 }
+
+.card-date-info {
+	display: flex;
+	margin-bottom: 3px;
+}
+
+.card-date h3 {
+	color: #007489;
+	font-family: trenchFont;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.card-button {
+	text-align: center;
+	font-size: 30px;
+	
+
+	background-color: #007489;
+	color: white;
+	padding: 3px 28px;
+	border: none;
+	border-radius: 3px;
+
+	position: absolute;
+	bottom: -13px;
+	right: -13px;
+}
+
+
+
 
 
 
@@ -119,7 +164,7 @@ header {
 .main-footer {
 	max-width: 1240px;
 	display: flex;
-	flex-shrink: 0;	
+	flex-shrink: 0;	/*Necessario per lo sticky footer.*/
 }
 
 .main-footer ul{

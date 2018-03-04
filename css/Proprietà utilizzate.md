@@ -1,10 +1,13 @@
+# Differenze tra `margin` e `padding`
+`padding` è lo spazio tra il contenuto e il `border`, mentre `margin` è lo spazio fuori il `border`. Il margine viene applicato all'esterno dell'elemento, influenzando la distanza dell'elemento dagli altri. Il padding invece è applicato all'interno dell'elemento, influenzando la distanza dell'elemento dal bordo.  ![immagine non disponibile](./img/margin-padding)
+
 # Proprietà
 - La proprietà `box-sizing: border-box` ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border. Se due elementi aventi stessa altezza e larghezza, ma padding differente, senza questa proprietà avranno dimensioni diverse. [W3C](https://www.w3schools.com/css/css3_box-sizing.asp)
 
 
 ## Flexbox
 [CSS-Tricks Flexbox Layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-- La proprietà `flex` rende l'elemento a cui è applicata un `flex container`, e gli elementi figli contenuti in questo container diventano dei `flex items` (su questi items non hanno effetto le proprietà _float_, _clear_ e _vertical-align_). Inoltre quando si lavora con il layout flexbox bisogna pensare nei termini dei due assi: ![alt text](./img/schema-flexbox.png)
+- La proprietà `flex` rende l'elemento a cui è applicata un `flex container`, e gli elementi figli contenuti in questo container diventano dei `flex items` (su questi items non hanno effetto le proprietà _float_, _clear_ e _vertical-align_). Inoltre quando si lavora con il layout flexbox bisogna pensare nei termini dei due assi: ![immagine non disponibile](./img/schema-flexbox.png)
 
 ### Proprietà per il flex container
 - `flex-direction` definisce l'asse principale.
