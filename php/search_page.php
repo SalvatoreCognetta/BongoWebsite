@@ -2,27 +2,36 @@
 <html lang="it">
 
 <head>
-	<title>Bongo</title>    
-	<link href="../css/reset.css" rel="stylesheet" type="text/css">	
+	<title>Bongo</title>
+	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
-	<div class="content"> <!-- Necessario per lo sticky footer -->
+	<div class="wrapper"> 	<!-- Necessario per lo sticky footer -->
 		<header>
 			<nav class="main-nav">
 				<h1 class="logo">Bongo</h1>
-				<ul class="nav-list-container">
-					<li><a href="../html/home.html">Home</a></li>
-					<li><a href="../html/login.html">Accedi</a></li>
-					<li><a href="../html/signin.html">Registrati</a></li>
-					<li><a href="../html/help.html">Aiuto</a></li>
-					<li><a href="../html/about.html">Chi siamo</a></li>
-				</ul>    
+				<ul class="main-nav-list">
+					<li>
+						<a href="../html/home.html">Home</a>
+					</li>
+					<li>
+						<a href="../html/login.html">Accedi</a>
+					</li>
+					<li>
+						<a href="../html/signin.html">Registrati</a>
+					</li>
+					<li>
+						<a href="../html/help.html">Aiuto</a>
+					</li>
+					<li>
+						<a href="../html/about.html">Chi siamo</a>
+					</li>
+				</ul>
 			</nav>
 		</header>
-
 
 
 		<!-- <aside class="side">
@@ -71,81 +80,97 @@
 				</div>
 			</article>
 		</section> -->
-			
-
-		<?php
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "eventi_bongo";
-
-		// Create connection
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		// Check connection
-		if (!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
-		$sql = "SELECT * FROM evento ORDER BY data";
-		$result = mysqli_query($conn, $sql);
-
-		if (mysqli_num_rows($result) > 0) {
-			$createCard = function($img, $title, $description, $date, $price)
-			{
-				printf("Hello %s\r\n", $name);
-			};
-			// output data of each row
-			echo "<section class=\"cards\">";
-			while($row = mysqli_fetch_assoc($result)) {
-				$timestamp = strtotime($row["data"]);
-				$date = date('d-m-Y', $timestamp);
-				$time = date('H:i', $timestamp);
 
 
+		<section class="content">
 
-				$str = "
-				<article class=\"card\"> 
-					<img src=\"../img/img_fjords.jpg\">
-					<div class=\"card-info\">
-						<h2>".$row["titolo"]."</h2> 				
-						<p>".$row["descrizione"]."</p>
+			<nav class="filter-nav">
+				<form>
+					<div class="filter-form">
+						<input type="text" name="citta" placeholder="Filtra">
+						<select name="categories">
+							<option value="" disabled selected>Categoria</option>
+							<option value="test1">test1</option>
+							<option value="test2">test2</option>
+						</select>
+						<input type="date" >
+						<select name="place">
+							<option value="">Test</option>
+						</select>						
+						<input type="submit" value="Cerca">
 					</div>
-					<div class=\"card-date\">
-						<div class=\"card-date-info\">
-							<h3>Data: </h3>
-							<p>".$date."</p>
-						</div>
-						
-						<div class=\"card-date-info\">
-							<h3>Ora: </h3>
-							<p>".$time."</p>
-						</div>
+				</form>
+			</nav>
 
-						<div class=\"card-date-info\">
-							<h3>Prezzo: </h3>
-							<p>".$row["prezzo"]."</p>
-						</div>
-						
-						<button class=\"card-button\">></button>
-					</div>
-				</article>";
+			<?php
+			require 'connection.php';
 
-				echo $str;
+			$sql = "SELECT * FROM evento ORDER BY data";
+			$result = mysqli_query($conn, $sql);
+
+			if (mysqli_num_rows($result) > 0) {
+				$createCard = function($img, $title, $description, $date, $price)
+				{
+					printf("Hello %s\r\n", $name);
+				};
+				// output data of each row
+				echo "<section class=\"cards\">";
+				while($row = mysqli_fetch_assoc($result)) {
+					$timestamp = strtotime($row["data"]);
+					$date = date('d-m-Y', $timestamp);
+					$time = date('H:i', $timestamp);
+
+
+
+					$str = "
+					<article class=\"card\"> 
+						<img src=\"../img/img_fjords.jpg\">
+						<div class=\"card-info\">
+							<h2>".$row["titolo"]."</h2> 				
+							<p>".$row["descrizione"]."</p>
+						</div>
+						<div class=\"card-date\">
+							<div class=\"card-date-info\">
+								<h3>Data: </h3>
+								<p>".$date."</p>
+							</div>
+							
+							<div class=\"card-date-info\">
+								<h3>Ora: </h3>
+								<p>".$time."</p>
+							</div>
+
+							<div class=\"card-date-info\">
+								<h3>Prezzo: </h3>
+								<p>".$row["prezzo"]."</p>
+							</div>
+							
+							<button class=\"card-button\">></button>
+						</div>
+					</article>";
+
+					echo $str;
+				}
+				echo "</section>";
+			} else {
+				echo "0 results";
 			}
-			echo "</section>";
-		} else {
-			echo "0 results";
-		}
 
-		mysqli_close($conn);
-		?> 
+			mysqli_close($conn);
+			?>
 
+
+		</section>
 	</div>
 
 	<footer class="main-footer">
 		<ul>
-			<li><a href="">Termini &amp; Condizioni</a></li>
-			<li><small>© copyright 2017 Example Corp.</small></li>
+			<li>
+				<a href="">Termini &amp; Condizioni</a>
+			</li>
+			<li>
+				<small>© copyright 2017 Example Corp.</small>
+			</li>
 		</ul>
 	</footer>
 

@@ -1,5 +1,7 @@
 # Differenze tra `margin` e `padding`
-`padding` è lo spazio tra il contenuto e il `border`, mentre `margin` è lo spazio fuori il `border`. Il margine viene applicato all'esterno dell'elemento, influenzando la distanza dell'elemento dagli altri. Il padding invece è applicato all'interno dell'elemento, influenzando la distanza dell'elemento dal bordo.  ![immagine non disponibile](./img/margin-padding)
+`padding` è lo spazio tra il contenuto e il `border`, mentre `margin` è lo spazio fuori il `border`. Il margine viene applicato all'esterno dell'elemento, influenzando la distanza dell'elemento dagli altri. Il padding invece è applicato all'interno dell'elemento, influenzando la distanza dell'elemento dal bordo. 
+
+![immagine non disponibile](./img/margin-padding)
 
 # Proprietà
 - La proprietà `box-sizing: border-box` ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border. Se due elementi aventi stessa altezza e larghezza, ma padding differente, senza questa proprietà avranno dimensioni diverse. [W3C](https://www.w3schools.com/css/css3_box-sizing.asp)

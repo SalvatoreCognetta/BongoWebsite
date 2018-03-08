@@ -1,27 +1,27 @@
 * {
-	box-sizing: border-box; /* La proprietà box-sizing: border-box ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border.*/
+	box-sizing: border-box;	/* La proprietà box-sizing: border-box ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border.*/
 }
 
-html, body {
+html,
+body {
 	height: 100%;
 }
 
-body {	
+body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin: 0 auto;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
 }
 
 li {
 	border: 3px solid orange;
-
 	margin-right: 3px;
 }
 
-.content {
-	width:100%;
+.wrapper {
+	width: 100%;
 	flex: 1 0 auto;	/*Necessario per lo sticky footer.*/
 }
 
@@ -31,17 +31,16 @@ header {
 }
 
 .main-nav {
-	max-width: 1240px;;
+	max-width: 1200px;
 	margin: 0 auto;
-
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	height:50px;
+	height: 50px;
 }
 
-.logo{
+.logo {
 	margin: 0;
 	color: #C63D0F;
 	letter-spacing: 5px;
@@ -49,28 +48,27 @@ header {
 	font-family: trenchFont;
 }
 
-.nav-list-container {
+.main-nav-list {
 	border: 5px solid red;
-
 	display: flex;
 	height: 100%;
 	/* align-items: center; */
 }
 
-.nav-list-container li {
-	display: flex;;
+.main-nav-list li {
+	display: flex;
 	align-items: center;
 	height: 100%;
 }
 
-.nav-list-container li a {
+.main-nav-list li a {
 	font-family: trenchFont;
 	font-size: 1.2em;
 	text-decoration: none;
-	color: red;
+	color: #C63D0F;
 }
 
-.nav-list-container > :last-child{
+.main-nav-list> :last-child {
 	margin-right: 0;
 }
 
@@ -81,34 +79,59 @@ header {
 
 
 
+
+.content {
+	border: 4px solid orange;
+	margin: 0 auto;
+	max-width: 1200px;
+	display: flex;
+	flex-direction: column;
+}
+
+.filter-nav {
+	border: 3px solid blue;
+	display: flex;
+}
+
+.filter-nav form {
+	width: 100%;
+}
+
+.filter-form {
+	border: 3px solid green;
+	/* width: 100%; */
+	margin: 0px;
+	display: flex;
+}
+
 .cards {
 	border: 3px solid;
-
-	margin: 0 auto;	
-	max-width: 1240px;
+	/* margin: 0 auto; */
+	display: flex;
+	flex-direction: column;
 }
 
 .card {
+	border: 3px solid red;
 	margin: 20px 10px;
-	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 	box-sizing: content-box;
 	display: flex;
 	border-radius: 5px;
 	max-height: 100px;
 	/* justify-content: space-between; */
-
 }
 
 .card img {
-	width: 13%;
 	height: 100px;
 	border-radius: 5px 0 0 5px;
 }
 
 .card-info {
 	margin: 5px;
-	width: 500px;
 	overflow: auto;
+	display: flex;
+	flex-direction: column;
 	flex-grow: 2;
 }
 
@@ -142,14 +165,11 @@ header {
 .card-button {
 	text-align: center;
 	font-size: 30px;
-	
-
 	background-color: #007489;
 	color: white;
 	padding: 3px 28px;
 	border: none;
 	border-radius: 3px;
-
 	position: absolute;
 	bottom: -13px;
 	right: -13px;
@@ -161,17 +181,26 @@ header {
 
 
 
+
+
+
+
+
+
+
+
+
+
 .main-footer {
-	max-width: 1240px;
+	max-width: 1200px;
 	display: flex;
 	flex-shrink: 0;	/*Necessario per lo sticky footer.*/
 }
 
-.main-footer ul{
+.main-footer ul {
 	display: flex;
 	flex-direction: row;
 }
-
 
 @font-face {
 	font-family: trenchFont;
