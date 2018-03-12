@@ -4,55 +4,70 @@
 		FROM evento
 	";
 	
-	$paramsWeight = array("title" => 1, "categories" => 3, "date" => 5, "city" => 13); //Associo ad ogni filtro un peso, in modo da sapere quali filtri sono stati inseriti, semplicemente facendo la somma dei pesi.
-
 	$dbParams = array('');
 	$params = array('title', 'categories', 'date', 'city'); //Ho supposto che i name dei campi del filter-form siano corrispondenti ai nomi delle colonne della tabella nel db
 
 	$noValue = true;		// se non c'è nessuno valore nei filtri, cioè l'utente clicca 'Cerca' senza inserire nulla, la query non deve contenere nessun where.
+	$numParams = 0;
 	foreach ($params as $field) {
-		if (isset($_GET[$field])) {
-			$query .= "WHERE ";
-			$noValue = false;
-			break;
+		if (!empty($_GET[$field])) {
+			if($noValue) {
+				$query .= "WHERE ";
+				$noValue = false;
+			}
+			$numParams++;
 		}
 	}
-	
-	$totalWeight = 0;
 
 	$bind_param_args = array();
 	$bind_param_args[0] = "";
 	if(!$noValue){
 		foreach($params as $field) {
-			if(isset($_GET[$field]) && $_GET[$field]!= null){	// $_GET[$field]!= null è necessario perchè il campo title anche se vuoto ha valore ""
-				echo $field. ": " .$_GET[$field];
+			if(!empty($_GET[$field])){	// $_GET[$field]!= null è necessario perchè il campo title anche se vuoto ha valore ""
 
 				$bind_param_args[0] .= "s";
-				array_push($bind_param_args,'$'. $field);
+				
+				if($field == "title") {
+					$param = "%{$_GET[$field]}%";
+					$str = sprintf("%s LIKE ?", $field);
+				} else {
+					$param = $_GET[$field];					
+					$str = sprintf("%s = ? ", $field);
+				}
+				array_push($bind_param_args, $param);
 
-				$str = sprintf("%s = '%s' ", $field, $_GET[$field]);
 				$query .= $str;
 
-				$totalWeight += $paramsWeight[$field];
-
-				if($field != $params[count($params)-1]) {
+				$numParams--;
+				
+				if($numParams > 0) {
 					$query .= " AND ";
 				}
+
 			}
 		}
 	}
 	print_r($bind_param_args);
-	echo $bind_param_args[1];
 
 	$query .= " ORDER BY date";
 	echo $query;
 	
 	$stmt = $conn->prepare($query);
 
+// 	The argument may be one of four types:
 
+// i - integer
+// d - double
+// s - string
+// b - BLOB
 
 	$a_param_type = array("s", "i", "d", "b");
 
+
+		
+	//now we need to add references
+	$tmp = array();
+	foreach($bind_param_args as $key => $value) $tmp[$key] = &$bind_param_args[$key];
 
 	function refValues($arr){
 			$refs = array();
@@ -61,55 +76,11 @@
 			return $refs;
 	}
 
-	call_user_func_array(array($stmt, "bind_param"), refValues($bind_param_args)); //Call di un metodo all'interndo di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
+	if(!$noValue) {
+		call_user_func_array(array($stmt, "bind_param"), $tmp); //Call di un metodo all'interndo di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
+		/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. */
+	}
 
-
-
-
-	// switch ($totalWeight) {
-	// 	case 1:
-	// 		echo "TESTTTT";
-	// 		$stmt->bind_param("s",  $title);
-	// 		break;
-	// 	case 3:
-	// 		$stmt->bind_param("s",  $categories);
-	// 		break;
-	// 	case 4:
-	// 		$stmt->bind_param("ss",  $title, $categories);
-	// 		break;
-	// 	case 5:
-	// 		$stmt->bind_param("s",  $date);
-	// 	case 6:
-	// 		$stmt->bind_param("ss",  $title, $date);
-	// 		break;
-	// 	case 8:
-	// 		$stmt->bind_param("ss",  $categories, $date);
-	// 		break;
-	// 	case 9:
-	// 		$stmt->bind_param("sss",  $title, $categories, $date);
-	// 		break;
-	// 	case 13:
-	// 		$stmt->bind_param("s",  $city);
-	// 		break;
-	// 	case 14:
-	// 		$stmt->bind_param("ss", $title, $city);
-	// 		break;
-	// 	case 16:
-	// 		$stmt->bind_param("ss", $categories, $city);
-	// 		break;
-	// 	case 17:
-	// 		$stmt->bind_param("sss",  $title, $categories, $city);
-	// 		break;
-	// 	case 18:
-	// 		$stmt->bind_param("sss",  $categories, $date, $city);
-	// 		break;
-	// 	case 19:
-	// 		$stmt->bind_param("sss",  $title, $date, $city);
-	// 		break;
-	// 	case 22:
-	// 		$stmt->bind_param("ssss",  $title, $categories, $date, $city);
-	// 		break;
-	// }
 	
 	// $stmt->bind_param("s",  $city);
 	
@@ -124,12 +95,5 @@
 
 	$result = $stmt->get_result();
 	
-	
+
 ?>
-
-<!-- The argument may be one of four types:
-
-i - integer
-d - double
-s - string
-b - BLOB -->

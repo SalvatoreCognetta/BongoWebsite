@@ -110,7 +110,7 @@
 
 			if(!$result)
 				echo "Errore nella query.";
-
+				
 			if ($result->num_rows > 0) {
 				$createCard = function($img, $title, $description, $date, $price)
 				{
