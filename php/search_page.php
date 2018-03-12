@@ -85,17 +85,18 @@
 		<section class="content">
 
 			<nav class="filter-nav">
-				<form>
+				<form action="search_page.php" method="get">
 					<div class="filter-form">
-						<input type="text" name="citta" placeholder="Filtra">
+						<input type="text" name="title" placeholder="Filtra">
 						<select name="categories">
 							<option value="" disabled selected>Categoria</option>
 							<option value="test1">test1</option>
 							<option value="test2">test2</option>
 						</select>
-						<input type="date" >
-						<select name="place">
-							<option value="">Test</option>
+						<input type="date" name="date" >
+						<select name="city">
+							<option value="" disabled selected>Città</option>
+							<option value="Pisa">Pisa</option>
 						</select>						
 						<input type="submit" value="Cerca">
 					</div>
@@ -104,30 +105,33 @@
 
 			<?php
 			require 'connection.php';
+			include 'query.php';
 
-			$sql = "SELECT * FROM evento ORDER BY data";
-			$result = mysqli_query($conn, $sql);
 
-			if (mysqli_num_rows($result) > 0) {
+			if(!$result)
+				echo "Errore nella query.";
+
+			if ($result->num_rows > 0) {
 				$createCard = function($img, $title, $description, $date, $price)
 				{
 					printf("Hello %s\r\n", $name);
 				};
+
 				// output data of each row
 				echo "<section class=\"cards\">";
-				while($row = mysqli_fetch_assoc($result)) {
-					$timestamp = strtotime($row["data"]);
+				while($row = $result->fetch_assoc()) {
+					$timestamp = strtotime($row["date"]);
 					$date = date('d-m-Y', $timestamp);
 					$time = date('H:i', $timestamp);
 
-
+					
 
 					$str = "
 					<article class=\"card\"> 
-						<img src=\"../img/img_fjords.jpg\">
+						<img src=\"".$row["img"]."\">
 						<div class=\"card-info\">
-							<h2>".$row["titolo"]."</h2> 				
-							<p>".$row["descrizione"]."</p>
+							<h2>".$row["title"]."</h2> 				
+							<p>".$row["description"]."</p>
 						</div>
 						<div class=\"card-date\">
 							<div class=\"card-date-info\">
@@ -142,7 +146,7 @@
 
 							<div class=\"card-date-info\">
 								<h3>Prezzo: </h3>
-								<p>".$row["prezzo"]."</p>
+								<p>".$row["price"]."</p>
 							</div>
 							
 							<button class=\"card-button\">></button>
@@ -155,8 +159,7 @@
 			} else {
 				echo "0 results";
 			}
-
-			mysqli_close($conn);
+			$conn->close();
 			?>
 
 

@@ -29,7 +29,7 @@
 # Pseudo-classi
 - La pseudo-classe `:nth-child()` "seleziona" uno o più elementi in base alla loro posizione in un gruppo di fratelli. [Mozilla Developer](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)
 
-- La pseudo-classe `nth-last-child()` seleziona uno o più elementi in base alla loro posizione in un gruppo di fratelli, così come la :nth-child, contando però dalla fine. [Mozilla Developer](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-last-child)
+- La pseudo-classe `:nth-last-child()` seleziona uno o più elementi in base alla loro posizione in un gruppo di fratelli, così come la :nth-child, contando però dalla fine. [Mozilla Developer](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-last-child)
 
 - La pseudo-classe `:last-child` seleziona l'ultimo elemento di un gruppo di elementi "fratelli".
 
