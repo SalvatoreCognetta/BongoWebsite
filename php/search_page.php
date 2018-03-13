@@ -2,6 +2,7 @@
 <html lang="it">
 
 <head>
+	<?php require 'config.php'?>
 	<title>Bongo</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
@@ -32,26 +33,6 @@
 				</ul>
 			</nav>
 		</header>
-
-
-		<!-- <aside class="side">
-			<label class="test-container"> One
-				<input type="checkbox" checked="checked">
-				<span class="checkmark"></span>
-			</label>
-
-			<form>
-				<fieldset>
-					<legend>Tipo di eventi</legend>
-					<input type="checkbox" name="" id="">test<br/>
-					
-				</fieldset>
-			</form>
-			<h3>Tipo di eventi</h3>
-			<ul>
-			<li>test</li>
-			</ul>
-		</aside> -->
 
 		<!-- <section class="cards">
 			<article class="card">
@@ -84,11 +65,27 @@
 
 		<section class="content">
 
-			<nav class="filter-nav">
+			<aside class="side-filter">
+				<form class="filter-form" action="search_page.php" method="get">
+					<input type="text" name="title" placeholder="Filtra">
+					<fieldset class="filter-form-item">
+						<legend>Categoria eventi</legend>
+						<input type="checkbox" name="category" value="test1">test<br/>
+					</fieldset>
+					<input type="date" name="date" >
+					<select name="city">
+						<option value="" disabled selected>Città</option>
+						<option value="Pisa">Pisa</option>
+					</select>						
+					<input type="submit" value="Cerca"	>
+				</form>
+			</aside>
+
+			<!-- <nav class="filter-nav">
 				<form action="search_page.php" method="get">
 					<div class="filter-form">
 						<input type="text" name="title" placeholder="Filtra">
-						<select name="categories">
+						<select name="category">
 							<option value="" disabled selected>Categoria</option>
 							<option value="test1">test1</option>
 							<option value="test2">test2</option>
@@ -101,16 +98,67 @@
 						<input type="submit" value="Cerca">
 					</div>
 				</form>
-			</nav>
+			</nav> -->
 
 			<?php
 			require 'connection.php';
-			include 'query.php';
+			include 'test.php';
+			include 'utility.php';
+			$values = array_filter($_GET);
+
+$arr = array();
+
+			foreach($values as $key => $value) {
+				$filter_item = new filter_value();
+				$filter_item->name = $key;
+				if($ret = det_param_type(gettype($value))) {
+					$filter_item->type = $ret;	
+				} else {
+					//caso in cui il valore inserito non è un int, string o double
+				}
+				$filter_item->value = $value;
+				array_push($arr, $filter_item);
+			}
+			print_r($arr);
+			
+
+			
+
+			$text_filter			= new filter_value();
+			$text_filter->name		= "title";
+			$text_filter->type 		= "s";
+			$text_filter->operator 	= "LIKE";
+
+			$params = array('title' => 's', 'category' => 's', 'date' => 's', 'city' => 's');
+			$res = filter_query($params);
+			// print_r($res);
+
+			$no_value	 = $res[0];
+			$query		 = $res[1];
+			$bind_params = $res[2];
+
+			$stmt = $conn->prepare($query);
+
+			
+
+			if(!$no_value) {
+				call_user_func_array(array($stmt, "bind_param"), refValues($bind_params)); 
+				//Call di un metodo all'interndo di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
+				/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. [Wikipedia]*/
+			}
+
+
+			//Eseguo la query
+			$stmt->execute();
+
+			$result = $stmt->get_result();
+
+
 
 
 			if(!$result)
 				echo "Errore nella query.";
-				
+
 			if ($result->num_rows > 0) {
 				$createCard = function($img, $title, $description, $date, $price)
 				{

@@ -31,7 +31,7 @@ header {
 }
 
 .main-nav {
-	max-width: 1200px;
+	max-width: 1240px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
@@ -83,12 +83,17 @@ header {
 .content {
 	border: 4px solid orange;
 	margin: 0 auto;
-	max-width: 1200px;
+	max-width: 1240px;
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 }
 
 
+.side-filter {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid blue;
+}
 
 
 .filter-nav {
@@ -96,15 +101,23 @@ header {
 	display: flex;
 }
 
-.filter-nav form {
+/* .filter-nav form {
 	width: 100%;
-}
+} */
 
 .filter-form {
 	border: 3px solid green;
 	/* width: 100%; */
 	margin: 0px;
 	display: flex;
+	flex-direction: column;
+}
+
+
+
+.filter-form-item {
+	margin-bottom:5px;
+	border-bottom: 1px solid #e5e5e5;
 }
 
 
@@ -202,7 +215,7 @@ header {
 
 
 .main-footer {
-	max-width: 1200px;
+	max-width: 1240px;
 	display: flex;
 	flex-shrink: 0;	/*Necessario per lo sticky footer.*/
 }

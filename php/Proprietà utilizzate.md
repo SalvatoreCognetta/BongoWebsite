@@ -1,0 +1,4 @@
+# Proprietà
+- `array array_filter(array $arr)`: funzione che mantiene solo i valori che non sono nulli nell'array. [Stackoverflow](https://stackoverflow.com/questions/4422889/how-to-count-non-empty-entries-in-a-php-array) , [PHP Manual](http://www.php.net/manual/en/function.array-filter.php)
+- `int count(array $arr)`: funzione che conta tutti gli elementi in un array, o in un oggetto. [PHP Manual](http://php.net/manual/en/function.count.php)  
+- `string gettype(mixed $var)`: restituisce il tipo della variabile passata (come "boolean", "integer", "double", "string",     "NULL", ecc.) [PHP Manual](http://php.net/manual/en/function.gettype.php)
