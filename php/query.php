@@ -1,5 +1,5 @@
 <?php
-	function filter_querys($params) {
+	function filter_query($params) {
 		$query = "
 			SELECT *
 			FROM evento
