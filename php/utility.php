@@ -5,6 +5,13 @@
 		public $type;
 		public $value;
 		public $operator;
+
+		function __construct($name, $type, $value, $operator) {
+			$this->name		= $name;
+			$this->type 	= $type;
+			$this->value 	= $value;
+			$this->operator = $operator;
+		}
 	}
 
 

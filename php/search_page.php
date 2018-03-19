@@ -102,32 +102,41 @@
 
 			<?php
 			require 'connection.php';
-			include 'test.php';
+			include 'query.php';
 			include 'utility.php';
 			$values = array_filter($_GET);
 
+			$filter_values	 = array();
+			$filter_values[] = new filter_value('title', 's', $_GET['title'], 'LIKE');
+			$filter_values[] = new filter_value('category', 's', $_GET['category'], '=');
+			$filter_values[] = new filter_value('city', 's', $_GET['city'], '=');
+			echo "filter value: ";
+			print_r($filter_values);
+			echo "\n";
+
 $arr = array();
 
-			foreach($values as $key => $value) {
-				$filter_item = new filter_value();
-				$filter_item->name = $key;
-				if($ret = det_param_type(gettype($value))) {
-					$filter_item->type = $ret;	
-				} else {
-					//caso in cui il valore inserito non è un int, string o double
-				}
-				$filter_item->value = $value;
-				array_push($arr, $filter_item);
-			}
-			print_r($arr);
+			// foreach($values as $key => $value) {
+			// 	$filter_item 			= new filter_value();
+			// 	$filter_item->name 		= $key;
+			// 	if($ret = det_param_type(gettype($value))) {
+			// 		$filter_item->type 	= $ret;	
+			// 	} else {
+			// 		//caso in cui il valore inserito non è un int, string o double
+			// 	}
+			// $filter_item->value 		= $value;
+			// 	// $filter_item->operator	= ;
+			// 	array_push($arr, $filter_item);
+			// }
+			// print_r($arr);
 			
 
 			
 
-			$text_filter			= new filter_value();
-			$text_filter->name		= "title";
-			$text_filter->type 		= "s";
-			$text_filter->operator 	= "LIKE";
+			// $text_filter			= new filter_value();
+			// $text_filter->name		= "title";
+			// $text_filter->type 		= "s";
+			// $text_filter->operator 	= "LIKE";
 
 			$params = array('title' => 's', 'category' => 's', 'date' => 's', 'city' => 's');
 			$res = filter_query($params);
