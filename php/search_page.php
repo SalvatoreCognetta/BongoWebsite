@@ -72,12 +72,12 @@
 						<legend>Categoria eventi</legend>
 						<input type="checkbox" name="category" value="test1">test<br/>
 					</fieldset>
-					<input type="date" name="date" >
-					<select name="city">
+					<input type="date" name="date">
+					<select name="city" required>
 						<option value="" disabled selected>Città</option>
 						<option value="Pisa">Pisa</option>
 					</select>						
-					<input type="submit" value="Cerca"	>
+					<input type="submit" value="Cerca">
 				</form>
 			</aside>
 
@@ -104,118 +104,72 @@
 			require 'connection.php';
 			include 'query.php';
 			include 'utility.php';
+			include 'card.php'; //oppure inserire la funzione di creazione card in utility.php?
+
+
 			$values = array_filter($_GET);
 
 			$filter_values	 = array();
-			$filter_values[] = new filter_value('title', 's', $_GET['title'], 'LIKE');
-			$filter_values[] = new filter_value('category', 's', $_GET['category'], '=');
-			$filter_values[] = new filter_value('city', 's', $_GET['city'], '=');
-			echo "filter value: ";
-			print_r($filter_values);
-			echo "\n";
+			if(!empty($_GET['title']))
+				$filter_values[] = new filter_value('title', 's', "%{$_GET['title']}%", 'LIKE');
+			if(!empty($_GET['category']))				
+				$filter_values[] = new filter_value('category', 's', $_GET['category'], '=');
+			if(!empty($_GET['city']))				
+				$filter_values[] = new filter_value('city', 's', $_GET['city'], '=');
 
-$arr = array();
 
-			// foreach($values as $key => $value) {
-			// 	$filter_item 			= new filter_value();
-			// 	$filter_item->name 		= $key;
-			// 	if($ret = det_param_type(gettype($value))) {
-			// 		$filter_item->type 	= $ret;	
-			// 	} else {
-			// 		//caso in cui il valore inserito non è un int, string o double
-			// 	}
-			// $filter_item->value 		= $value;
-			// 	// $filter_item->operator	= ;
-			// 	array_push($arr, $filter_item);
-			// }
-			// print_r($arr);
-			
+			//Se l'utente ha inserito almeno un filtro allora aggiorno la pagina
+			if(count($filter_values)) { 
+				$filter_result = filter_query($filter_values);
 
-			
+				//Inizializzo
+				$query		 = $filter_result[0];
+				$bind_params = $filter_result[1];
 
-			// $text_filter			= new filter_value();
-			// $text_filter->name		= "title";
-			// $text_filter->type 		= "s";
-			// $text_filter->operator 	= "LIKE";
+				//Preparo il template dello statement sql
+				$stmt = $conn->prepare($query);
 
-			$params = array('title' => 's', 'category' => 's', 'date' => 's', 'city' => 's');
-			$res = filter_query($params);
-			// print_r($res);
-
-			$no_value	 = $res[0];
-			$query		 = $res[1];
-			$bind_params = $res[2];
-
-			$stmt = $conn->prepare($query);
-
-			
-
-			if(!$no_value) {
-				call_user_func_array(array($stmt, "bind_param"), refValues($bind_params)); 
+				call_user_func_array(array($stmt, "bind_param"), ref_values($bind_params)); 
 				//Call di un metodo all'interndo di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
 				/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. [Wikipedia]*/
-			}
 
+				//Eseguo la query
+				$stmt->execute();
 
-			//Eseguo la query
-			$stmt->execute();
+				//Ottengo i risultati della query
+				$result = $stmt->get_result();
 
-			$result = $stmt->get_result();
+				if(!$result)
+					echo "Errore nella query.";
 
+				if ($result->num_rows > 0) {
+					// output data of each row
+					echo "<section class=\"cards\">";
+					while($row = $result->fetch_assoc()) {
+						//Inizializzo tutti i valori necessari per creare la card con i risultati presi dal db
 
+						$timestamp = strtotime($row["date"]);
+						$date = date('d-m-Y', $timestamp);
+						$time = date('H:i', $timestamp);
 
+						$img = $row["img"];
+						$title = $row["title"];
+						$description = $row["description"];
+						$price = $row["price"];
 
-			if(!$result)
-				echo "Errore nella query.";
+						//Creo la card con la funzione presente in card.php
+						create_card($img, $title, $description, $date, $time, $price);
+					}
 
-			if ($result->num_rows > 0) {
-				$createCard = function($img, $title, $description, $date, $price)
-				{
-					printf("Hello %s\r\n", $name);
-				};
-
-				// output data of each row
-				echo "<section class=\"cards\">";
-				while($row = $result->fetch_assoc()) {
-					$timestamp = strtotime($row["date"]);
-					$date = date('d-m-Y', $timestamp);
-					$time = date('H:i', $timestamp);
-
-					
-
-					$str = "
-					<article class=\"card\"> 
-						<img src=\"".$row["img"]."\">
-						<div class=\"card-info\">
-							<h2>".$row["title"]."</h2> 				
-							<p>".$row["description"]."</p>
-						</div>
-						<div class=\"card-date\">
-							<div class=\"card-date-info\">
-								<h3>Data: </h3>
-								<p>".$date."</p>
-							</div>
-							
-							<div class=\"card-date-info\">
-								<h3>Ora: </h3>
-								<p>".$time."</p>
-							</div>
-
-							<div class=\"card-date-info\">
-								<h3>Prezzo: </h3>
-								<p>".$row["price"]."</p>
-							</div>
-							
-							<button class=\"card-button\">></button>
-						</div>
-					</article>";
-
-					echo $str;
+					echo "</section>";
+				} else {
+					echo "0 results";
 				}
-				echo "</section>";
+
 			} else {
-				echo "0 results";
+				echo "non deve aggiornare la pagina";
 			}
+
 			$conn->close();
 			?>
 

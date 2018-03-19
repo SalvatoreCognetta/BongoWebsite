@@ -16,13 +16,14 @@
 
 
 	//La funzione bool mysqli_stmt::bind_result ( mixed &$var1 [, mixed &$... ] ) necessita di parametri riferimento
-	function refValues($arr){
+	function ref_values($arr){
 		$refs = array();
 		foreach($arr as $key => $value) 
 			$refs[$key] = &$arr[$key];
 		return $refs;
 	}
 
+	
 
 	// Determina il tipo dell'argomento da passare alla funzione bind_param, partendo dal gettype() del valore inserito
 	function det_param_type($type) {

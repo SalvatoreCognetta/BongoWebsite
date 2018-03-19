@@ -1,66 +1,41 @@
 <?php
-	function filter_query($params) {
+	function filter_querys($params) {
 		$query = "
 			SELECT *
 			FROM evento
 		";
-
-		$noValue = true;	// se non c'è nessuno valore nei filtri, cioè l'utente clicca 'Cerca' senza inserire nulla, la query non deve contenere nessun where.
-		$numParams = 0;
-		foreach ($params as $field => $value) {
-			if (!empty($_GET[$field])) { //La funzione empty() è essenzialmente equivalente a !isset($var)||$var==false. Controlla se la stringa è vuota, NULL, false, ecc.
-				if($noValue) {
-					$query .= "WHERE ";
-					$noValue = false;
-				}
-				$numParams++;
-			}
-		}
-		
-		
-
+	
+		$query .= " WHERE ";
+	
+		$num_params = 0; //numero di parametri già inseriti nella query
 		$bind_param_args = array();
 		$bind_param_args[0] = "";
 		
-		if(!$noValue){
-			
-			foreach($params as $field => $value) {
-				if(!empty($_GET[$field])){
+		foreach($params as $field) {
 
-					$bind_param_args[0] .= $value;
-					
-					if($field == "title") {
-						$param = "%{$_GET[$field]}%";
-						$str = sprintf("%s LIKE ?", $field);
-					} else {
-						$param = $_GET[$field];					
-						$str = sprintf("%s = ? ", $field);
-					}
-					array_push($bind_param_args, $param);
+			//Creo le condizioni WHERE della query: WHERE... col_name = value
+			$str = sprintf("%s %s ?", $field->name, $field->operator);
 
-					$query .= $str;
+			//Aggiorno i bind_params da dover passare alla funzione mysqli::stmt->bind_param, concatenando il tipo del filter_value a quelli precedentemente inseriti.
+			$bind_param_args[0] .= $field->type;
 
-					$numParams--;
-					
-					if($numParams > 0) {
-						$query .= " AND ";
-					}
+			//I valori successivi dell'array contengono il valore $_GET['name'])
+			$bind_param_args[] = $field->value;
 
-				}
+			//Aggiorno la query concatenando le condizioni create in precedenza
+			$query .= $str;
+
+			$num_params++;
+
+			//Se non sto inserendo l'ultimo parametro allora aggiungo l'AND
+			if($num_params != count($params)) {
+				$query .= " AND ";
 			}
 		}
+		
 
 		$query .= " ORDER BY date";
-		$ret = array($noValue, $query, $bind_param_args);
+		$ret = array($query, $bind_param_args);
 		return $ret;
-	
-
 	}
-
-// 	function refValues($arr){
-// 		$refs = array();
-// 		foreach($arr as $key => $value) 
-// 			$refs[$key] = &$arr[$key];
-// 		return $refs;
-// }
 ?>
