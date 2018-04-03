@@ -20,7 +20,7 @@
 
 					<div class=\"card-date-info\">
 						<h3>Prezzo: </h3>
-						<p> %s </p>
+						<p> %s€ </p>
 					</div>
 					
 					<button class=\"card-button\">></button>
