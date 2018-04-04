@@ -202,9 +202,10 @@
 				if(!$result)
 					echo "Errore nella query.";
 
+
+				echo "<section class=\"cards\">";
 				if ($result->num_rows > 0) {
 					// output data of each row
-					echo "<section class=\"cards\">";
 					while($row = $result->fetch_assoc()) {						
 						//Inizializzo tutti i valori necessari per creare la card con i risultati presi dal db
 						$timestamp = strtotime($row["date"]);
@@ -217,16 +218,16 @@
 						$price = $row["price"];
 
 						//Creo la card con la funzione presente in card.php
-						create_card($img, $title, $description, $date, $time, $price);
+						create_event_card($img, $title, $description, $date, $time, $price);
 					}
 
-					echo "</section>";
 				} else {
-					echo "0 results";
+					create_error_card();
 				}
+				echo "</section>";
 
 			} else {
-				echo "non deve aggiornare la pagina";
+				echo "L'utente non ha inserito nessun filtro.";
 			}
 
 			$conn->close();

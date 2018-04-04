@@ -283,9 +283,11 @@ span.psw {
 	/* margin: 0 auto; */
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	width: 100%;
 }
 
-.card {
+.event_card {
 	border: 3px solid red;
 	margin: 20px 10px;
 	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
@@ -296,30 +298,30 @@ span.psw {
 	/* justify-content: space-between; */
 }
 
-.card img {
+.event_card img {
 	height: 100px;
 	border-radius: 5px 0 0 5px;
 }
 
-.card-info {
+.event_card-info {
 	margin: 5px;
 	width: 65%;
 	display: flex;
 	flex-direction: column;
 }
 
-.card-info h2 {
+.event_card-info h2 {
 	color: #007489;
 	font-family: trenchFont;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.card-info p {
+.event_card-info p {
 	overflow: auto;
 }
 
-.card-date {
+.event_card-date {
 	margin: 5px 5px 5px 0;
 	flex-grow: 1;
 	display: flex;
@@ -327,19 +329,19 @@ span.psw {
 	position: relative;
 }
 
-.card-date-info {
+.event_card-date-info {
 	display: flex;
 	margin-bottom: 3px;
 }
 
-.card-date h3 {
+.event_card-date h3 {
 	color: #007489;
 	font-family: trenchFont;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.card-button {
+.event_card-button {
 	text-align: center;
 	font-size: 30px;
 	background-color: #007489;
@@ -353,6 +355,22 @@ span.psw {
 }
 
 
+
+
+
+.error_card {
+	background-color: rgba(199, 6, 6, 0.432);
+	margin: 30vh 1vw;
+	border: 2px solid red;
+	padding: 5vh 1vw;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+	box-sizing: content-box;
+	border-radius: 5px;
+
+	width: 50%;
+	display: flex;
+	justify-content: center;	
+}
 
 
 
