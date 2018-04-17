@@ -34,14 +34,7 @@
 			</nav>
 		</header>
 
-		<script>
-			document.onkeydown = function(evt) {
-				evt = evt || window.event;
-				if (evt.keyCode == 27) {//27 is the code for escape
-					document.getElementById("id01").style.display = 'none'; 
-				}
-			};
-		</script>
+		
 
 
 		<!-- The Modal -->
@@ -49,7 +42,7 @@
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
 			<!-- Modal Content -->
-			<form class="modal-content animate" action="/action_page.php">
+			<form id="test" class="modal-content animate" action="/action_page.php">
 				<div class="imgcontainer">
 				<!-- <img src="../img/bar.jpeg" alt="Avatar" class="avatar"> -->
 				</div>
@@ -73,6 +66,20 @@
 				</div>
 			</form>
 		</div> 
+
+		<script>
+			document.onkeydown = function(evt) {
+				evt = evt || window.event;
+				if (evt.keyCode == 27) {//27 is the code for escape
+					var form = document.getElementById("test");
+					form.className += ' animate-out ';
+					setTimeout(() => {
+						document.getElementById("id01").style.display = 'none';
+						form.className = 'modal-content animate '
+					}, 600);
+				}
+			};
+		</script>
 
 		<!-- <form name="login-form" action="action_page.php">
 			<div class="imgcontainer">
