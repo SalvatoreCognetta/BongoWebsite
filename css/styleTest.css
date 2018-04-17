@@ -66,6 +66,11 @@ header {
 	font-size: 1.2em;
 	text-decoration: none;
 	color: #C63D0F;
+	cursor: pointer;
+}
+
+.main-nav-list a:hover {
+	opacity: 0.8;
 }
 
 .main-nav-list> :last-child {
@@ -99,7 +104,7 @@ header {
     background-color: #fefefe;
     margin: 5px auto; /* 15% from the top and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+	max-width: 1240px;
 }
 
 /* The Close Button */

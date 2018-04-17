@@ -34,40 +34,44 @@
 			</nav>
 		</header>
 
+		<script>
+			document.onkeydown = function(evt) {
+				evt = evt || window.event;
+				if (evt.keyCode == 27) {//27 is the code for escape
+					document.getElementById("id01").style.display = 'none'; 
+				}
+			};
+		</script>
 
-
-		 <!-- Button to open the modal login form -->
-<button onclick="document.getElementById('id01').style.display='block'">Login</button>
 
 		<!-- The Modal -->
 		<div id="id01" class="modal">
-		<span onclick="document.getElementById('id01').style.display='none'"
-		class="close" title="Close Modal">&times;</span>
+			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-		<!-- Modal Content -->
-		<form class="modal-content animate" action="/action_page.php">
-			<div class="imgcontainer">
-			<img src="img_avatar2.png" alt="Avatar" class="avatar">
-			</div>
+			<!-- Modal Content -->
+			<form class="modal-content animate" action="/action_page.php">
+				<div class="imgcontainer">
+				<!-- <img src="../img/bar.jpeg" alt="Avatar" class="avatar"> -->
+				</div>
 
-			<div class="container">
-			<label for="uname"><b>Username</b></label>
-			<input type="text" placeholder="Enter Username" name="uname" required>
+				<div class="container">
+				<label for="uname"><b>Username</b></label>
+				<input type="text" placeholder="Enter Username" name="uname" required>
 
-			<label for="psw"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
+				<label for="psw"><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" name="psw" required>
 
-			<button type="submit">Login</button>
-			<label>
-				<input type="checkbox" checked="checked" name="remember"> Remember me
-			</label>
-			</div>
+				<button type="submit">Login</button>
+				<label>
+					<input type="checkbox" checked="checked" name="remember"> Remember me
+				</label>
+				</div>
 
-			<div class="container" style="background-color:#f1f1f1">
-			<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-			<span class="psw">Forgot <a href="#">password?</a></span>
-			</div>
-		</form>
+				<div class="container" style="background-color:#f1f1f1">
+				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+				</div>
+			</form>
 		</div> 
 
 		<!-- <form name="login-form" action="action_page.php">
