@@ -56,6 +56,6 @@ I **quantificatori** definisco delle quantità:
 Inoltre in JavaScript esiste l'oggetto RegExp, cioè un regular expression object con proprietà e metodi definiti.
 
 ## Hoisting
-In JavaScript una variabile può essere dichiara dopo che questa è stata utilizzata. Questo comportameto è dovuto all'hoisting, cioè il comportamento di default di JavaScript di spostare tutte le dichiarazioni all'inizio dello scope corrente.  
+In JavaScript una variabile può essere dichiarata dopo che questa è stata utilizzata. Questo comportameto è dovuto all'hoisting, cioè il comportamento di default di JavaScript di spostare tutte le dichiarazioni all'inizio dello scope corrente.  
 È importante notare che solo le dichiarazioni sono soggette all'hoisting, mentre le inizializzazioni no.
 Per evitare bug, dichiarare sempre tutte le variabili all'inizio di ogni scope.

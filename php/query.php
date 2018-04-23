@@ -1,4 +1,5 @@
 <?php
+	//Funzione che, in base ai filtri forniti, restituisce la query da 'preparare' e i bind_params
 	function filter_query($params) {
 		$query = "
 			SELECT *
@@ -6,7 +7,7 @@
 		";
 	
 		$query .= " WHERE ";
-	
+
 		$num_params = 0; //numero di parametri già inseriti nella query
 		$bind_param_args = array();
 		$bind_param_args[0] = "";
@@ -32,8 +33,8 @@
 				$query .= " AND ";
 			}
 		}
-		
 
+		
 		$query .= " ORDER BY date";
 		$ret = array($query, $bind_param_args);
 		return $ret;
