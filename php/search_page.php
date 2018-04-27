@@ -4,6 +4,7 @@
 <head>
 	<?php 
 	require 'config.php';
+	require 'connection.php';
 	include 'login.php';
 	?>
 	<script src="../js/login.js"></script>	
@@ -53,7 +54,22 @@
 					<input type="date" name="date">
 					<select name="city" required>
 						<option value="" disabled selected>Città</option>
-						<option value="Pisa">Pisa</option>
+						<?php 
+							$stmt = $conn->prepare("SELECT DISTINCT city FROM evento");							
+							//Eseguo la query
+							$stmt->execute();
+							//Ottengo i risultati della query
+							$result = $stmt->get_result();
+
+							if(!$result)
+								echo "Errore nella query.";
+							else {
+								while($row = $result->fetch_assoc()) {	
+									$city = $row[$citycol];	
+									echo "<option value=\"{$city}\">{$city}</option>";
+								}
+							}
+						?>
 					</select>
 					<input type="submit" value="Cerca">
 				</form>
@@ -79,7 +95,6 @@
 			</nav> -->
 
 			<?php
-			require 'connection.php';
 			include 'query.php';
 			include 'utility.php';
 			include 'card.php'; //oppure inserire la funzione di creazione card in utility.php?

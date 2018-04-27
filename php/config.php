@@ -6,6 +6,7 @@
 	$dbname 	= "eventi_bongo";
 
 	//Event table
+	$event_table_name = 'evento';
 	$idcol 		= 'idevent';
 	$imgcol		= 'img';
 	$titlecol 	= 'title';

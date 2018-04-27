@@ -40,7 +40,7 @@
 		</header>
 
 
-		<section class="event-content">
+		<section class="event-container">
 			<?php 
 			require 'connection.php';
 			include 'query.php';
@@ -84,6 +84,17 @@
 			}
 
 			?> 
+
+			<img>
+			<section class="event-description">
+				<section class="">
+					<h1>Titolo | Ore Data Luogo</h1>
+					<article>Descrizione</article>
+				</section>
+				<aside>
+					Partecipa
+				</aside>
+			</section>
 		</section>
 	</div>
 
