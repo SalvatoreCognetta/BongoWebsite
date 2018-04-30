@@ -10,6 +10,8 @@
 	<title>Bongo</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
+	<link href="../css/allpgs.css" rel="stylesheet" type="text/css">	
+	<link href="../css/login.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -24,7 +26,7 @@
 						<a href="../html/home.html">Home</a>
 					</li>
 					<li>
-						<a onclick="document.getElementById('id01').style.display='block'">Accedi</a>
+						<a onclick="document.getElementById('login-form-id').style.display='block'">Accedi</a>
 					</li>
 					<li>
 						<a href="../html/signin.html">Registrati</a>

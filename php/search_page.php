@@ -5,11 +5,12 @@
 	<?php 
 	require 'config.php';
 	require 'connection.php';
-	include 'login.php';
+	//include 'login.php';
 	?>
 	<script src="../js/login.js"></script>	
 	<title>Bongo</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
+	<link href="../css/allpgs.css" rel="stylesheet" type="text/css">	
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -25,7 +26,7 @@
 						<a href="../html/home.html">Home</a>
 					</li>
 					<li>
-						<a onclick="document.getElementById('id01').style.display='block'">Accedi</a>
+						<a onclick="document.getElementById('login-container').style.display='block'">Accedi</a>
 					</li>
 					<li>
 						<a href="../html/signin.html">Registrati</a>
@@ -40,6 +41,42 @@
 			</nav>
 		</header>
 
+<div id="login-container" class="login-container" style="display:block;">
+	<span onclick="document.getElementById('login-container').style.display='none'" class="close" title="Close Modal">&times;</span>
+	
+	<div class="wrap-login">
+		<form class="login-form">
+			<span class="login-form-logo">
+				<img src="../img/icon/account_circle_black.svg">
+			</span>
+
+			<span class="login-form-title">
+				Log in
+			</span>
+
+			<div class="wrap-input">
+				<img src="../img/icon/face_black.svg" class="input-icon">
+				<input class="login-input" type="text" name="username" placeholder="Username">
+			</div>
+
+			<div class="wrap-input">
+				<img src="../img/icon/lock_black.svg" class="input-icon">
+				<input class="login-input" type="password" name="pass" placeholder="Password">
+			</div>
+
+			<div class="remember-me">
+				<input class="input-checkbox" id="ckbox" type="checkbox" name="remember-me">
+				<label class="label-checkbox" for="ckbox">Remember me</label>
+			</div>
+
+			<div class="container-login-form-btn">
+				<button class="login-form-btn">Login</button>
+			</div>
+
+			<a href=#>Forgot Password?</a>
+		</form>
+	</div>
+</div>
 
 		<section class="content">
 

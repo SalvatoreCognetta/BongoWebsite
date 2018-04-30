@@ -2,11 +2,12 @@
 document.onkeydown = function (evt) {
 	evt = evt || window.event;
 	if (evt.keyCode == 27) { //27 is the code for escape
-		var form = document.getElementById("test");
+		var form = document.getElementById("login-container");
 		form.className += ' animate-out ';
+		console.log("Esc premuto.");
 		setTimeout(() => {
-			document.getElementById("id01").style.display = 'none';
-			form.className = 'modal-content animate ';
+			document.getElementById("login-container").style.display = 'none';
+			form.className = 'login-container modal animate ';
 		}, 600);
 	}
 };

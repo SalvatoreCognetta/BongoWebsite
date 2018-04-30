@@ -1,136 +1,49 @@
-* {
-	box-sizing: border-box;	/* La proprietà box-sizing: border-box ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border.*/
+/*Login test*/
+.login-container {
+	border: 5px solid #007489;
+	
 }
 
-html,
-body {
-	height: 100%;
-}
-
-body {
+.wrap-login {
+	border: 3px red solid;
+	max-width:960px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 0 auto;
-	font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
+	justify-content: center;
 }
 
-li {
-	margin-right: 3px;
+.login-form {
+	border: 3px solid black;
+	padding: 3px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-a {
-	text-decoration: none;
-}
 
-button:hover {
-    opacity: 0.8;
-}
 
-.wrapper {
+/*Form input*/
+
+.wrap-input {
 	width: 100%;
-	flex: 1 0 auto;	/*Necessario per lo sticky footer.*/
+	position: relative;
+	margin-bottom: 20px;
 }
 
-header {
-	/* width: 100%; */
-	background-color: rgb(247, 234, 220);
+.login-input {	
+	padding: 0 5px 0 38px;
 }
 
-.main-nav {
-	max-width: 1240px;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	height: 50px;
-}
-
-.logo a {
-	margin: 0;
-	color: #C63D0F;
-	letter-spacing: 5px;
-	font-size: 50px;
-	font-family: trenchFont;
-}
-
-.main-nav-list {
-	display: flex;
-	height: 100%;
-	/* align-items: center; */
-}
-
-.main-nav-list li {
-	padding-left: 3px;	
-	display: flex;
-	align-items: center;
-	height: 100%;
-}
-
-.main-nav-list li a {
-	font-family: trenchFont;
-	font-size: 1.2em;
-	text-decoration: none;
-	color: #C63D0F;
-	cursor: pointer;
-}
-
-.main-nav-list a:hover {
-	opacity: 0.8;
-}
-
-.main-nav-list> :last-child {
-	margin-right: 0;
+.input-icon {
+	position:absolute;
 }
 
 
 
 
-
-
-
-
- /* The Modal (background) */
- .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5px auto; /* 15% from the top and centered */
-    border: 1px solid #888;
-	max-width: 1240px;
-}
-
-/* The Close Button */
-.close {
-    /* Position it in the top right corner outside of the modal */
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-/* Close button on hover */
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
 
 /* Add Zoom Animation */
 .animate {
@@ -169,95 +82,10 @@ header {
 
 
 
- /* Bordered form */
-.login-form {
-    border: 3px solid #f1f1f1;
-}
-
-/* Full-width inputs */
-.container input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px;
-    display: inline-block;
-    border: 1px solid #ccc;
-	box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    /* width: 100%; */
-}
-
-
-/* Extra style for the cancel button (red) */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-/* Center the avatar image inside this container */
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-/* Avatar image */
-img.avatar {
-    width: 30%;
-    border-radius: 50%;
-}
-
-/* Add padding to containers */
-.login-container {
-    padding: 16px;
-}
-
-/* The "Forgot password" text */
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
-} 
 
 
 
-
-
-
-
-
-
-
-
-
-
-.content {
-	border: 4px solid orange;
-	margin: 0 auto;
-	max-width: 1240px;
-	display: flex;
-	/* flex-direction: column; */
-}
-
-
+/*Search page*/
 .side-filter {
 	display: flex;
 	flex-direction: column;
@@ -404,22 +232,6 @@ span.psw {
 
 
 
-
-.main-footer {
-	max-width: 1240px;
-	display: flex;
-	flex-shrink: 0;	/*Necessario per lo sticky footer.*/
-}
-
-.main-footer ul {
-	display: flex;
-	flex-direction: row;
-}
-
-@font-face {
-	font-family: trenchFont;
-	src: url(./trench100free.ttf);
-}
 
 
 

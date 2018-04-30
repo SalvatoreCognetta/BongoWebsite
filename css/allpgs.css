@@ -1,0 +1,130 @@
+* {
+	box-sizing: border-box;	/* La proprietà box-sizing: border-box ci permette di includere nel conteggio totale dell'altezza e largezza dell'elemento il padding e il border.*/
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
+}
+
+li {
+	margin-right: 3px;
+}
+
+a {
+	text-decoration: none;
+}
+
+input[type=text], input[type=password] {
+    border: none;
+	border-bottom: 2px solid rgba(128, 126, 126, 0.801);
+	padding-bottom: 5px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+@font-face {
+	font-family: trenchFont;
+	src: url(../fonts/trench100free.ttf);
+}
+
+
+
+
+/* Nav bar */
+header {
+	/* width: 100%; */
+	background-color: rgb(247, 234, 220);
+}
+
+.main-nav {
+	max-width: 1240px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+}
+
+.logo a {
+	margin: 0;
+	color: #C63D0F;
+	letter-spacing: 5px;
+	font-size: 50px;
+	font-family: trenchFont;
+}
+
+.main-nav-list {
+	display: flex;
+	height: 100%;
+	/* align-items: center; */
+}
+
+.main-nav-list li {
+	padding-left: 3px;	
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.main-nav-list li a {
+	font-family: trenchFont;
+	font-size: 1.2em;
+	text-decoration: none;
+	color: #C63D0F;
+	cursor: pointer;
+}
+
+.main-nav-list a:hover {
+	opacity: 0.8;
+}
+
+.main-nav-list> :last-child {
+	margin-right: 0;
+}
+
+
+
+
+/*Contenuto*/
+.wrapper {
+	width: 100%;
+	flex: 1 0 auto;	/*Necessario per lo sticky footer.*/
+}
+
+
+
+.content {
+	border: 4px solid orange;
+	margin: 0 auto;
+	max-width: 1240px;
+	display: flex;
+	/* flex-direction: column; */
+}
+
+
+
+/*Footer*/
+.main-footer {
+	max-width: 1240px;
+	display: flex;
+	flex-shrink: 0;	/*Necessario per lo sticky footer.*/
+}
+
+.main-footer ul {
+	display: flex;
+	flex-direction: row;
+}
+
+
