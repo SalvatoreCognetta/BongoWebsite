@@ -39,4 +39,15 @@
 		$ret = array($query, $bind_param_args);
 		return $ret;
 	}
+
+	//Funzione che esegue la query di check nel db di username e password
+	function check_user() {
+		$query = "
+			SELECT *
+			FROM user
+			WHERE username = '?' AND password = '?'";
+		
+		return $query;
+		 
+	}
 ?>

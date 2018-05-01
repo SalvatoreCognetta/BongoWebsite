@@ -10,7 +10,7 @@
 	<title>Bongo</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
-	<link href="../css/allpgs.css" rel="stylesheet" type="text/css">	
+	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 
 </head>

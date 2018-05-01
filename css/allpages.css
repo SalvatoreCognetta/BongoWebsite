@@ -24,9 +24,8 @@ a {
 }
 
 input[type=text], input[type=password] {
-    border: none;
+	border: none;
 	border-bottom: 2px solid rgba(128, 126, 126, 0.801);
-	padding-bottom: 5px;
 }
 
 button:hover {
@@ -36,6 +35,11 @@ button:hover {
 @font-face {
 	font-family: trenchFont;
 	src: url(../fonts/trench100free.ttf);
+}
+
+@font-face {
+	font-family: roboto;
+	src: url(../fonts/RobotoTTF/RobotoCondensed-Light.ttf);
 }
 
 

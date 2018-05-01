@@ -5,12 +5,16 @@
 	<?php 
 	require 'config.php';
 	require 'connection.php';
+	include 'query.php';
 	//include 'login.php';
+	session_start();
 	?>
 	<script src="../js/login.js"></script>	
 	<title>Bongo</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
-	<link href="../css/allpgs.css" rel="stylesheet" type="text/css">	
+	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
+	<link href="../css/login.css" rel="stylesheet" type="text/css">	
+	
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -41,42 +45,53 @@
 			</nav>
 		</header>
 
-<div id="login-container" class="login-container" style="display:block;">
-	<span onclick="document.getElementById('login-container').style.display='none'" class="close" title="Close Modal">&times;</span>
-	
-	<div class="wrap-login">
-		<form class="login-form">
-			<span class="login-form-logo">
-				<img src="../img/icon/account_circle_black.svg">
-			</span>
+		<div id="login-container" class="login-container animate" style="display:none;">
+			<span onclick="document.getElementById('login-container').style.display='none'" class="close" title="Close Login">&times;</span>
+			
+			<div class="wrap-login">
+				<form class="login-form" action="" method="post">
+					<span class="login-form-logo">
+						<img src="../img/icon/account_circle_black.svg">
+					</span>
 
-			<span class="login-form-title">
-				Log in
-			</span>
+					<span class="login-form-title">
+						Log in
+					</span>
 
-			<div class="wrap-input">
-				<img src="../img/icon/face_black.svg" class="input-icon">
-				<input class="login-input" type="text" name="username" placeholder="Username">
+					<div class="wrap-input">
+						<img src="../img/icon/face_black.svg" class="input-icon">
+						<input class="login-input" type="text" name="username" placeholder="Username">
+					</div>
+
+					<div class="wrap-input">
+						<img src="../img/icon/lock_black.svg" class="input-icon">
+						<input class="login-input" type="password" name="pass" placeholder="Password">
+					</div>
+
+					<div class="remember-me">
+						<input class="input-checkbox" id="ckbox" type="checkbox" name="remember-me">
+						<label class="label-checkbox" for="ckbox">Remember me</label>
+					</div>
+
+					<div class="container-login-form-btn">
+						<input type="submit" value="Login" class="login-form-btn">
+					</div>
+
+					<a class="forgot" href=#>Forgot Password?</a>
+				</form>
 			</div>
-
-			<div class="wrap-input">
-				<img src="../img/icon/lock_black.svg" class="input-icon">
-				<input class="login-input" type="password" name="pass" placeholder="Password">
-			</div>
-
-			<div class="remember-me">
-				<input class="input-checkbox" id="ckbox" type="checkbox" name="remember-me">
-				<label class="label-checkbox" for="ckbox">Remember me</label>
-			</div>
-
-			<div class="container-login-form-btn">
-				<button class="login-form-btn">Login</button>
-			</div>
-
-			<a href=#>Forgot Password?</a>
-		</form>
-	</div>
-</div>
+		</div>
+		<?php
+						print_r($_POST);
+						echo $_POST["pass"];
+						$query = check_user(); 
+						$stmt = $conn->prepare($query);
+		$stmt->bind_param("ss",$_POST["username"], $_POST["pass"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if($row = $result->fetch_assoc())
+			print_r($row);
+						?>
 
 		<section class="content">
 
@@ -132,7 +147,6 @@
 			</nav> -->
 
 			<?php
-			include 'query.php';
 			include 'utility.php';
 			include 'card.php'; //oppure inserire la funzione di creazione card in utility.php?
 

@@ -41,3 +41,9 @@
 Si utilizza un div con tutto il contenuto della pagina tranne il footer, che avrà:  
 `flex-grow:1, flex-shrink: 0, flex-basis: auto`;  
 mentre il footer avrà `flex-shrink: 0`. [CSS-Tricks Sticky-Footer](https://css-tricks.com/couple-takes-sticky-footer/)
+
+# Transition
+Per creare un effetto di transizione è necessario specificare 2 cose:
+- la proprietà a cui vogliamo applicare l'effetto;
+- la durata dell'effetto.
+L'effetto inizierà quando la proprietà CSS specificata cambia valore.
