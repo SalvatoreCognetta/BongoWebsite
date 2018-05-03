@@ -122,7 +122,6 @@ header {
 /*Footer*/
 .main-footer {
 	max-width: 1240px;
-	display: flex;
 	flex-shrink: 0;	/*Necessario per lo sticky footer.*/
 }
 

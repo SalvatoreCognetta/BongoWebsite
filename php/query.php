@@ -41,13 +41,20 @@
 	}
 
 	//Funzione che esegue la query di check nel db di username e password
-	function check_user() {
+	function check_user($username, $password, $conn) {
 		$query = "
 			SELECT *
 			FROM user
-			WHERE username = '?' AND password = '?'";
+			WHERE username = ? AND password = ?";
 		
-		return $query;
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("ss",$username, $password);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if($row = $result->fetch_assoc())
+			return true;
+		else
+			return false;
 		 
 	}
 ?>

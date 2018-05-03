@@ -1,0 +1,24 @@
+
+.wrap-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: url(../img/party.jpeg) no-repeat; /*Credit to pexels.com*/
+    background-size: cover;
+}
+
+.container {
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+}
+
+.container h1, h2 {
+	color: #FDF3E7;
+}
+
+.container h2 {
+    font-size: 100%;
+}

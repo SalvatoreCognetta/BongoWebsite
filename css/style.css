@@ -1,4 +1,4 @@
-body{
+/* body{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,7 +15,7 @@ header {
 
 
 .nav-container{
-    max-width: 960px;  /*Grid System di Nathan Smith*/
+    max-width: 960px;  Grid System di Nathan Smith
 	margin: 0 auto;
 	
     display: flex;
@@ -59,14 +59,14 @@ nav ul li a{
 	align-items: center;
 }
 
-/*
+
 nav ul li.active {
     background-color: #white;
-}*/
+}
 
 nav ul li:hover {
     background-color: #3B3738;
-}
+} */
 
 .wrap-container {
     width: 100%;

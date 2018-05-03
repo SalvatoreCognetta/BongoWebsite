@@ -6,8 +6,20 @@
 	require 'config.php';
 	require 'connection.php';
 	include 'query.php';
-	//include 'login.php';
+	include 'login.php';
+
 	session_start();
+	if(empty($_SESSION)) {	
+		$_SESSION['loggedin'] = false;	
+	}
+	
+	if(isset($_POST["username"]) && isset($_POST["pass"])) {
+		if(check_user($_POST["username"], $_POST["pass"], $conn)) {
+			$_SESSION['loggedin'] = true;
+			$_SESSION['username'] = $username;
+		}	
+	}
+	
 	?>
 	<script src="../js/login.js"></script>	
 	<title>Bongo</title>
@@ -22,76 +34,8 @@
 <body>
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
-		<header>
-			<nav class="main-nav">
-				<h1 class="logo"><a href="../html/home.html">Bongo</a></h1>
-				<ul class="main-nav-list">
-					<li>
-						<a href="../html/home.html">Home</a>
-					</li>
-					<li>
-						<a onclick="document.getElementById('login-container').style.display='block'">Accedi</a>
-					</li>
-					<li>
-						<a href="../html/signin.html">Registrati</a>
-					</li>
-					<li>
-						<a href="../html/help.html">Aiuto</a>
-					</li>
-					<li>
-						<a href="../html/about.html">Chi siamo</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-
-		<div id="login-container" class="login-container animate" style="display:none;">
-			<span onclick="document.getElementById('login-container').style.display='none'" class="close" title="Close Login">&times;</span>
-			
-			<div class="wrap-login">
-				<form class="login-form" action="" method="post">
-					<span class="login-form-logo">
-						<img src="../img/icon/account_circle_black.svg">
-					</span>
-
-					<span class="login-form-title">
-						Log in
-					</span>
-
-					<div class="wrap-input">
-						<img src="../img/icon/face_black.svg" class="input-icon">
-						<input class="login-input" type="text" name="username" placeholder="Username">
-					</div>
-
-					<div class="wrap-input">
-						<img src="../img/icon/lock_black.svg" class="input-icon">
-						<input class="login-input" type="password" name="pass" placeholder="Password">
-					</div>
-
-					<div class="remember-me">
-						<input class="input-checkbox" id="ckbox" type="checkbox" name="remember-me">
-						<label class="label-checkbox" for="ckbox">Remember me</label>
-					</div>
-
-					<div class="container-login-form-btn">
-						<input type="submit" value="Login" class="login-form-btn">
-					</div>
-
-					<a class="forgot" href=#>Forgot Password?</a>
-				</form>
-			</div>
-		</div>
-		<?php
-						print_r($_POST);
-						echo $_POST["pass"];
-						$query = check_user(); 
-						$stmt = $conn->prepare($query);
-		$stmt->bind_param("ss",$_POST["username"], $_POST["pass"]);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($row = $result->fetch_assoc())
-			print_r($row);
-						?>
+		
+	<?php include 'header.php'; ?>
 
 		<section class="content">
 
@@ -208,7 +152,7 @@
 					}
 					echo "</section>";
 				}
-			} else {
+			} else { //Qui non dovrebbe mai arrivare!
 				echo "L'utente non ha inserito nessun filtro.";
 			}
 
