@@ -34,8 +34,9 @@
 <body>
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
-		
-	<?php include 'header.php'; ?>
+		<header>
+			<?php include 'nav_bar.php'; ?>
+		</header>
 
 		<section class="content">
 
