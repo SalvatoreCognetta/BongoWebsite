@@ -10,4 +10,8 @@
 	$numcol		= 'numParticipants';
 	$citycol	= 'city';
 	$catcol		= 'category';
+
+	//User Images location
+	$uploaddir = "../img/upload/";
+
 ?>

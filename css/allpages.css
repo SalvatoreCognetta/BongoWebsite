@@ -15,10 +15,6 @@ body {
 	font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
 }
 
-li {
-	margin-right: 3px;
-}
-
 a {
 	text-decoration: none;
 }
@@ -76,7 +72,7 @@ header {
 }
 
 .main-nav-list li {
-	padding-left: 3px;	
+	padding: 0 3px;	
 	display: flex;
 	align-items: center;
 	height: 100%;
@@ -107,9 +103,16 @@ header {
 	display: inline-block;
 }
 
-.user-avatar {
+.user-avatar-menu {
 	cursor: pointer;
 	padding-left: 13px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-avatar {
+	border-radius: 50%;
 }
 
 /*Drop profile menu*/
@@ -123,7 +126,6 @@ header {
 }
 
 .drop-menu a {
-	color: black;
     padding: 12px 13px;
     text-decoration: none;
     display: block;

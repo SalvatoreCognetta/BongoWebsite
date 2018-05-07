@@ -16,22 +16,25 @@
 		</li>
 		<?php } else { ?>
 		<li class="user-dropdown">
-			<span class="user-avatar" onclick="arrow_change('user-arrow')">
-				<img src="https://secure.gravatar.com/avatar/cda27793a7df7b0679ec0349df6fd03e?s=46&amp;d=identicon" width="30" height="30">
-				<img id="user-arrow" class="arrow-down" src="../img/icon/arrow_drop_down_black_24px.svg" >
+			<span class="user-avatar-menu" onclick="arrow_change('user-arrow')">
+				<?php 
+				$query = "SELECT location FROM upload INNER JOIN user";
+				$stmt = $conn->prepare($query);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				if(!$row = $result->fetch_assoc())
+					echo "Errore durante l'upload della foto nel database.";
+				?>
+				<img class="user-avatar" src="<?php echo $row['location'];?>" width="30" height="30" alt="Account avatar">
+				<img id="user-arrow" class="arrow-down" src="../img/icon/arrow_drop_down_black_24px.svg" alt="Arrow">
 			</span>
 			<ul id="drop-menu" class="drop-menu" style="display:none;">
 				<li><a href="./profile.php">Profilo</a></li>
 				<li><a>Test2</a></li>
+				<li style="border-top: 1px solid grey;">
+					<a href="./logout.php">Logout</a>
+				</li>
 		</ul>
-		</li>
-
-		<div id="drop-menu" class="drop-menu" style="display:none;">
-			<li>Profilo</li>
-			<li>Test2</li>
-		</div>
-		<li>
-			<a href="./logout.php">Logout</a>
 		</li>
 		<?php } ?>
 

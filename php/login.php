@@ -4,7 +4,7 @@
 	<div class="wrap-login">
 		<form class="login-form" action="" method="post">
 			<span class="login-form-logo">
-				<img src="../img/icon/account_circle_black.svg">
+				<img src="../img/icon/account_circle_black.svg" alt="Login logo">
 			</span>
 
 			<span class="login-form-title">
@@ -12,12 +12,12 @@
 			</span>
 
 			<div class="wrap-input">
-				<img src="../img/icon/face_black.svg" class="input-icon">
+				<img src="../img/icon/face_black.svg" class="input-icon" alt="Account icon">
 				<input class="login-input" type="text" name="username" placeholder="Username">
 			</div>
 
 			<div class="wrap-input">
-				<img src="../img/icon/lock_black.svg" class="input-icon">
+				<img src="../img/icon/lock_black.svg" class="input-icon" alt="Password icon">
 				<input class="login-input" type="password" name="pass" placeholder="Password">
 			</div>
 

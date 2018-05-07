@@ -2,7 +2,6 @@
 	require 'config.php';
 	require 'connection.php';
 	include 'query.php';
-	include 'login.php';
 
 	session_start();
 	if(empty($_SESSION)) {	
@@ -43,16 +42,38 @@
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
 		<header>
-			<?php include 'nav_bar.php'; ?>
+			<?php 
+				include 'nav_bar.php'; 	
+				include 'login.php';
+			?>
+				
 		</header>
 
-		<section class="content">
-
-			<form action="upload.php" method="POST" enctype="multipart/form-data">
-				<input type="file" name="file" />
-				<button type="submit" name="btn-upload">upload</button>
-			</form>
-		</section>
+		<div class="content">
+			<aside class="profile-side-menu">
+				<ul>
+					<li style="border-bottom: 1px solid grey;">Impostazioni Utente</li>
+					<li><a href='#'>Profilo</a></li>
+					<li>Eventi seguiti</li>
+					<li>Eventi creati</li>
+				</ul>
+			</aside>
+			<div class="profile-settings">
+				<?php 
+				$query = "SELECT location FROM upload INNER JOIN user";
+				$stmt = $conn->prepare($query);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				if(!$row = $result->fetch_assoc())
+					echo "Errore durante l'upload della foto nel database.";
+				?>
+				<img class="profile-img" src="<?php echo $row['location'];?>">
+				<form class="upload-img" action="upload.php" method="POST" enctype="multipart/form-data">
+					<input type="file" name="file" />
+					<button type="submit" name="btn-upload">Upload</button>
+				</form>
+			</div>
+		</div>
 
 	</div>
 

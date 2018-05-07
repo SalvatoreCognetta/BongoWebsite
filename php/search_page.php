@@ -2,7 +2,6 @@
 	require 'config.php';
 	require 'connection.php';
 	include 'query.php';
-	include 'login.php';
 
 	session_start();
 	if(empty($_SESSION)) {	
@@ -37,7 +36,10 @@
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
 		<header>
-			<?php include 'nav_bar.php'; ?>
+		<?php 
+			include 'nav_bar.php'; 	
+			include 'login.php';
+		?>
 		</header>
 
 		<section class="content">

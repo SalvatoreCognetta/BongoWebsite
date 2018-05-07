@@ -80,14 +80,13 @@
 				$title = $row[$titlecol];
 				$description = $row[$descol];
 
-				echo "<img class=\"img-container\" src=\"{$img}\">";
+				echo "<img class='img-container' src='{$img}' alt='Immagine evento'>";
 				echo "<h1>{$title}</h1>";
 				echo "<article>{$description}</article>";
 			}
 
 			?> 
 
-			<img>
 			<section class="event-description">
 				<section class="">
 					<h1>Titolo | Ore Data Luogo</h1>
