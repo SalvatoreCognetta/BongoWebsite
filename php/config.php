@@ -1,10 +1,4 @@
 <?php
-	//DataBase config info
-	$servername = "localhost";
-	$username	= "root";
-	$password 	= "";
-	$dbname 	= "eventi_bongo";
-
 	//Event table
 	$event_table_name = 'evento';
 	$idcol 		= 'idevent';

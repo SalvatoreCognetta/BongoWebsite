@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-
-<head>
-	<?php 
+<?php 
 	require 'config.php';
 	require 'connection.php';
 	include 'query.php';
@@ -20,12 +16,18 @@
 		}	
 	}
 	
-	?>
+?>
+
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
 	<script src="../js/login.js"></script>	
 	<title>Bongo</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
-	<link href="../css/login.css" rel="stylesheet" type="text/css">	
+	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
+	<link href="../css/search_page.css" rel="stylesheet" type="text/css">	
 	
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 

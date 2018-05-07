@@ -15,15 +15,21 @@
 			<a href="../html/signin.html">Registrati</a>
 		</li>
 		<?php } else { ?>
-		<li class="user">
-			<a class="user-img">
-				<a class="user-img" href="./profile.php">
-					<img src="https://secure.gravatar.com/avatar/cda27793a7df7b0679ec0349df6fd03e?s=46&amp;d=identicon" width="30" height="30" href="./profile.php">
-				</a>
-				
-				<img id="user-arrow" class="arrow-down" src="../img/icon/arrow_drop_down_black_24px.svg" onclick="arrow_change('user-arrow')">
-			</a>
+		<li class="user-dropdown">
+			<span class="user-avatar" onclick="arrow_change('user-arrow')">
+				<img src="https://secure.gravatar.com/avatar/cda27793a7df7b0679ec0349df6fd03e?s=46&amp;d=identicon" width="30" height="30">
+				<img id="user-arrow" class="arrow-down" src="../img/icon/arrow_drop_down_black_24px.svg" >
+			</span>
+			<ul id="drop-menu" class="drop-menu" style="display:none;">
+				<li><a href="./profile.php">Profilo</a></li>
+				<li><a>Test2</a></li>
+		</ul>
 		</li>
+
+		<div id="drop-menu" class="drop-menu" style="display:none;">
+			<li>Profilo</li>
+			<li>Test2</li>
+		</div>
 		<li>
 			<a href="./logout.php">Logout</a>
 		</li>

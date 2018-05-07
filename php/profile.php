@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-
-<head>
-	<?php 
+<?php 
 	require 'config.php';
 	require 'connection.php';
 	include 'query.php';
@@ -20,8 +16,12 @@
 		}	
 	}
 	
-	?>
+?>
 
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
 	<script src="../js/test.js"></script>
@@ -48,12 +48,11 @@
 
 		<section class="content">
 
-			<form action="upload.php" method="post" enctype="multipart/form-data">
+			<form action="upload.php" method="POST" enctype="multipart/form-data">
 				<input type="file" name="file" />
 				<button type="submit" name="btn-upload">upload</button>
 			</form>
 		</section>
-
 
 	</div>
 
