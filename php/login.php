@@ -1,36 +1,40 @@
-<div id="login-container" class="login-container animate" style="display:none;">
-	<span onclick="document.getElementById('login-container').style.display='none'" class="close" title="Close Login">&times;</span>
-	
-	<div class="wrap-login">
-		<form class="login-form" action="" method="post">
-			<span class="login-form-logo">
-				<img src="../img/icon/account_circle_black.svg" alt="Login logo">
-			</span>
+<?php
+session_start();
+include 'connection.php';
 
-			<span class="login-form-title">
-				Log in
-			</span>
+$error=''; // Variable To Store Error Message
 
-			<div class="wrap-input">
-				<img src="../img/icon/face_black.svg" class="input-icon" alt="Account icon">
-				<input class="login-input" type="text" name="username" placeholder="Username">
-			</div>
+// if(empty($_SESSION)) {	
+// 	$_SESSION['loggedin'] = false;	
+// }
 
-			<div class="wrap-input">
-				<img src="../img/icon/lock_black.svg" class="input-icon" alt="Password icon">
-				<input class="login-input" type="password" name="pass" placeholder="Password">
-			</div>
+if (isset($_POST['submit'])) {
+	if (empty($_POST['username']) || empty($_POST['password'])) {
+		$error = "Username o Password non validi.";
+	} else {
+		// Define $username and $password
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 
-			<div class="remember-me">
-				<input class="input-checkbox" id="ckbox" type="checkbox" name="remember-me">
-				<label class="label-checkbox" for="ckbox">Remember me</label>
-			</div>
-
-			<div class="container-login-form-btn">
-				<input type="submit" value="Login" class="login-form-btn">
-			</div>
-
-			<a class="forgot" href=#>Forgot Password?</a>
-		</form>
-	</div>
-</div>
+		$query = "
+			SELECT userid, username
+			FROM user
+			WHERE username = ? AND password = ?";
+		
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("ss",$username, $password);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if($row = $result->fetch_assoc()) {
+			$_SESSION['userid'] = $row['userid'];
+			$_SESSION['loggedin'] = true;
+			$_SESSION['username'] = $username;
+			header("Location: profile.php");
+			exit();
+		}else { 
+			$error = "Username o Password invalidi.";
+		}		 
+	}
+}
+echo $error; 
+?>

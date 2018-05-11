@@ -1,6 +1,9 @@
 <?php
 	function create_event_card($id, $img, $title, $description, $date, $time, $price) {
 		$card = sprintf("
+		<div class='card-margin'>
+		<a href='./event_page.php?id=%d'>
+		
 			<div class='event_card'> 
 				<img src=' %s ' alt='Immagine evento'>
 				<div class='event_card-info'>
@@ -23,9 +26,11 @@
 						<p> %s€ </p>
 					</div>
 					
-					<a href='./event_page.php?id=%d'><button type='button' class='event_card-button'> > </button></a>
 				</div>
-			</div>", $img, $title, $description, $date, $time, $price, $id);
+			</div>
+		</a>
+		</div>
+			",$id, $img, $title, $description, $date, $time, $price);
 
 			echo $card;
 	}

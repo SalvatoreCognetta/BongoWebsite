@@ -1,31 +1,34 @@
 <nav class="main-nav">
-	<h1 class="logo"><a href="./home.php">Bongo</a></h1>
+	<div class="logo-search">
+		<h1 class="logo">
+			<a href="./home.php">Bongo</a>
+		</h1>
+		<form class="search-form" action="search_page.php">
+			<input type="text" name="city" >
+		</form>
+	</div>
 	<ul class="main-nav-list">
+		<li>
+			
+		</li>
 		<!-- <li>
 			<a href="./home.php">Home</a>
 		</li> -->
 
 		<?php 
-		if ($_SESSION['loggedin'] == false) { 
+		if (!isset($_SESSION['loggedin'])) { 
 		?>
 		<li>
 			<a onclick="document.getElementById('login-container').style.display='block'">Accedi</a>
-		</li>
-		<li>
-			<a href="../html/signin.html">Registrati</a>
 		</li>
 		<?php } else { ?>
 		<li class="user-dropdown">
 			<span class="user-avatar-menu" onclick="arrow_change('user-arrow')">
 				<?php 
-				$query = "SELECT location FROM upload INNER JOIN user";
-				$stmt = $conn->prepare($query);
-				$stmt->execute();
-				$result = $stmt->get_result();
-				if(!$row = $result->fetch_assoc())
-					echo "Errore durante l'upload della foto nel database.";
+				$location = get_location($_SESSION['userid'], $conn);
+				
 				?>
-				<img class="user-avatar" src="<?php echo $row['location'];?>" width="30" height="30" alt="Account avatar">
+				<img class="user-avatar" src="<?php echo $location;?>" width="30" height="30" alt=" ">
 				<img id="user-arrow" class="arrow-down" src="../img/icon/arrow_drop_down_black_24px.svg" alt="Arrow">
 			</span>
 			<ul id="drop-menu" class="drop-menu" style="display:none;">

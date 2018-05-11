@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 include 'config.php';
 // per prima cosa verifico che il file sia stato effettivamente caricato
@@ -20,17 +21,29 @@ $userfile_name = $_FILES['file']['name'];
 
 //copio il file dalla sua posizione temporanea alla mia cartella upload
 if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
-  //Se l'operazione è andata a buon fine...
-  echo 'File inviato con successo.';
   $location = $uploaddir.$userfile_name;
-  $query = "INSERT INTO `upload` (name, size, type, location) VALUES (?, ?, ?, ?)";
+
+	$uid = uniqid("img_");	
+
+  $query = "INSERT INTO `upload` (uidimg, name, size, type, location) VALUES (?, ?, ?, ?, ?)";
   $stmt = $conn->prepare($query);
-  $stmt->bind_param("siss",$userfile_name, $size, $type, $location);
+  $stmt->bind_param("ssiss", $uid, $userfile_name, $size, $type, $location);
   $stmt->execute();
   $result = $stmt->get_result();
+
+	$userid = $_SESSION['userid'];
+	$stmt = $conn->prepare("UPDATE user SET idavatar = '$uid' WHERE userid = '$userid'");				
+	//Eseguo la query
+	$stmt->execute();	
+
+	//Se l'operazione è andata a buon fine...
+  echo 'File inviato con successo.';
 }else{
   //Se l'operazione è fallta...
   echo 'Upload NON valido!'; 
 }
+
+header("Location: profile.php");
+exit();
 
 ?>

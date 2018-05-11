@@ -1,20 +1,9 @@
 <?php 
-	require 'config.php';
-	require 'connection.php';
-	include 'query.php';
+session_start();
 
-	session_start();
-	if(empty($_SESSION)) {	
-		$_SESSION['loggedin'] = false;	
-	}
-	
-	if(isset($_POST["username"]) && isset($_POST["pass"])) {
-		if(check_user($_POST["username"], $_POST["pass"], $conn)) {
-			$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
-		}	
-	}
-	
+require 'config.php';
+require 'connection.php';
+include 'query.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +32,7 @@
 	<div class="wrapper">
 		<header>
 			<?php 
-				include 'nav_bar.php'; 	
-				include 'login.php';
+			include 'nav_bar.php';  	
 			?>
 				
 		</header>
@@ -59,19 +47,17 @@
 				</ul>
 			</aside>
 			<div class="profile-settings">
-				<?php 
-				$query = "SELECT location FROM upload INNER JOIN user";
-				$stmt = $conn->prepare($query);
-				$stmt->execute();
-				$result = $stmt->get_result();
-				if(!$row = $result->fetch_assoc())
-					echo "Errore durante l'upload della foto nel database.";
+				<?php 				
+				$location = get_location($_SESSION['userid'], $conn);
 				?>
-				<img class="profile-img" src="<?php echo $row['location'];?>">
-				<form class="upload-img" action="upload.php" method="POST" enctype="multipart/form-data">
-					<input type="file" name="file" />
-					<button type="submit" name="btn-upload">Upload</button>
-				</form>
+				<div class="row">
+					<img class="profile-img" src="<?php echo $location;?>" alt="Imaggine non presente nel database.">
+					<form class="upload-img" action="upload.php" method="POST" enctype="multipart/form-data">
+						<input type="file" name="file" accept="image/png, image/jpeg"/>
+						<button type="submit" name="btn-upload">Upload</button>
+					</form>
+				</div>
+				<hr>
 			</div>
 		</div>
 

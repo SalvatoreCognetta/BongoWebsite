@@ -1,20 +1,9 @@
 <?php 
-	require 'config.php';
-	require 'connection.php';
-	include 'query.php';
+session_start();
 
-	session_start();
-	if(empty($_SESSION)) {	
-		$_SESSION['loggedin'] = false;	
-	}
-	
-	if(isset($_POST["username"]) && isset($_POST["pass"])) {
-		if(check_user($_POST["username"], $_POST["pass"], $conn)) {
-			$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
-		}	
-	}
-	
+require 'config.php';
+require 'connection.php';
+include 'query.php';
 ?>
 
 <!DOCTYPE html>
@@ -22,11 +11,14 @@
 
 <head>
 	<script src="../js/login.js"></script>	
+	<script src="../js/test.js"></script>	
+	
 	<title>Bongo</title>
+	<link href="../css/search_page.css" rel="stylesheet" type="text/css">	
+	
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
-	<link href="../css/search_page.css" rel="stylesheet" type="text/css">	
+	<link href="../css/login.css" rel="stylesheet" type="text/css">	
 	
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
@@ -37,8 +29,8 @@
 	<div class="wrapper">
 		<header>
 		<?php 
-			include 'nav_bar.php'; 	
-			include 'login.php';
+		include 'login_form.php';
+		include 'nav_bar.php';  	
 		?>
 		</header>
 
@@ -97,8 +89,8 @@
 
 			<?php
 			include 'utility.php';
-			include 'card.php'; //oppure inserire la funzione di creazione card in utility.php?
-
+			include 'card.php';  
+			
 			//Creo un array contenente i filtri inseriti dall'utente
 			$filter_values	 = array();
 			if(!empty($_GET['title']))

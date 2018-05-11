@@ -1,26 +1,13 @@
+<?php 
+	session_start();
+	require 'config.php';
+	require 'connection.php';
+	include 'query.php';	
+?>
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
-	<?php 
-	require 'config.php';
-	require 'connection.php';
-	include 'query.php';
-
-	session_start();
-	if(empty($_SESSION)) {	
-		$_SESSION['loggedin'] = false;	
-	}
-	
-	if(isset($_POST["username"]) && isset($_POST["pass"])) {
-		if(check_user($_POST["username"], $_POST["pass"], $conn)) {
-			$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
-		}	
-	}
-	
-	?>
-
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
 	<script src="../js/test.js"></script>	
@@ -43,8 +30,8 @@
 	<div class="wrapper">
 		<header>
 			<?php 
-				include 'nav_bar.php'; 	
-				include 'login.php';
+			include 'login_form.php';
+			include 'nav_bar.php'; 	
 			?>
 		</header>
 

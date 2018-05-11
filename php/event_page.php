@@ -1,17 +1,29 @@
+<?php 
+session_start();
+
+require 'config.php';
+require 'connection.php';
+include 'query.php';
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
-	<?php 
-		require 'config.php';
-		include 'login.php';
-	?>
 	<script src="../js/login.js"></script>
+	<script src="../js/slideshow.js"></script>
+	<script src="../js/test.js"></script>
+
+
 	<title>Bongo</title>
+	<link href="../css/home.css" rel="stylesheet" type="text/css">
+
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
-	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
+	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
+
+	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
+
 
 </head>
 
@@ -19,33 +31,16 @@
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
 		<header>
-			<nav class="main-nav">
-				<h1 class="logo"><a href="../html/home.html">Bongo</a></h1>
-				<ul class="main-nav-list">
-					<li>
-						<a href="../html/home.html">Home</a>
-					</li>
-					<li>
-						<a onclick="document.getElementById('login-form-id').style.display='block'">Accedi</a>
-					</li>
-					<li>
-						<a href="../html/signin.html">Registrati</a>
-					</li>
-					<li>
-						<a href="../html/help.html">Aiuto</a>
-					</li>
-					<li>
-						<a href="../html/about.html">Chi siamo</a>
-					</li>
-				</ul>
-			</nav>
+			<?php 
+			include 'login_form.php';
+			include 'nav_bar.php';  	
+			?>
+				
 		</header>
 
 
 		<section class="event-container">
 			<?php 
-			require 'connection.php';
-			include 'query.php';
 			include 'utility.php';
 
 			//Creo un filtro per la query da eseguire

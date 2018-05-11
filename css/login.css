@@ -1,7 +1,7 @@
 /*Login*/
 .login-container {	
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 3; /* Sit on top */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -32,7 +32,7 @@
 
 
 .wrap-login {
-	max-width:960px;
+	max-width:330px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -41,19 +41,22 @@
 }
 
 .login-form {
-	padding: 5px;
-
+	padding: 15px 5px 5px;
+	width: 100%;
 	background-color: #fefefe;
-    margin: 5px auto; /* 15% from the top and centered */
+    margin: 0 auto 5px ; /* 15% from the top and centered */
     /* border: 1px solid #888; */
 
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border-radius: 0 0 3px 3px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	
 }
 
 .login-form>* {
-	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 /* Titolo Login*/
@@ -65,10 +68,10 @@
 .wrap-input {
 	width: 100%;
 	position: relative;
-	margin-bottom: 20px;
+	margin: 0 0 20px 20px;
+	display: inline-block;
 	
 }
-
 
 .wrap-input>input[type=text], .wrap-input>input[type=password] {
 	/* border: none;
@@ -78,16 +81,18 @@
 
 .login-input {	
 	padding: 0 5px 0 38px;
+	width: 90%;
+	height: 29px;
 	/* transition: border 3s ease-in-out; */
 }
 
-input[type=text]:focus, input[type=password]:focus {
-	border-bottom: 2px solid rgb(21, 23, 175);
+.wrap-input>input[type=text]:focus, .wrap-input>input[type=password]:focus {
+	border: 2px solid rgb(21, 23, 175);
 }
 
 .input-icon {
 	position: absolute;
-	padding-bottom: 0px;
+	padding: 2px 2px 0;
 }
 
 
@@ -136,4 +141,17 @@ input[type=text]:focus, input[type=password]:focus {
 @keyframes animatezoomout {
     from {transform: scale(1)}
     to {transform: scale(0)}
-} 
+}
+
+
+
+.signin-input {
+	padding-left: 0;
+	width: 90%;
+	height: 29px;
+}
+
+
+.input-label {
+	padding-left: 27px;
+}

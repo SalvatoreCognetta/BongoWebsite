@@ -1,4 +1,4 @@
-<?php
+<?
 	//Funzione che, in base ai filtri forniti, restituisce la query da 'preparare' e i bind_params
 	function filter_query($params) {
 		$query = "
@@ -40,21 +40,18 @@
 		return $ret;
 	}
 
-	//Funzione che esegue la query di check nel db di username e password
-	function check_user($username, $password, $conn) {
-		$query = "
-			SELECT *
-			FROM user
-			WHERE username = ? AND password = ?";
-		
+	function get_location($userid, $conn) {	
+		$query = "SELECT location FROM upload INNER JOIN user ON idavatar = uidimg WHERE userid = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("ss",$username, $password);
+		$stmt->bind_param("s", $userid);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if($row = $result->fetch_assoc())
-			return true;
-		else
-			return false;
-		 
+		if(!$row = $result->fetch_assoc()) {
+			return null;
+		} else {
+			return $row['location'];
+		}
+
+
 	}
 ?>
