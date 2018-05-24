@@ -1,8 +1,9 @@
 <?php 
 	session_start();
-	require 'config.php';
-	require 'connection.php';
-	include 'query.php';	
+	require_once __DIR__ . '/config.php';
+	include __DIR__ . '/query.php';	
+	require DIR_UTIL . 'dbConfig.php';
+	include_once DIR_UTIL . 'sessionUtil.php';	
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -30,18 +31,18 @@
 	<div class="wrapper">
 		<header>
 			<?php 
-			include 'login_form.php';
-			include 'nav_bar.php'; 	
+			include DIR_BASE . 'nav_bar.php'; 	
+			include DIR_BASE . 'login_form.php';
 			?>
 		</header>
 
-
+<?php print_r($_SESSION);?>
 		<div class="wrap-container">
 			<div class="container">
 				<h1>Cosa fare stasera?</h1>
 				<h2>Cerca gli eventi nella tua zona.</h2>
 
-				<form action="../php/search_page.php">
+				<form action="./php/search_page.php">
 					<input type="text" name="city" placeholder="Inserisci una citt&agrave;">
 					<input type="submit" value="Cerca">
 				</form>

@@ -1,15 +1,12 @@
 <?php
-	//Event table
-	$event_table_name = 'evento';
-	$idcol 		= 'idevent';
-	$imgcol		= 'img';
-	$titlecol 	= 'title';
-	$descol 	= 'description';
-	$datecol  	= 'date';
-	$pricecol	= 'price';
-	$numcol		= 'numParticipants';
-	$citycol	= 'city';
-	$catcol		= 'category';
+	// File system constants
+	define ("DIR_BASE", __DIR__ . '/');
+	define ("DIR_UTIL", DIR_BASE . 'util/');
+	define ("DIR_LAYOUT", DIR_BASE . 'layout/');
+	define ("DIR_AJAX_UTIL", DIR_BASE . 'ajax/');
+
+
+
 
 	//User Images location
 	$uploaddir = "../img/upload/";

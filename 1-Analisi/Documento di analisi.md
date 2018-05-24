@@ -9,3 +9,6 @@ Ovviamente le due categorie non sono mutuamente esclusive, quindi un organizzato
 
 ## Stile
 Ho deciso di adottare come layout la grid system com larghezza massima di 1240px...
+
+## Credit
+Ho utilizzato un database composto dalle tabelle `comuni`, `provincie` e `regioni` clonato dalla seguente [repository github](https://github.com/napolux/italia)

@@ -1,7 +1,8 @@
 <?php
 session_start();
-include 'connection.php';
-include 'config.php';
+
+include __DIR__ . '/config.php';
+require_once DIR_UTIL . 'dbConfig.php';
 // per prima cosa verifico che il file sia stato effettivamente caricato
 if (!isset($_FILES['file']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
   echo 'Non hai inviato nessun file...';
@@ -31,6 +32,8 @@ if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
   $stmt->execute();
   $result = $stmt->get_result();
 
+
+  //Questa porzione di codice deve essere eseguita solo per l'aggiornamento dell'immagine del profilo!!!
 	$userid = $_SESSION['userid'];
 	$stmt = $conn->prepare("UPDATE user SET idavatar = '$uid' WHERE userid = '$userid'");				
 	//Eseguo la query
@@ -43,7 +46,7 @@ if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
   echo 'Upload NON valido!'; 
 }
 
-header("Location: profile.php");
+header("Location: ./profile.php");
 exit();
 
 ?>

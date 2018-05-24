@@ -80,7 +80,7 @@ header {
     transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+.search-form input[type=text]:focus {
     width: 200px;
 }
 
@@ -144,8 +144,14 @@ input[type=text]:focus {
 	z-index: 1;
 }
 
-.drop-menu a {
+.drop-menu li {
     padding: 12px 13px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.drop-menu a {
     text-decoration: none;
     display: block;
     text-align: left;

@@ -1,0 +1,90 @@
+.content {
+	flex-direction: column;
+}
+
+.creation-form {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.creation-form h1 {
+	text-align: center;
+	font-family: Roboto;
+	font-size: 33px;
+	color: #C63D0F;
+}
+
+.creation-form * {
+	margin: 3px;
+}
+
+.tab {
+	display: flex;
+	flex-direction: column;
+	display: none;
+}
+
+textarea[name=description] {
+	resize:none;
+	overflow: none;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+.step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+opacity: 1;
+}
+
+
+
+
+
+
+
+.autocomplete {
+	/*the container must be positioned relative:*/
+	position: relative;
+	display: inline-block;
+  }
+
+
+
+.autocomplete-items {
+	position: absolute;
+	border: 1px solid #d4d4d4;
+	border-bottom: none;
+	border-top: none;
+	z-index: 99;
+	/*position the autocomplete items to be the same width as the container:*/
+	top: 100%;
+	left: 0;
+	right: 0;
+  }
+  .autocomplete-items div {
+	padding: 10px;
+	cursor: pointer;
+	background-color: #fff;
+	border-bottom: 1px solid #d4d4d4;
+  }
+  .autocomplete-items div:hover {
+	/*when hovering an item:*/
+	background-color: #e9e9e9;
+  }
+  .autocomplete-active {
+	/*when navigating through the items using the arrow keys:*/
+	background-color: DodgerBlue !important;
+	color: #ffffff;
+  }

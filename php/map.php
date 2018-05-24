@@ -3,8 +3,8 @@
 
 <head>
 	<?php 
-	require 'config.php';
-	require 'connection.php';
+	 require __DIR__ . '/config.php';
+	require DIR_UTIL . 'dbConfig.php';
 	include 'query.php';
 	include 'login.php';
 

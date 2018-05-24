@@ -23,6 +23,14 @@
 		return $refs;
 	}
 
+
+	//"Pulisce" i dati in input rimuovendo tutti i caratteri speciali
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 	
 
 	// Determina il tipo dell'argomento da passare alla funzione bind_param, partendo dal gettype() del valore inserito
@@ -45,4 +53,7 @@
 				return false;
 		}
 	}
+
+
+	
 ?>

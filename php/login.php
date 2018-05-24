@@ -1,40 +1,67 @@
 <?php
 session_start();
-include 'connection.php';
+require_once __DIR__ . '/config.php';
+require_once DIR_UTIL . 'dbConfig.php';
+require_once DIR_UTIL . "sessionUtil.php"; //includes session login
+require_once DIR_UTIL . 'utility.php';
 
-$error=''; // Variable To Store Error Message
+// Define $username and $password
+$username = test_input($_POST["username"]);
+$password = test_input($_POST["password"]);
 
-// if(empty($_SESSION)) {	
-// 	$_SESSION['loggedin'] = false;	
-// }
 
-if (isset($_POST['submit'])) {
-	if (empty($_POST['username']) || empty($_POST['password'])) {
-		$error = "Username o Password non validi.";
+$error = login($username, $password); // Variable To Store Error Message
+
+if($error === null)
+	header('location: ./profile.php');
+else
+	header('location: ./index.php?error=' . $error );
+
+
+function login($username, $password){   
+
+	if ($username == null || $password == null) {
+		return "Inserisci Username e Password.";
 	} else {
-		// Define $username and $password
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$userID = authenticate($username, $password);
 
-		$query = "
+		if($userID != -1) {
+			session_start();
+			setSession($username, $userID);
+			return null;
+		}
+		 
+	}
+
+	return "Username o Password invalidi.";	
+
+}
+
+function authenticate ($username, $password){   
+	global $conn;
+	$username = $conn->real_escape_string($username);
+	$password = $conn->real_escape_string($password);
+
+	$query = "
 			SELECT userid, username
 			FROM user
 			WHERE username = ? AND password = ?";
+
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("ss", $username, $password);
+	$stmt->execute();
+	$result = $stmt->get_result();
+
+
+	$numRow = $result->num_rows;
+	if ($numRow != 1)
+		return -1;
+	
+	$userRow = $result->fetch_assoc();
+	return $userRow['userid'];
+
+	
 		
-		$stmt = $conn->prepare($query);
-		$stmt->bind_param("ss",$username, $password);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($row = $result->fetch_assoc()) {
-			$_SESSION['userid'] = $row['userid'];
-			$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
-			header("Location: profile.php");
-			exit();
-		}else { 
-			$error = "Username o Password invalidi.";
-		}		 
-	}
 }
-echo $error; 
+
 ?>

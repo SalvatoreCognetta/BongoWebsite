@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-require 'config.php';
-require 'connection.php';
+require_once __DIR__ . '/config.php';
+require_once DIR_UTIL . 'dbConfig.php';
 include 'query.php';
 ?>
 
@@ -21,6 +21,7 @@ include 'query.php';
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
+	<link href="../css/event_page.css" rel="stylesheet" type="text/css">
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
@@ -32,8 +33,8 @@ include 'query.php';
 	<div class="wrapper">
 		<header>
 			<?php 
-			include 'login_form.php';
-			include 'nav_bar.php';  	
+			include DIR_BASE . 'login_form.php'; 
+			include DIR_BASE . 'nav_bar.php';   	
 			?>
 				
 		</header>
@@ -41,7 +42,7 @@ include 'query.php';
 
 		<section class="event-container">
 			<?php 
-			include 'utility.php';
+			include DIR_UTIL . 'utility.php';
 
 			//Creo un filtro per la query da eseguire
 			$filter[] = new filter_value('idevent', 'd', $_GET['id'], '=');

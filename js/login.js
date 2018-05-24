@@ -26,3 +26,13 @@ function arrow_change(id) {
 		console.log("Cambiata la freccia down in up.");
 	}
 };
+
+function activate_form(id) {
+	if(id === "signin") {
+		document.getElementById("login-form").style.display = 'none';
+		document.getElementById("signin-form").style.display = 'flex';
+	} else if(id === "login") {
+		document.getElementById("signin-form").style.display = 'none';
+		document.getElementById("login-form").style.display = 'flex';	
+	}	
+};

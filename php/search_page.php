@@ -1,8 +1,10 @@
 <?php 
 session_start();
 
-require 'config.php';
-require 'connection.php';
+require __DIR__ . '/config.php';
+require DIR_UTIL . 'dbConfig.php';
+require DIR_UTIL . 'dbConfig.php';
+
 include 'query.php';
 ?>
 
@@ -29,8 +31,8 @@ include 'query.php';
 	<div class="wrapper">
 		<header>
 		<?php 
-		include 'login_form.php';
-		include 'nav_bar.php';  	
+		include DIR_BASE . 'nav_bar.php'; 
+		include DIR_BASE . 'login_form.php';		 	
 		?>
 		</header>
 
@@ -88,8 +90,8 @@ include 'query.php';
 			</nav> -->
 
 			<?php
-			include 'utility.php';
-			include 'card.php';  
+			include DIR_UTIL . 'utility.php';
+			include DIR_LAYOUT . 'card.php';  
 			
 			//Creo un array contenente i filtri inseriti dall'utente
 			$filter_values	 = array();

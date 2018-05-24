@@ -1,4 +1,5 @@
 <?
+	require_once DIR_UTIL . 'dbConfig.php';
 	//Funzione che, in base ai filtri forniti, restituisce la query da 'preparare' e i bind_params
 	function filter_query($params) {
 		$query = "
@@ -40,7 +41,8 @@
 		return $ret;
 	}
 
-	function get_location($userid, $conn) {	
+	function get_location($userid) {	
+		global $conn;
 		$query = "SELECT location FROM upload INNER JOIN user ON idavatar = uidimg WHERE userid = ?";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("s", $userid);
