@@ -36,7 +36,6 @@
 			?>
 		</header>
 
-<?php print_r($_SESSION);?>
 		<div class="wrap-container">
 			<div class="container">
 				<h1>Cosa fare stasera?</h1>

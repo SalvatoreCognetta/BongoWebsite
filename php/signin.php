@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/config.php';
 require_once DIR_UTIL . 'dbConfig.php';
 require_once DIR_UTIL . 'sessionUtil.php';
@@ -46,7 +45,7 @@ if($error === null)
 if($error === null)
 	header('location: ./profile.php');
 else
-	header('location: ./index.php?error=' . $error );
+	header('location: ./index.php?error=' . $error);
 
 
 function signin($username, $password, $fullname, $email, $emailConfirm) {
@@ -57,7 +56,8 @@ function signin($username, $password, $fullname, $email, $emailConfirm) {
 			return "Le mail inserite non coincidono!";
 		}
 
-		if(($err = isValid($fullname, $username, $email)  !== null)) {
+		$err = isValid($fullname, $username, $email);
+		if($err === null) {
 			global $conn;
 			$username = $conn->real_escape_string($username);
 			$password = $conn->real_escape_string($password);
@@ -68,28 +68,9 @@ function signin($username, $password, $fullname, $email, $emailConfirm) {
 			$stmt->bind_param("sssss",$userid, $username, $email, $fullname, $password);
 			$stmt->execute();
 	
-			$query = "
-				SELECT userid, username
-				FROM user
-				WHERE username = ? AND password = ?";
-		
-			$stmt = $conn->prepare($query);
-			$stmt->bind_param("ss",$username, $password);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			
 			session_start();
 			setSession($username, $userid);
-			return null;
-
-			// if($row = $result->fetch_assoc()) {
-			// 	set_session($username, $row['userid']);				
-			// 	header("Location: profile.php");
-			// 	exit();
-			// } else {
-			// 	echo "error";
-			// }
-			
+			return null;	
 		}
 	}
 	return $err;
@@ -109,10 +90,10 @@ function isValid($fullname, $username, $email){
 	//Controllo se c'è già un utente registrato con quella mail e/o username	
 	global $conn;
 	$username = $conn->real_escape_string($username);
-	$email = $conn->real_escape_string($password);
- 
+	$email = $conn->real_escape_string($email);
+
 	$query = "
-		SELECT username, email
+		SELECT *
 		FROM user
 		WHERE username = ? OR email = ?";
 	
@@ -122,7 +103,7 @@ function isValid($fullname, $username, $email){
 	$result = $stmt->get_result();
 	$numRow = $result->num_rows;
 
-	if($numRow !=1)
+	if($numRow == 0)
 		return null;
 
 	$row = $result->fetch_assoc();
@@ -132,8 +113,6 @@ function isValid($fullname, $username, $email){
 	}
 
 	if($row['email'] == $email) {
-		header("location: search_page.php");
-		
 		return  "Email già utilizzata. ";
 	}
 }
