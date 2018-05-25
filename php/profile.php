@@ -2,9 +2,9 @@
 session_start();
 
 require_once __DIR__ . '/config.php';
-require_once DIR_UTIL . 'dbConfig.php';
-require_once DIR_UTIL . "sessionUtil.php"; 
-include DIR_BASE . 'query.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
+require_once DIR_UTIL . 'sessionUtil.php'; 
 
 if (!isLogged()){
 	header('Location: ./index.php?error="Non sei loggato."');
@@ -31,6 +31,12 @@ if (!isLogged()){
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 
+	<!-- Croppie tool for image picker -->
+	<!-- <link rel="stylesheet" href="croppie.css" />
+	<script src="croppie.js"></script>
+
+ -->
+
 </head>
 
 <body>
@@ -54,6 +60,7 @@ if (!isLogged()){
 			</aside>
 			<div class="profile-settings">
 				<?php 				
+				global $bongoDb;
 				$location = get_location($_SESSION['userid']);
 				?>
 				<div class="row">

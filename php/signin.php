@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
-require_once DIR_UTIL . 'dbConfig.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
 require_once DIR_UTIL . 'sessionUtil.php';
 require_once DIR_UTIL . 'utility.php';
 
@@ -58,15 +59,15 @@ function signin($username, $password, $fullname, $email, $emailConfirm) {
 
 		$err = isValid($fullname, $username, $email);
 		if($err === null) {
-			global $conn;
-			$username = $conn->real_escape_string($username);
-			$password = $conn->real_escape_string($password);
+			global $bongoDb;
+			$username = $bongoDb->sqlInjectionFilter($username);
+			$password = $bongoDb->sqlInjectionFilter($password);
 			$userid = uniqid("user_");
 			
 			$query = "INSERT INTO user (`userid`, `username`, `email`, `fullname`, `password`) VALUES (?, ?, ?, ?, ?);";
-			$stmt = $conn->prepare($query);
-			$stmt->bind_param("sssss",$userid, $username, $email, $fullname, $password);
-			$stmt->execute();
+			
+			$params = array($userid, $username, $email, $fullname, $password);
+			$result = $bondoDb->performQueryWithParameters($query, "sssss", $params);
 	
 			session_start();
 			setSession($username, $userid);
@@ -88,19 +89,17 @@ function isValid($fullname, $username, $email){
 	}
 	
 	//Controllo se c'è già un utente registrato con quella mail e/o username	
-	global $conn;
-	$username = $conn->real_escape_string($username);
-	$email = $conn->real_escape_string($email);
+	global $bongoDb;
+	$username = $bongoDb->sqlInjectionFilter($username);
+	$email = $bongoDb->sqlInjectionFilter($email);
 
 	$query = "
 		SELECT *
 		FROM user
 		WHERE username = ? OR email = ?";
 	
-	$stmt = $conn->prepare($query);
-	$stmt->bind_param("ss",$username, $email);
-	$stmt->execute();
-	$result = $stmt->get_result();
+	$params = array($username, $email);
+	$result = $bondoDb->performQueryWithParameters($query, "ss", $params);
 	$numRow = $result->num_rows;
 
 	if($numRow == 0)
@@ -157,7 +156,7 @@ function isValid($fullname, $username, $email){
 // 			FROM user
 // 			WHERE username = ? OR email = ?";
 		
-// 		$stmt = $conn->prepare($query);
+// 		$stmt = $bongoDb->conn->prepare($query);
 // 		$stmt->bind_param("ss",$username, $email);
 // 		$stmt->execute();
 // 		$result = $stmt->get_result();
@@ -179,7 +178,7 @@ function isValid($fullname, $username, $email){
 
 // 		if(!$match) {
 // 			$query = "INSERT INTO user (`userid`, `username`, `email`, `fullname`, `password`) VALUES (?, ?, ?, ?, ?);";
-// 			$stmt = $conn->prepare($query);
+// 			$stmt = $bongoDb->conn->prepare($query);
 // 			$stmt->bind_param("sssss",$userid, $username, $email, $fullname, $password);
 // 			$stmt->execute();
 	
@@ -188,7 +187,7 @@ function isValid($fullname, $username, $email){
 // 			FROM user
 // 			WHERE username = ? AND password = ?";
 		
-// 			$stmt = $conn->prepare($query);
+// 			$stmt = $bongoDb->conn->prepare($query);
 // 			$stmt->bind_param("ss",$username, $password);
 // 			$stmt->execute();
 // 			$result = $stmt->get_result();

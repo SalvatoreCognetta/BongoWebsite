@@ -2,7 +2,9 @@
 session_start();
 
 include __DIR__ . '/config.php';
-require_once DIR_UTIL . 'dbConfig.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
+
 // per prima cosa verifico che il file sia stato effettivamente caricato
 if (!isset($_FILES['file']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
   echo 'Non hai inviato nessun file...';
@@ -27,17 +29,16 @@ if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
 	$uid = uniqid("img_");	
 
   $query = "INSERT INTO `upload` (uidimg, name, size, type, location) VALUES (?, ?, ?, ?, ?)";
-  $stmt = $conn->prepare($query);
-  $stmt->bind_param("ssiss", $uid, $userfile_name, $size, $type, $location);
-  $stmt->execute();
-  $result = $stmt->get_result();
 
+  $params = array($uid, $userfile_name, $size, $type, $location);
+  $result = $bongoDb->performQueryWithParameters($query, "ssiss", $params);
+  
 
   //Questa porzione di codice deve essere eseguita solo per l'aggiornamento dell'immagine del profilo!!!
-	$userid = $_SESSION['userid'];
-	$stmt = $conn->prepare("UPDATE user SET idavatar = '$uid' WHERE userid = '$userid'");				
-	//Eseguo la query
-	$stmt->execute();	
+  $userid = $_SESSION['userid'];
+  
+  $query = "UPDATE user SET idavatar = '$uid' WHERE userid = '$userid'";
+  $result = $bongoDb->performQuery($query);
 
 	//Se l'operazione è andata a buon fine...
   echo 'File inviato con successo.';

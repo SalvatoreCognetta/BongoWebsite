@@ -1,8 +1,8 @@
 <?php 
 	session_start();
 	require_once __DIR__ . '/config.php';
-	include __DIR__ . '/query.php';	
-	require DIR_UTIL . 'dbConfig.php';
+	require_once DIR_UTIL . 'dbManager.php';
+	require_once DIR_UTIL . 'query.php';
 	include_once DIR_UTIL . 'sessionUtil.php';	
 ?>
 <!DOCTYPE html>
@@ -41,12 +41,12 @@
 				<h1>Cosa fare stasera?</h1>
 				<h2>Cerca gli eventi nella tua zona.</h2>
 
-				<form action="./php/search_page.php">
+				<form action="./search_page.php">
 					<input type="text" name="city" placeholder="Inserisci una citt&agrave;">
 					<input type="submit" value="Cerca">
 				</form>
 
-				<a href="./map.php">Mappa Test</a>
+				<!-- <a href="./map.php">Mappa Test</a> -->
 			</div>
 		</div>
 	

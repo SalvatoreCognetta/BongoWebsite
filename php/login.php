@@ -1,7 +1,9 @@
 <?php
 session_start();
 require_once __DIR__ . '/config.php';
-require_once DIR_UTIL . 'dbConfig.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
+
 require_once DIR_UTIL . "sessionUtil.php"; //includes session login
 require_once DIR_UTIL . 'utility.php';
 
@@ -38,19 +40,17 @@ function login($username, $password){
 }
 
 function authenticate ($username, $password){   
-	global $conn;
-	$username = $conn->real_escape_string($username);
-	$password = $conn->real_escape_string($password);
+	global $bongoDb;
+	$username = $bongoDb->sqlInjectionFilter($username);
+	$password = $bongoDb->sqlInjectionFilter($password);
 
 	$query = "
 			SELECT userid, username
 			FROM user
 			WHERE username = ? AND password = ?";
 
-	$stmt = $conn->prepare($query);
-	$stmt->bind_param("ss", $username, $password);
-	$stmt->execute();
-	$result = $stmt->get_result();
+	$params = array($username, $password);
+	$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
 
 
 	$numRow = $result->num_rows;

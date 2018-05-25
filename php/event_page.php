@@ -2,8 +2,8 @@
 session_start();
 
 require_once __DIR__ . '/config.php';
-require_once DIR_UTIL . 'dbConfig.php';
-include 'query.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ include 'query.php';
 
 		<section class="event-container">
 			<?php 
-			include DIR_UTIL . 'utility.php';
+			include_once DIR_UTIL . 'utility.php';
 
 			//Creo un filtro per la query da eseguire
 			$filter[] = new filter_value('idevent', 'd', $_GET['id'], '=');
@@ -50,20 +50,12 @@ include 'query.php';
 			$filter_result = filter_query($filter);
 
 			//Inizializzo
-			$query		 = $filter_result[0];
-			$bind_params = $filter_result[1];
-
-			//Preparo il template dello statement sql
-			$stmt = $conn->prepare($query);
-
-			call_user_func_array(array($stmt, "bind_param"), ref_values($bind_params)); 
-			//Call di un metodo all'interndo di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
-
-			//Eseguo la query
-			$stmt->execute();
+			$query	= $filter_result[0];
+			$type 	= $filter_result[1];
+			$params = $filter_result[2];
 
 			//Ottengo i risultati della query
-			$result = $stmt->get_result();
+			$result = $bongoDb->performQueryWithParameters($query, $type, $params);
 
 
 			if(!$result)

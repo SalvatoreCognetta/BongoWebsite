@@ -4,8 +4,9 @@
 <head>
 	<?php 
 	 require __DIR__ . '/config.php';
-	require DIR_UTIL . 'dbConfig.php';
-	include 'query.php';
+	require_once DIR_UTIL . 'dbManager.php';
+	require_once DIR_UTIL . 'query.php';
+	
 	include 'login.php';
 
 	session_start();
@@ -14,7 +15,7 @@
 	}
 	
 	if(isset($_POST["username"]) && isset($_POST["pass"])) {
-		if(check_user($_POST["username"], $_POST["pass"], $conn)) {
+		if(check_user($_POST["username"], $_POST["pass"], $bongoDb->conn)) {
 			$_SESSION['loggedin'] = true;
 			$_SESSION['username'] = $username;
 		}	

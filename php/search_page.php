@@ -2,10 +2,8 @@
 session_start();
 
 require __DIR__ . '/config.php';
-require DIR_UTIL . 'dbConfig.php';
-require DIR_UTIL . 'dbConfig.php';
-
-include 'query.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +48,9 @@ include 'query.php';
 					<select name="city" required>
 						<option value="" disabled selected>Città</option>
 						<?php 
-							$stmt = $conn->prepare("SELECT DISTINCT city FROM evento");							
-							//Eseguo la query
-							$stmt->execute();
-							//Ottengo i risultati della query
-							$result = $stmt->get_result();
-
+							$query = "SELECT DISTINCT city FROM evento";
+							$result = $bongoDb->performQuery($query); 
+							
 							if(!$result)
 								echo "Errore nella query.";
 							else {
@@ -90,7 +85,7 @@ include 'query.php';
 			</nav> -->
 
 			<?php
-			include DIR_UTIL . 'utility.php';
+			include_once DIR_UTIL . 'utility.php';
 			include DIR_LAYOUT . 'card.php';  
 			
 			//Creo un array contenente i filtri inseriti dall'utente
@@ -107,21 +102,12 @@ include 'query.php';
 				$filter_result = filter_query($filter_values);
 
 				//Inizializzo
-				$query		 = $filter_result[0];
-				$bind_params = $filter_result[1];
-
-				//Preparo il template dello statement sql
-				$stmt = $conn->prepare($query);
-
-				call_user_func_array(array($stmt, "bind_param"), ref_values($bind_params)); 
-				//Call di un metodo all'interndo di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
-				/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. [Wikipedia]*/
-
-				//Eseguo la query
-				$stmt->execute();
+				$query  = $filter_result[0];
+				$type   = $filter_result[1];
+				$params = $filter_result[2];
 
 				//Ottengo i risultati della query
-				$result = $stmt->get_result();
+				$result = $bongoDb->performQueryWithParameters($query, $type, $params);
 
 				if(!$result)
 					echo "Errore nella query.";
@@ -155,7 +141,6 @@ include 'query.php';
 				echo "L'utente non ha inserito nessun filtro.";
 			}
 
-			$conn->close();
 			?>
 
 

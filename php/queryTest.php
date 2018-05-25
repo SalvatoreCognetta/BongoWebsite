@@ -62,7 +62,7 @@
 	$query .= " ORDER BY date";
 	echo $query;
 	
-	$stmt = $conn->prepare($query);
+	$stmt = $bongoDb->conn->prepare($query);
 
 
 		

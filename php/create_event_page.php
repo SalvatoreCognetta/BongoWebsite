@@ -1,8 +1,8 @@
 <?php 
 session_start();
 require_once __DIR__ . '/config.php';
-require_once DIR_UTIL . 'dbConfig.php';
-include 'query.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
 ?>
 
 <!DOCTYPE html>
@@ -99,9 +99,8 @@ include 'query.php';
 
 <?php
 	$query = "SELECT nome FROM comuni";
-	$stmt = $conn->prepare($query);
-	$stmt->execute();
-	$result = $stmt->get_result();
+	
+	$result = $bongoDb->performQuery($query);
 	$i = 0;
 	while($row = $result->fetch_assoc()) {
 		$cities[] = htmlentities($row['nome']);

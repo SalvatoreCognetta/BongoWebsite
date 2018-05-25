@@ -1,5 +1,7 @@
 <?php 
 include_once __DIR__ . '/config.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
 include_once DIR_UTIL . 'sessionUtil.php';
 
 ?>
@@ -49,10 +51,10 @@ include_once DIR_UTIL . 'sessionUtil.php';
 		<?php } ?>
 
 		<li>
-			<a href="./help.php">Aiuto</a>
+			<a href="./../html/help.html">Aiuto</a>
 		</li>
 		<li>
-			<a href="./about.php">Chi siamo</a>
+			<a href="./../html/about.html">Chi siamo</a>
 		</li>
 		<li>
 			<a href="./create_event_page.php">Crea un evento</a>
