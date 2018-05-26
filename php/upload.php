@@ -11,6 +11,7 @@ if (!isset($_FILES['file']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
   exit;    
 }
 
+global $uploaddir;
 $size = $_FILES['file']['size'];
 $type = $_FILES['file']['type'];
 $tmp_name = $_FILES['file']['tmp_name'];
@@ -22,8 +23,17 @@ $userfile_tmp = $_FILES['file']['tmp_name'];
 //recupero il nome originale del file caricato
 $userfile_name = $_FILES['file']['name'];
 
+$target_file = $uploaddir . $userfile_name;
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+  header("Location: index.php?uploadOk=" . $uploadOk);
+} 
+
 //copio il file dalla sua posizione temporanea alla mia cartella upload
-if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
+if (move_uploaded_file($userfile_tmp, $target_file)) {
   $location = $uploaddir.$userfile_name;
 
 	$uid = uniqid("img_");	

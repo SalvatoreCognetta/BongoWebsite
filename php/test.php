@@ -32,10 +32,10 @@ if (!isLogged()){
 
 
 	<!-- Croppie tool for image picker -->
-	<!-- <link rel="stylesheet" href="croppie.css" />
+	<link rel="stylesheet" href="croppie.css" />
 	<script src="croppie.js"></script>
 
- -->
+
 
 </head>
 
@@ -48,38 +48,33 @@ if (!isLogged()){
 			?>
 				
 		</header>
-
+<script>
+	console.log("Test.");
+	var vanilla = new Croppie(document.getElementById('profile-img'), {
+		viewport: { width: 100, height: 100 },
+		boundary: { width: 300, height: 300 },
+		showZoomer: false,
+		enableOrientation: true
+	});
+	// call a method
+	vanilla.bind({
+		url: '../img/upload/sardegna\ la\ pelosa1.jpg',
+		orientation: 4
+	});
+	//on button click
+	vanilla.result('blob').then(function(blob) {
+		// do something with cropped blob
+});
+</script>
 		<div class="content">
-			<aside class="profile-side-menu">
-				<ul>
-					<li style="border-bottom: 1px solid grey;">Impostazioni Utente</li>
-					<li><a href='#'>Profilo</a></li>
-					<li>Eventi seguiti</li>
-					<li>Eventi creati</li>
-					<li><a href="./test.php">Test</a></li>
-				</ul>
-			</aside>
-			<div class="profile-settings">
-				<?php 				
-				global $bongoDb;
-				$location = get_location($_SESSION['userid']);
-				?>
-				<div class="row">
-					<img class="profile-img" src="<?php echo $location;?>" alt="Immagine non presente nel database.">
-					<form class="upload-img" action="./upload.php" method="POST" enctype="multipart/form-data">
-						<input type="file" name="file" accept="image/png, image/jpeg"/>
-						<button type="submit" name="btn-upload">Upload</button>
-					</form>
-				</div>
-				<hr>
-				<div>
-					<h2>Impostazioni principali</h2>
-					<label>Nickname</label>
-					<input type="text" name="name"/ value="<?php echo $_SESSION['username'];?>">
-				</div>
+			<div class="row">
+				<img id="profile-img" class="profile-img" src="<?php echo $location;?>" alt="Immagine non presente nel database.">
+				<form class="upload-img" action="./upload.php" method="POST" enctype="multipart/form-data">
+					<input type="file" name="file" accept="image/png, image/jpeg"/>
+					<button type="submit" name="btn-upload">Upload</button>
+				</form>
 			</div>
 		</div>
-
 	</div>
 
 	<footer class="main-footer">
