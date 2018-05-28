@@ -41,13 +41,30 @@ class BongoDbManager {
 		if (!$this->isOpened())
 			$this->openConnection();
 		
+					
+		/* activate reporting */
+		$driver = new mysqli_driver();
+		$driver->report_mode = MYSQLI_REPORT_ERROR;
+
+		try {
 			//Preparo il template dello statement sql		
-		$stmt = $this->conn->prepare($queryText);
-		//Eseguo la query		
-		$stmt->execute();
-		//Ottengo i risultati della query		
-		$result = $stmt->get_result(); 
-		return $result;
+			if($stmt = $this->conn->prepare($queryText))  {
+				//Eseguo la query	
+				if(!$stmt->execute()) {
+					// echo("Error description: " . $stmt->error); 
+					return  null;
+				}
+				//Ottengo i risultati della query		
+				$result = $stmt->get_result(); 
+				return $result;
+			} else {
+				// echo htmlspecialchars($this->conn->error);
+				return null;
+			}
+		} catch (mysqli_sql_exception $e) {
+			echo $e->__toString();
+		}
+		
 	}
 
 	// Executes a query with prepared statement and returns the results
@@ -61,28 +78,39 @@ class BongoDbManager {
 			header("Location: index.php?error=" . $error);
 		}
 		
-		//Preparo il template dello statement sql
-		$stmt = $this->conn->prepare($queryText);
-		
-		$bind_params[0] = $parameters_type;
-		if(count($parameters) == 1 && gettype($parameters) == "string") { //Per evitare che parameters venga considerato un'array di caratteri dentro il ciclo for.
-			$bind_params[] = $parameters;
-		} else {
-			for ($i = 0; $i < count($parameters); $i++) {
-				$bind_params[] = $parameters[$i];
-			}
+		try {
+			//Preparo il template dello statement sql
+			if($stmt = $this->conn->prepare($queryText)) {
+					
+				$bind_params[0] = $parameters_type;
+				if(count($parameters) == 1 && gettype($parameters) == "string") { //Per evitare che parameters venga considerato un'array di caratteri dentro il ciclo for.
+					$bind_params[] = $parameters;
+				} else {
+					for ($i = 0; $i < count($parameters); $i++) {
+						$bind_params[] = $parameters[$i];
+					}
+				}
+							
+				//Call di un metodo all'interno di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
+				/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. [Wikipedia]*/
+				call_user_func_array(array($stmt, "bind_param"), ref_values($bind_params)); 
+
+				//Eseguo la query		
+				if(!$stmt->execute()) {
+					// echo("Error description: " . $stmt->error); 
+					return  null;
+				}
+				//Ottengo i risultati della query		
+				$result = $stmt->get_result(); 
+				return $result;
+			} else {
+				// echo htmlspecialchars($this->conn->error);
+				return null;
+			} 
+		} catch (mysqli_sql_exception $e) {
+			echo $e->__toString();
 		}
 		
-		
-		//Call di un metodo all'interno di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
-		/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. [Wikipedia]*/
-		call_user_func_array(array($stmt, "bind_param"), ref_values($bind_params)); 
-
-		//Eseguo la query		
-		$stmt->execute();
-		//Ottengo i risultati della query		
-		$result = $stmt->get_result(); 
-		return $result;
 	}	
 	
 	function sqlInjectionFilter($parameter) {

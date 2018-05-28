@@ -46,7 +46,7 @@ require_once DIR_UTIL . 'query.php';
 					</fieldset>
 					<input type="date" name="date">
 					<select name="city" required>
-						<option value="" disabled selected>Città</option>
+						<option value="" disabled selected>Citt&agrave;</option>
 						<?php 
 							$query = "SELECT DISTINCT city FROM evento";
 							$result = $bongoDb->performQuery($query); 

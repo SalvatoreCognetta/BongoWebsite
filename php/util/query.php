@@ -55,5 +55,20 @@
 			}
 		}
 
+		function get_categories() {
+			global $bongoDb;
+			
+			$query = "SELECT nome FROM categorie";
+			$result = $bongoDb->performQuery($query);
+			
 
+			$numRow = $result->num_rows;
+			if($numRow == 0) 
+				return null;
+			else {
+				while($row = $result->fetch_assoc()) 
+					$ret[] = $row['nome'];
+			}
+			return $ret;
+		}
 ?>

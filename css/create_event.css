@@ -8,6 +8,16 @@
 	flex-direction: column;
 }
 
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+input[type=text]{
+	width: 100%;
+	max-width: 690px;
+}
+
 .creation-form h1 {
 	text-align: center;
 	font-family: Roboto;
@@ -22,7 +32,7 @@
 .tab {
 	display: flex;
 	flex-direction: column;
-	display: none;
+	/* display: none; */
 }
 
 textarea[name=description] {

@@ -56,6 +56,7 @@
 	color: black;
 }
 
+/* Dimensione della card: 1240px(grid)-200px(side filter)-20px(margini delle cards) = 1020px  */
 .event_card {
 	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 	box-sizing: content-box;
@@ -64,21 +65,22 @@
 	max-height: 100px;
 	/* justify-content: space-between; */
 	transition: all 1.3s cubic-bezier(.25,.8,.25,1);  
+	width: 100%;
 }
 
 .event_card:hover {
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
+}
 
 .event_card img {
-	width: 160px;
+	width: 170px;
 	height: 100px;
 	border-radius: 5px 0 0 5px;
 }
 
 .event_card-info {
 	margin: 5px;
-	width: 50vw;
+	width: 650px;
 	display: flex;
 	flex-direction: column;
 }
@@ -98,7 +100,7 @@
 	margin: 5px 5px 5px 0;
 	display: flex;
 	flex-direction: column;
-	width: 10vw;
+	max-width: 200px;
 }
 
 .event_card-date-info {
