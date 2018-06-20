@@ -40,6 +40,15 @@ textarea[name=description] {
 	overflow: none;
 }
 
+input[type=radio] {
+	
+}
+
+
+.price-input { 
+	/* display: none; */
+}
+
 
 /* Make circles that indicate the steps of the form: */
 .step {

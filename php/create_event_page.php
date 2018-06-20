@@ -80,9 +80,16 @@ require_once DIR_UTIL . 'query.php';
 						</select>
 					</div>
 					
-					Contact Info:
-					<p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-					<p><input placeholder="Phone..." oninput="this.className = ''"></p>
+					Il biglietto sar&agrave gratuito o a pagamento?
+					<input type="radio" name="free">Gratuito<br>
+					<input type="radio" name="free">A pagamento<br>
+
+					<div class="price-input">
+						<label for="price">Inserisci il prezzo del biglietto</label>
+						<input type="text" id="price">
+					</div>
+
+
 				</div>
 
 					<!-- <div style="overflow:auto;">
