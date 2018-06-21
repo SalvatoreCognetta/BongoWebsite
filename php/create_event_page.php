@@ -11,6 +11,7 @@ require_once DIR_UTIL . 'query.php';
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
+	<script src="../js/create_test.js"></script>
 	
 
 
@@ -81,13 +82,17 @@ require_once DIR_UTIL . 'query.php';
 					</div>
 					
 					Il biglietto sar&agrave gratuito o a pagamento?
-					<input type="radio" name="free">Gratuito<br>
-					<input type="radio" name="free">A pagamento<br>
-
-					<div class="price-input">
+					<div class="radio-choice">
+						<input type="radio" name="free" onclick="hide('price-input');">Gratuito<br>
+					
+						<input type="radio" name="ticket-price" onclick="show('price-input');">A pagamento<br>
+					
+					</div>
+					<div class="price-input" id="price-input">
 						<label for="price">Inserisci il prezzo del biglietto</label>
 						<input type="text" id="price">
 					</div>
+				
 
 
 				</div>
