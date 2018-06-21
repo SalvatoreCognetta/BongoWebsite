@@ -28,7 +28,6 @@ function login($username, $password){
 		$userID = authenticate($username, $password);
 
 		if($userID != -1) {
-			session_start();
 			setSession($username, $userID);
 			return null;
 		}

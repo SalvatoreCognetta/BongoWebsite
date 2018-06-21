@@ -14,7 +14,6 @@
 }
 
 input[type=text]{
-	width: 100%;
 	max-width: 690px;
 }
 
@@ -40,14 +39,7 @@ textarea[name=description] {
 	overflow: none;
 }
 
-input[type=radio] {
-	
-}
 
-
-.price-input { 
-	/* display: none; */
-}
 
 
 /* Make circles that indicate the steps of the form: */

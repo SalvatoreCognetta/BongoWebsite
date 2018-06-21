@@ -23,7 +23,7 @@
 
 					<div class='event_card-date-info'>
 						<h3>Prezzo: </h3>
-						<p> %s€ </p>
+						<p> %s&euro; </p>
 					</div>
 					
 				</div>

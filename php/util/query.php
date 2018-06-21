@@ -71,4 +71,14 @@
 			}
 			return $ret;
 		}
+
+		function insert_event($params) {
+			global $bongoDb;
+			
+			$query = "INSERT INTO evento (title, city, date, description, category, price, img) VALUES(?, ?, ?, ?, ?, ?, ?);";
+
+			$bongoDb->performQueryWithParameters($query, "sssssds", $params);
+			
+
+		}
 ?>

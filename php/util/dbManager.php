@@ -97,7 +97,7 @@ class BongoDbManager {
 
 				//Eseguo la query		
 				if(!$stmt->execute()) {
-					// echo("Error description: " . $stmt->error); 
+					 echo("Error description: " . $stmt->error); 
 					return  null;
 				}
 				//Ottengo i risultati della query		

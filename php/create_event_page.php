@@ -33,17 +33,27 @@ require_once DIR_UTIL . 'query.php';
 		<header>
 			<?php 
 			include DIR_BASE . 'nav_bar.php';   	
+			include_once DIR_BASE . 'login_form.php';
+			if(isLogged() === false) { ?>
+				<script type="text/javascript">
+					document.getElementById('login-container').style.display='block';				
+				</script>
+			<?php
+			}
 			?>
 		</header>
 		
 
 		<div class="content">
-			<form class="creation-form">
-				<h1>Crea il tuo nuovo evento</h1>
 
+
+
+			<h1>Crea il tuo nuovo evento</h1>
+		
+			<form class="creation-form" method="post" action="create_event.php" enctype="multipart/form-data">
 				<div class="tab">
 					<label for="name">Titolo evento</label>
-					<input id="name" type="text" placeholder="Nome evento" required>
+					<input id="name" name="title" type="text" placeholder="Nome evento" required>
 
 					<label for="city">Localit&agrave;</label>
 					<form autocomplete="off">
@@ -53,15 +63,17 @@ require_once DIR_UTIL . 'query.php';
 					</form>
 
 					
-					<label for="date">Quando si terr&agrave; l'evento?</label> 
-					<br>
-					<input type="date">
-					<input type="time" value="13:30">
+					<label for="date">Quando si terr&agrave; l'evento?</label><br>
+					<input type="date" name="date">
+					<input type="time" value="13:30" name="time">
 
 					
 					<label for="img">Inserisci un'immagine per l'evento</label>
 					<input id="img" type="file" name="file" accept="image/png, image/jpeg"/>
-
+					<!-- <form class="upload-img" action="./upload.php" method="POST" enctype="multipart/form-data">
+						<input type="file" name="file" accept="image/png, image/jpeg"/>
+						<button type="submit" name="btn-upload">Upload</button>
+					</form> -->
 
 					<label for="description">Descrivi il tuo evento</label>
 					<textarea name="description" id="description" rows="7" placeholder="Descrizione"></textarea>
@@ -83,16 +95,20 @@ require_once DIR_UTIL . 'query.php';
 					
 					Il biglietto sar&agrave gratuito o a pagamento?
 					<div class="radio-choice">
-						<input type="radio" name="free" onclick="hide('price-input');">Gratuito<br>
+						<input type="radio" id="radioChoice1" name="price-choice" onclick="hide('price-input');" value="free">
+						<label for="radioChoice1">Gratuito</label><br>
 					
-						<input type="radio" name="ticket-price" onclick="show('price-input');">A pagamento<br>
-					
+						<input type="radio" id="radioChoice2" name="price-choice" onclick="show('price-input');" value="pay">
+						<label for="radioChoice2">A pagamento</label><br>
+						
+
 					</div>
 					<div class="price-input" id="price-input">
 						<label for="price">Inserisci il prezzo del biglietto</label>
-						<input type="text" id="price">
+						<input type="text" id="price" name="ticket-price">
 					</div>
 				
+					<button type="submit" >Crea evento</button>
 
 
 				</div>
@@ -107,9 +123,9 @@ require_once DIR_UTIL . 'query.php';
 					<!-- <div style="text-align:center;margin-top:40px;">
 					<span class="step"></span>
 					<span class="step"></span> -->
-				</div>
 
 			</form>
+
 		</div>
 	
 	</div>
