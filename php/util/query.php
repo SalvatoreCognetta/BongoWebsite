@@ -55,6 +55,17 @@
 			}
 		}
 
+		function get_event_img_location($idevent) {
+			global $bongoDb;
+			$query = "SELECT location FROM upload INNER JOIN evento ON img = uidimg WHERE idevent = ?";
+			$result = $bongoDb->performQueryWithParameters($query, "s", $idevent);
+			if(!$row = $result->fetch_assoc()) {
+				return null;
+			} else {
+				return $row['location'];
+			}
+		}
+
 		function get_categories() {
 			global $bongoDb;
 			
@@ -72,13 +83,27 @@
 			return $ret;
 		}
 
-		function insert_event($params) {
+		function get_event($id) {
 			global $bongoDb;
 			
-			$query = "INSERT INTO evento (title, city, date, description, category, price, img) VALUES(?, ?, ?, ?, ?, ?, ?);";
-
-			$bongoDb->performQueryWithParameters($query, "sssssds", $params);
+			$query = "SELECT * FROM evento WHERE idevent = ?";
+			$result = $bongoDb->performQueryWithParameters($query, "s", $id);
 			
 
+			$numRow = $result->num_rows;
+			if($numRow == 0) 
+				return null;
+			else {
+				if($row = $result->fetch_assoc()) 
+					return $row;
+			}
+		}
+
+		function insert_event($params) {
+			global $bongoDb;
+			$query = "INSERT INTO evento (idevent, title, city, date, description, category, price, img, uid_creator) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+			$result = $bongoDb->performQueryWithParameters($query, "ssssssdss", $params);
+			// $row = $result->fetch_assoc();
 		}
 ?>

@@ -42,7 +42,7 @@ include_once DIR_UTIL . 'sessionUtil.php';
 				<li><?php echo $_SESSION['username'];?></li>
 				<hr>
 				<li><a href="./profile.php">Profilo</a></li>
-				<li><a>Test2</a></li>
+				<li><a href="./events_followed.php">Eventi</a></li>
 				<li style="border-top: 1px solid grey;">
 					<a href="./logout.php">Logout</a>
 				</li>

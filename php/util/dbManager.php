@@ -79,6 +79,7 @@ class BongoDbManager {
 		}
 		
 		try {
+
 			//Preparo il template dello statement sql
 			if($stmt = $this->conn->prepare($queryText)) {
 					
@@ -97,14 +98,15 @@ class BongoDbManager {
 
 				//Eseguo la query		
 				if(!$stmt->execute()) {
-					 echo("Error description: " . $stmt->error); 
+					 echo "Error description: " . $stmt->error; 
 					return  null;
 				}
+
 				//Ottengo i risultati della query		
 				$result = $stmt->get_result(); 
 				return $result;
 			} else {
-				// echo htmlspecialchars($this->conn->error);
+				echo htmlspecialchars($this->conn->error);
 				return null;
 			} 
 		} catch (mysqli_sql_exception $e) {

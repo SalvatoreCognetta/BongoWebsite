@@ -123,7 +123,7 @@ require_once DIR_UTIL . 'query.php';
 							$time = date('H:i', $timestamp);
 
 							$id = $row[$idcol];
-							$img = $row[$imgcol];
+							$img = get_event_img_location($id);
 							$title = $row[$titlecol];
 							$description = $row[$descol];
 							$price = $row[$pricecol];

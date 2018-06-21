@@ -2,7 +2,7 @@
 	function create_event_card($id, $img, $title, $description, $date, $time, $price) {
 		$card = sprintf("
 		<div class='card-margin'>
-		<a href='./event_page.php?id=%d'>
+		<a href='./event_page.php?id=%s'>
 		
 			<div class='event_card'> 
 				<img src=' %s ' alt='Immagine evento'>

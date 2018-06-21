@@ -4,6 +4,12 @@ session_start();
 require_once __DIR__ . '/config.php';
 require_once DIR_UTIL . 'dbManager.php';
 require_once DIR_UTIL . 'query.php';
+require_once DIR_UTIL . 'sessionUtil.php'; 
+
+if (!isLogged()){
+	header('Location: ./index.php?error="Non sei loggato."');
+	exit;
+}	
 ?>
 
 <!DOCTYPE html>
@@ -16,15 +22,20 @@ require_once DIR_UTIL . 'query.php';
 
 
 	<title>Bongo</title>
-	<link href="../css/home.css" rel="stylesheet" type="text/css">
 
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
-	<link href="../css/event_page.css" rel="stylesheet" type="text/css">
+	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
+
+	<!-- Croppie tool for image picker -->
+	<!-- <link rel="stylesheet" href="croppie.css" />
+	<script src="croppie.js"></script>
+
+ -->
 
 </head>
 
@@ -33,43 +44,25 @@ require_once DIR_UTIL . 'query.php';
 	<div class="wrapper">
 		<header>
 			<?php 
-			include DIR_BASE . 'login_form.php'; 
 			include DIR_BASE . 'nav_bar.php';   	
 			?>
 				
 		</header>
 
-
-		<section class="event-container">
-			<?php 
-				$id = $_GET['id'];
-				$row = get_event($id);
-
-
-				$img = get_event_img_location($id);
-				$title = $row[$titlecol];
-				$description = $row[$descol];
-
-				echo "<img class='img-container' src='{$img}' alt='Immagine evento'>";
-				echo "<h1>{$title}</h1>";
-				echo "<article>{$description}</article>";
-				echo $row['date'];
+		<div class="content">
+			<aside class="profile-side-menu">
+				<ul>
+					<li style="border-bottom: 1px solid grey;">Impostazioni Utente</li>
+					<li><a href='#'>Profilo</a></li>
+					<li>Eventi seguiti</li>
+					<li>Eventi creati</li>
+					<li><a href="./test.php">Test</a></li>
+				</ul>
+			</aside>
 			
+		</div>
 
-			?> 
-
-			<section class="event-description">
-				<section class="">
-					<h1>Titolo | Ore Data Luogo</h1>
-					<article>Descrizione</article>
-				</section>
-				<aside>
-					Partecipa
-				</aside>
-			</section>
-		</section>
 	</div>
-
 
 	<footer class="main-footer">
 		<ul>
@@ -81,6 +74,7 @@ require_once DIR_UTIL . 'query.php';
 			</li>
 		</ul>
 	</footer>
+
 
 </body>
 
