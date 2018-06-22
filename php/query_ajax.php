@@ -1,9 +1,4 @@
-<?php 	
-
-// require_once __DIR__ . '/config.php';
-// require_once DIR_UTIL . 'dbManager.php';
-// require_once DIR_UTIL . 'query.php';
-
+<?php
 $query = $_GET['query'];
 
 //Legge un file intero come stringa		
@@ -24,4 +19,4 @@ if ($query) {
 }
 
 echo json_encode(array_values($hint));
-?> 
+?>

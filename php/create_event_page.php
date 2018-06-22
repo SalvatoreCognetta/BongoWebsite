@@ -11,7 +11,7 @@ require_once DIR_UTIL . 'query.php';
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/create_test.js"></script>
+	<script src="../js/get_hint.js"></script>
 	
 
 
@@ -56,10 +56,11 @@ require_once DIR_UTIL . 'query.php';
 					<input id="name" name="title" type="text" placeholder="Nome evento" required>
 
 					<label for="city">Localit&agrave;</label>
-					<form autocomplete="off">
-						<div class="autocomplete">
-							<input id="myInput" type="text" placeholder="Citt&agrave;" name="country">
-						</div>
+					<form>
+						<input type="text" name="name" id="name_input" list="huge_list">
+						<datalist id="huge_list">
+						</datalist>
+						<br/>
 					</form>
 
 					
@@ -70,10 +71,6 @@ require_once DIR_UTIL . 'query.php';
 					
 					<label for="img">Inserisci un'immagine per l'evento</label>
 					<input id="img" type="file" name="file" accept="image/png, image/jpeg"/>
-					<!-- <form class="upload-img" action="./upload.php" method="POST" enctype="multipart/form-data">
-						<input type="file" name="file" accept="image/png, image/jpeg"/>
-						<button type="submit" name="btn-upload">Upload</button>
-					</form> -->
 
 					<label for="description">Descrivi il tuo evento</label>
 					<textarea name="description" id="description" rows="7" placeholder="Descrizione"></textarea>
@@ -141,101 +138,6 @@ require_once DIR_UTIL . 'query.php';
 		</ul>
 	</footer>
 
-	<?php
-		$query = "SELECT nome FROM comuni";
-		
-		$result = $bongoDb->performQuery($query);
-		$i = 0;
-		while($row = $result->fetch_assoc()) {
-			$cities[] = htmlentities($row['nome']);
-		}
-	?>
-
-	<script type="text/javascript">
-	var countries = <?php echo json_encode($cities, JSON_HEX_TAG); ?>; 
-
-
-
-
-
-
-
-
-
-
-	function reqListener () {
-		console.log(this.responseText);
-	}
-
-	var oReq = new XMLHttpRequest(); //New request object
-	oReq.onload = function() {
-			//This is where you handle what to do with the response.
-			//The actual data is found on this.responseText
-			console.log(this.responseText); //Will alert: 42
-	};
-	oReq.open("get", "gethint.php", true);
-	//                               ^ Don't block the rest of the execution.
-	//                                 Don't wait until the request finishes to 
-	//                                 continue.
-	oReq.send();
-	</script>
-
-	<script src="../js/test.js"></script>
-
 </body>
 
 </html>
-
-<script>
-// 	var currentTab = 0; // Current tab is set to be the first tab (0)
-// showTab(currentTab); // Display the current tab
-
-// function showTab(n) {
-//   // This function will display the specified tab of the form ...
-//   var x = document.getElementsByClassName("tab");
-//   x[n].style.display = "flex";
-//   // ... and fix the Previous/Next buttons:
-//   if (n == 0) {
-//     document.getElementById("prevBtn").style.display = "none";
-//   } else {
-//     document.getElementById("prevBtn").style.display = "flex";
-//   }
-//   if (n == (x.length - 1)) {
-//     document.getElementById("nextBtn").innerHTML = "Submit";
-//   } else {
-//     document.getElementById("nextBtn").innerHTML = "Next";
-//   }
-//   // ... and run a function that displays the correct step indicator:
-//   fixStepIndicator(n)
-// }
-
-// function nextPrev(n) {
-//   // This function will figure out which tab to display
-//   var x = document.getElementsByClassName("tab");
-//   // Exit the function if any field in the current tab is invalid:
-// //   if (n == 1 && !validateForm()) return false;
-//   // Hide the current tab:
-//   x[currentTab].style.display = "none";
-//   // Increase or decrease the current tab by 1:
-//   currentTab = currentTab + n;
-//   // if you have reached the end of the form... :
-//   if (currentTab >= x.length) {
-//     //...the form gets submitted:
-//     document.getElementById("regForm").submit();
-//     return false;
-//   }
-//   // Otherwise, display the correct tab:
-//   showTab(currentTab);
-// }
-
-
-// function fixStepIndicator(n) {
-//   // This function removes the "active" class of all steps...
-//   var i, x = document.getElementsByClassName("step");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].className = x[i].className.replace(" active", "");
-//   }
-//   //... and adds the "active" class to the current step:
-//   x[n].className += " active";
-// }
-</script>
