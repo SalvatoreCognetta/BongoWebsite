@@ -38,10 +38,12 @@
 				}
 			}
 	
+			global $bongoDb;
 			
 			$query .= " ORDER BY date";
-			$ret = array($query, $parameters_type, $parameters);
-			return $ret;
+			$result = $bongoDb->performQueryWithParameters($query, $parameters_type, $parameters);
+
+			return $result;
 		}
 	
 		function get_location($userid) {	
@@ -83,11 +85,11 @@
 			return $ret;
 		}
 
-		function get_event($id) {
+		function get_event($id_event) {
 			global $bongoDb;
 			
 			$query = "SELECT * FROM evento WHERE idevent = ?";
-			$result = $bongoDb->performQueryWithParameters($query, "s", $id);
+			$result = $bongoDb->performQueryWithParameters($query, "s", $id_event);
 			
 
 			$numRow = $result->num_rows;
@@ -106,4 +108,42 @@
 			$result = $bongoDb->performQueryWithParameters($query, "ssssssdss", $params);
 			// $row = $result->fetch_assoc();
 		}
+
+		function update_avatar($uid_img) {
+			global $bongoDb;
+			//Questa porzione di codice deve essere eseguita solo per l'aggiornamento dell'immagine del profilo!!!
+			$userid = $_SESSION['userid'];
+
+			$query = "UPDATE user SET idavatar = '$uid_img' WHERE userid = '$userid'";
+			$result = $bongoDb->performQuery($query);
+		}
+
+		function get_past_events($user_id) {
+			global $bongoDb;
+			$query = "SELECT * FROM partecipazione_evento INNER JOIN evento ON evento = idevent WHERE user =  ? AND date < now() ORDER BY date";
+			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
+			
+
+			return $result;
+		}
+
+		function get_future_events($user_id) {
+			global $bongoDb;
+			$query = "SELECT * FROM partecipazione_evento INNER JOIN evento ON evento = idevent WHERE user =  ? AND date >= now() ORDER BY date";
+			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
+			
+
+			return $result;
+		}
+
+		function partecipate_event($id_event) {
+			global $bongoDb;
+			$params = array($id_event, $_SESSION['userid']);
+			$query = "INSERT INTO partecipazione_evento (evento, user) VALUES(?, ?);";
+
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+		}
+
+		
+
 ?>

@@ -1,56 +1,41 @@
 window.addEventListener("load", function(){
 	// Add a keyup event listener to our input element
-	document.getElementById('name_input').addEventListener("keyup", function(event){hinter(event)});
+	document.getElementById('city_input').addEventListener("keyup", function(event){hinter(event)});
 	// create one global XHR object 
 	// so we can abort old requests when a new one is make
-	window.hinterXHR = new XMLHttpRequest();
+	// window.hinterXHR = new XMLHttpRequest();
 });
 
 // Autocomplete for form
 function hinter(event) {
 	var input = event.target;
-	var huge_list = document.getElementById('huge_list');
+	var list = document.getElementById('cities_list');
+	
+	while(list.hasChildNodes()) {
+		list.removeChild(list.firstChild);
+	}
 	// minimum number of characters before we start to generate suggestions
 	var min_characters = 0;
 
 	if (input.value.length == 0 ) { 
 		return;
 	} else { 
-		window.hinterXHR.abort();
-		window.hinterXHR.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var response = JSON.parse( this.responseText ); 
-				huge_list.innerHTML = "";
-
-				response.forEach(function(item) {
-                    // Create a new <option> element.
-                    var option = document.createElement('option');
-                    option.value = item;
-                    huge_list.appendChild(option);
-                });
+		var value = input.value.toLowerCase();
+		var hint = [];
+		for (var index = 0; index < comuni.length || index < 10; index++) {
+			// console.log(comuni[index]);
+			var str = comuni[index].toLowerCase();
+			str = str.substr(0, value.length);
+			if(str.includes(value)) {
+				hint.push(comuni[index]);
 			}
-		};
-		window.hinterXHR.open("GET", "./query_ajax.php?query=" + input.value, true);
-		window.hinterXHR.send()
-	}
-}
+		}
 
-function validateForm(){
-
-	// Get the input element
-	var input = document.getElementById('name_input');
-	// Get the datalist
-	var huge_list = document.getElementById('huge_list');
-
-
-	// If we find the input inside our list, we submit the form
-	for (var element of huge_list.children) {
-		if(element.value == input.value) {
-			return true;
+		for( var i = 0; i < hint.lenght || i < 10; i++) {
+			var option = document.createElement('option');
+			option.value = hint[i];
+			console.log(option);
+			list.appendChild(option);
 		}
 	}
-
-	// we send an error message
-	alert("name input is invalid")
-	return false;
 }

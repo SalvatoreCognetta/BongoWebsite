@@ -56,6 +56,7 @@ require_once DIR_UTIL . 'query.php';
 				echo $row['date'];
 			
 
+				echo $id;
 			?> 
 
 			<section class="event-description">
@@ -64,7 +65,12 @@ require_once DIR_UTIL . 'query.php';
 					<article>Descrizione</article>
 				</section>
 				<aside>
-					Partecipa
+					<form method="get" action="./partecipate.php">
+
+						<input type="hidden" name="event" value="<?php echo $id;?>" />
+
+						<button name="btn">Partecipa</button>
+					</form>
 				</aside>
 			</section>
 		</section>

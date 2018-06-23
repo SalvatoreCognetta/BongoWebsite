@@ -72,10 +72,9 @@ class BongoDbManager {
 	function performQueryWithParameters($queryText, $parameters_type, $parameters) {  //La variabile parameters è un array contenente tutti i parametri da inserire nella query, mentre parameters_type è una stringa contenente i tipi (stringa, int, etc.) dei parametri
 		if (!$this->isOpened())
 			$this->openConnection();
-
 		if(count($parameters) != strlen(utf8_decode($parameters_type))) {
 			$error = "Errore nella query, il numero di parametri non coincidono con il numero di tipi inseriti.";
-			header("Location: index.php?error=" . $error);
+			// header("Location: index.php?error=" . $error);
 		}
 		
 		try {
@@ -91,7 +90,10 @@ class BongoDbManager {
 						$bind_params[] = $parameters[$i];
 					}
 				}
-							
+				
+				// echo "Perform query: ". $queryText . '\n';
+				// print_r($bind_params);
+				// echo '\n';
 				//Call di un metodo all'interno di una classe: call_user_func(array('MyClass', 'myCallbackMethod'))
 				/*In programmazione, un callback (o, in italiano, richiamo) è, in genere, una funzione, o un "blocco di codice" che viene passata come parametro ad un'altra funzione. In particolare, quando ci si riferisce alla callback richiamata da una funzione, la callback viene passata come argomento ad un parametro della funzione chiamante. In questo modo la chiamante può realizzare un compito specifico (quello svolto dalla callback) che non è, molto spesso, noto al momento della scrittura del codice. [Wikipedia]*/
 				call_user_func_array(array($stmt, "bind_param"), ref_values($bind_params)); 

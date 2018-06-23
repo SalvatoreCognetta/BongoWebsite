@@ -10,8 +10,10 @@
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
-	<script src="../js/test.js"></script>	
+	<script src="../js/slideshow.js"></script>	
+	<script src="../js/comuni.js"></script>
+	<script src="../js/get_hint.js" async></script>
+	
 
 	
     <title>Bongo</title>
@@ -41,9 +43,16 @@
 				<h1>Cosa fare stasera?</h1>
 				<h2>Cerca gli eventi nella tua zona.</h2>
 
-				<form action="./search_page.php">
+				<!-- <form action="./search_page.php">
 					<input type="text" name="city" placeholder="Inserisci una citt&agrave;">
 					<input type="submit" value="Cerca">
+				</form> -->
+
+				<form action="./search_page.php">
+					<input type="text" name="city" id="city_input" list="cities_list" placeholder="Inserisci una citt&agrave;" required>
+					<datalist id="cities_list">
+					</datalist>
+					<input type="submit" value="Cerca">					
 				</form>
 
 				<!-- <a href="./map.php">Mappa Test</a> -->

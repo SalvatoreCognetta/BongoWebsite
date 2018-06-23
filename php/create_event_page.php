@@ -11,7 +11,8 @@ require_once DIR_UTIL . 'query.php';
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/get_hint.js"></script>
+	<script src="../js/comuni.js"></script>
+	<script src="../js/get_hint.js" async></script>
 	
 
 
@@ -57,8 +58,8 @@ require_once DIR_UTIL . 'query.php';
 
 					<label for="city">Localit&agrave;</label>
 					<form>
-						<input type="text" name="name" id="name_input" list="huge_list">
-						<datalist id="huge_list">
+						<input type="text" name="city" id="city_input" list="cities_list">
+						<datalist id="cities_list">
 						</datalist>
 						<br/>
 					</form>
@@ -109,17 +110,6 @@ require_once DIR_UTIL . 'query.php';
 
 
 				</div>
-
-					<!-- <div style="overflow:auto;">
-						<div style="float:right;">
-							<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-							<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-						</div>
-					</div> -->
-					<!-- Circles which indicates the steps of the form: -->
-					<!-- <div style="text-align:center;margin-top:40px;">
-					<span class="step"></span>
-					<span class="step"></span> -->
 
 			</form>
 

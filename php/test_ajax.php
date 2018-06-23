@@ -11,8 +11,8 @@ require_once DIR_UTIL . 'query.php';
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
+	<script src="../js/comuni.js"></script>
 	<script src="./test_ajax.js"></script>
-	
 
 
 	<title>Bongo</title>
@@ -48,8 +48,8 @@ require_once DIR_UTIL . 'query.php';
 
 			<h2>The form</h2>
 			<form>
-				<input type="text" name="name" id="name_input" list="huge_list">Name
-				<datalist id="huge_list">
+				<input type="text" name="name" id="city_input" list="cities_list">Name
+				<datalist id="cities_list">
 				</datalist>
 				<br/>
 				<input type="submit">

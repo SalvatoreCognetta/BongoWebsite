@@ -65,25 +65,7 @@ require_once DIR_UTIL . 'query.php';
 				</form>
 			</aside>
 
-			<!-- <nav class="filter-nav">
-				<form action="search_page.php" method="get">
-					<div class="filter-form">
-						<input type="text" name="title" placeholder="Filtra">
-						<select name="category">
-							<option value="" disabled selected>Categoria</option>
-							<option value="test1">test1</option>
-							<option value="test2">test2</option>
-						</select>
-						<input type="date" name="date" >
-						<select name="city">
-							<option value="" disabled selected>Città</option>
-							<option value="Pisa">Pisa</option>
-						</select>						
-						<input type="submit" value="Cerca">
-					</div>
-				</form>
-			</nav> -->
-
+			
 			<?php
 			include_once DIR_UTIL . 'utility.php';
 			include DIR_LAYOUT . 'card.php';  
@@ -99,15 +81,7 @@ require_once DIR_UTIL . 'query.php';
 
 			//Se l'utente ha inserito almeno un filtro allora aggiorno la pagina
 			if(count($filter_values)) { 
-				$filter_result = filter_query($filter_values);
-
-				//Inizializzo
-				$query  = $filter_result[0];
-				$type   = $filter_result[1];
-				$params = $filter_result[2];
-
-				//Ottengo i risultati della query
-				$result = $bongoDb->performQueryWithParameters($query, $type, $params);
+				$result = filter_query($filter_values);
 
 				if(!$result)
 					echo "Errore nella query.";

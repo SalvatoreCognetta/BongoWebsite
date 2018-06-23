@@ -1,4 +1,7 @@
 <?php
+include_once __DIR__ . '/../config.php';
+require_once DIR_UTIL . 'dbManager.php';
+require_once DIR_UTIL . 'query.php';
 	//Ad ogni item dei filtri viene associato un nome, tipo(necessario per il bind_param sulla prepared statement), il valore del filtro e l'operatore della query assocciato.
 	class filter_value {
 		public $name;
@@ -55,5 +58,52 @@
 	}
 
 
+	function upload_file() {
+		// per prima cosa verifico che il file sia stato effettivamente caricato
+		if (!isset($_FILES['file']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
+			echo 'Non hai inviato nessun file...';
+			exit;    
+		}
+	
+		global $uploaddir, $bongoDb;
+		$size = $_FILES['file']['size'];
+		$type = $_FILES['file']['type'];
+		$tmp_name = $_FILES['file']['tmp_name'];
+	
+	
+		//Recupero il percorso temporaneo del file
+		$userfile_tmp = $_FILES['file']['tmp_name'];
+	
+		//recupero il nome originale del file caricato
+		$userfile_name = $_FILES['file']['name'];
+	
+		$target_file = $uploaddir . $userfile_name;
+	
+		// Check if file already exists
+		// if (file_exists($target_file)) {
+		// 	$uploadError = "Sorry, file already exists.";
+		// 	header("Location: index.php?uploadOk=" . $uploadError);
+		// } 
+	
+		//copio il file dalla sua posizione temporanea alla mia cartella upload
+		if (move_uploaded_file($userfile_tmp, $target_file)) {
+			$location = $uploaddir.$userfile_name;
+		
+			$uid_img = uniqid("img_");	
+		
+			$query = "INSERT INTO `upload` (uidimg, name, size, type, location) VALUES (?, ?, ?, ?, ?)";
+		
+			$params = array($uid_img, $userfile_name, $size, $type, $location);
+			$result = $bongoDb->performQueryWithParameters($query, "ssiss", $params);
+			
+			
+		
+			//Se l'operazione è andata a buon fine...
+			return $uid_img;
+		}else{
+			//Se l'operazione è fallta...
+			return null;
+		}
+	}
 	
 ?>
