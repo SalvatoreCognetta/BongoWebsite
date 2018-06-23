@@ -49,7 +49,7 @@
 				</form> -->
 
 				<form action="./search_page.php">
-					<input type="text" name="city" id="city_input" list="cities_list" placeholder="Inserisci una citt&agrave;" required>
+					<input type="text" name="city" id="city_input" list="cities_list" placeholder="Inserisci una citt&agrave;" autocomplete="off" required>
 					<datalist id="cities_list">
 					</datalist>
 					<input type="submit" value="Cerca">					

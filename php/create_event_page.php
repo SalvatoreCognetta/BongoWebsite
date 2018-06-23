@@ -58,7 +58,7 @@ require_once DIR_UTIL . 'query.php';
 
 					<label for="city">Localit&agrave;</label>
 					<form>
-						<input type="text" name="city" id="city_input" list="cities_list">
+						<input type="text" name="city" id="city_input" list="cities_list"  autocomplete="off" required>
 						<datalist id="cities_list">
 						</datalist>
 						<br/>
