@@ -7,7 +7,7 @@ document.onkeydown = function (evt) {
 		console.log("Esc premuto.");
 		setTimeout(() => {
 			document.getElementById("login-container").style.display = 'none';
-			form.className = 'login-container modal animate ';
+			form.className = 'modal-container modal animate ';
 		}, 600);
 	}
 };

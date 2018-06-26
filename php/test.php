@@ -6,10 +6,7 @@ require_once DIR_UTIL . 'dbManager.php';
 require_once DIR_UTIL . 'query.php';
 require_once DIR_UTIL . 'sessionUtil.php'; 
 
-if (!isLogged()){
-	header('Location: ./index.php?error="Non sei loggato."');
-	exit;
-}	
+
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +42,8 @@ if (!isLogged()){
 		<header>
 			<?php 
 			include DIR_BASE . 'nav_bar.php';   	
+			include DIR_BASE . 'login_form.php';
+
 			?>
 
 		</header>
@@ -58,6 +57,7 @@ if (!isLogged()){
 
 
 		<div class="actions">
+		
 			<span>Upload</span>
 			<input type="file" id="upload" value="Choose a file" accept="image/*" onchange="readURL(this);" />
 		
@@ -68,15 +68,19 @@ if (!isLogged()){
 			<button id="upload-result" class="upload-result" style="display:none" onclick="getResult()">Result</button>
 
 			<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
-			<div id="result-img" style="display: none" class="animate"></div>
+			<div id="crop-img-container" style="display: none" class="modal-container animate">
+				<span onclick="document.getElementById('crop-img-container').style.display='none'" class="close" title="Close Login">&times;</span>
+				<div id="result-img" class="wrap-login"></div>
+				<form method="post" id="form" action="./uploadtest.php">
+					<input style="display:none" name="hidden" id="hidden">
+					<input type="submit" value="ok">
+				</form>
+			</div>
 
 
 
 
-			<form method="post" id="form" action="./uploadtest.php">
-				<input style="display:none" name="hidden" id="hidden">
-				<input type="submit" value="ok">
-			</form>
+			
 		</div>
 
 	</div>

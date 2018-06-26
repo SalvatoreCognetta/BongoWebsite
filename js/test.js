@@ -58,7 +58,7 @@ function getResult(){
       existing.removeChild(existing.children[0]);
     } 
     document.getElementById('result-img').appendChild(result);
-    document.getElementById("result-img").style.display = "block";
+    document.getElementById("crop-img-container").style.display = "block";
 document.getElementById("hidden").value = result.toDataURL('image/png');
 console.log(document.getElementById("hidden").value);
   })
