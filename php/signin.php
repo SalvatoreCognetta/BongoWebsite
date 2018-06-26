@@ -99,7 +99,7 @@ function isValid($fullname, $username, $email){
 		WHERE username = ? OR email = ?";
 	
 	$params = array($username, $email);
-	$result = $bondoDb->performQueryWithParameters($query, "ss", $params);
+	$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
 	$numRow = $result->num_rows;
 
 	if($numRow == 0)

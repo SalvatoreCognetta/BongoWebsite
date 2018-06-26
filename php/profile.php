@@ -65,7 +65,9 @@ if (!isLogged()){
 				$location = get_location($_SESSION['userid']);
 				?>
 				<div class="row">
-					<img class="profile-img" src="<?php echo $location;?>" alt="Immagine non presente nel database.">
+					<div class="circular-img">
+						<img class="profile-img" src="<?php echo $location;?>" alt="Immagine non presente nel database.">
+					</div>
 					<form class="upload-img" action="./upload.php" method="POST" enctype="multipart/form-data">
 						<input type="file" name="file" accept="image/png, image/jpeg"/>
 						<button type="submit" name="btn-upload">Upload</button>

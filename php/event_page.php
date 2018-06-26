@@ -42,11 +42,11 @@ require_once DIR_UTIL . 'query.php';
 
 		<section class="event-container">
 			<?php 
-				$id = $_GET['id'];
-				$row = get_event($id);
+				$id_event = $_GET['id'];
+				$row = get_event($id_event);
 
 
-				$img = get_event_img_location($id);
+				$img = get_event_img_location($id_event);
 				$title = $row[$titlecol];
 				$description = $row[$descol];
 
@@ -56,7 +56,7 @@ require_once DIR_UTIL . 'query.php';
 				echo $row['date'];
 			
 
-				echo $id;
+				echo $id_event;
 			?> 
 
 			<section class="event-description">
@@ -65,12 +65,34 @@ require_once DIR_UTIL . 'query.php';
 					<article>Descrizione</article>
 				</section>
 				<aside>
+					<?php 
+					if(isLogged()) {
+						if(!already_partecipates($_SESSION['userid'], $id_event)) {
+					
+					?>
 					<form method="get" action="./partecipate.php">
 
-						<input type="hidden" name="event" value="<?php echo $id;?>" />
+						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
 
 						<button name="btn">Partecipa</button>
 					</form>
+					<?php 
+						} else {
+					?>
+					<form method="get" action="./del_partecipation.php">
+
+						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
+
+						<button name="btn">Annulla partecipazione</button>
+					</form>
+					<?php
+						}
+					} else {
+					?>
+					Per partecipare all'evento devi accedere prima.
+					<?php
+					}
+					?>
 				</aside>
 			</section>
 		</section>

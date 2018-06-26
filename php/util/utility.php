@@ -106,4 +106,29 @@ require_once DIR_UTIL . 'query.php';
 		}
 	}
 	
+	function upload_base64file($img) {
+		global $uploaddir, $bongoDb;
+
+		$img = str_replace('data:image/png;base64,', '', $img);
+		$img = str_replace(' ', '+', $img);
+
+		$data = base64_decode($img);
+
+		$file_name = uniqid("img_") . ".png";
+
+		$file = $uploaddir . $file_name;
+
+		//Copio il file nella cartella upload
+		$success = file_put_contents($file, $data);
+
+		upload_img($file_name, $file);
+			
+			
+
+			//Se l'operazione è andata a buon fine...
+
+
+		echo $success ? $file : 'Unable';
+
+	}
 ?>

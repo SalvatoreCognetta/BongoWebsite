@@ -109,10 +109,8 @@
 			// $row = $result->fetch_assoc();
 		}
 
-		function update_avatar($uid_img) {
+		function update_avatar($userid, $uid_img) {
 			global $bongoDb;
-			//Questa porzione di codice deve essere eseguita solo per l'aggiornamento dell'immagine del profilo!!!
-			$userid = $_SESSION['userid'];
 
 			$query = "UPDATE user SET idavatar = '$uid_img' WHERE userid = '$userid'";
 			$result = $bongoDb->performQuery($query);
@@ -120,7 +118,7 @@
 
 		function get_past_events($user_id) {
 			global $bongoDb;
-			$query = "SELECT * FROM partecipazione_evento INNER JOIN evento ON evento = idevent WHERE user =  ? AND date < now() ORDER BY date";
+			$query = "SELECT * FROM partecipazione_evento INNER JOIN evento ON evento = idevent WHERE user =  ? AND date < now() ORDER BY date DESC";
 			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
 			
 
@@ -136,14 +134,55 @@
 			return $result;
 		}
 
-		function partecipate_event($id_event) {
+		function get_created_events($user_id) {
 			global $bongoDb;
-			$params = array($id_event, $_SESSION['userid']);
+			$query = "SELECT * FROM evento WHERE uid_creator =  ? ORDER BY date";
+			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
+			
+
+			return $result;
+		}
+
+		function partecipate_event($user_id, $id_event) {
+			global $bongoDb;
+			$params = array($id_event, $user_id);
 			$query = "INSERT INTO partecipazione_evento (evento, user) VALUES(?, ?);";
 
 			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+
+			$query = "UPDATE evento SET numParticipants = numParticipants+1 WHERE idevent = '$id_event';";
+			$result = $bongoDb->performQuery($query);
 		}
 
-		
+		function del_partecipation($user_id, $id_event) {
+			global $bongoDb;
+			$params = array($id_event, $user_id);
+			$query = "DELETE FROM partecipazione_evento WHERE evento = ? AND user = ?;";
+
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+
+			$query = "UPDATE evento SET numParticipants = numParticipants-1 WHERE idevent = '$id_event';";
+			$result = $bongoDb->performQuery($query);
+		}
+
+		function already_partecipates($user_id, $id_event) {
+			global $bongoDb;
+			$params = array($user_id, $id_event);
+			$query = "SELECT * FROM partecipazione_evento WHERE user = ? and evento = ?";
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+
+			if($result->num_rows != 0)
+				return true;
+			return false;
+		}
+
+		function upload_img($file_name, $file) {
+			global $bongoDb;
+
+			$query = "INSERT INTO `uploadtest` (uidimg, location) VALUES (?, ?)";
+
+			$params = array($file_name, $file);
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+		}
 
 ?>

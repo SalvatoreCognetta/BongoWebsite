@@ -8,7 +8,7 @@ include_once DIR_UTIL . 'utility.php';
 
 $uid_img = upload_file();
 
-update_avatar($uid_img);
+update_avatar($_SESSION['userid'], $uid_img);
 
 header("Location: ./profile.php");
 exit();

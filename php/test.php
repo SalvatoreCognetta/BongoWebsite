@@ -18,7 +18,7 @@ if (!isLogged()){
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/test.js"></script>
+	<script src="../js/test.js" defer></script>
 
 
 	<title>Bongo</title>
@@ -32,8 +32,8 @@ if (!isLogged()){
 
 
 	<!-- Croppie tool for image picker -->
-	<link rel="stylesheet" href="croppie.css" />
-	<script src="croppie.js"></script>
+	<link rel="stylesheet" href="../css/croppie.css" />
+	<script src="../js/croppie.js"></script>
 
 
 
@@ -46,36 +46,45 @@ if (!isLogged()){
 			<?php 
 			include DIR_BASE . 'nav_bar.php';   	
 			?>
-				
+
 		</header>
-<script>
-	console.log("Test.");
-	var vanilla = new Croppie(document.getElementById('profile-img'), {
-		viewport: { width: 100, height: 100 },
-		boundary: { width: 300, height: 300 },
-		showZoomer: false,
-		enableOrientation: true
-	});
-	// call a method
-	vanilla.bind({
-		url: '../img/upload/sardegna\ la\ pelosa1.jpg',
-		orientation: 4
-	});
-	//on button click
-	vanilla.result('blob').then(function(blob) {
-		// do something with cropped blob
-});
-</script>
-		<div class="content">
-			<div class="row">
-				<img id="profile-img" class="profile-img" src="<?php echo $location;?>" alt="Immagine non presente nel database.">
-				<form class="upload-img" action="./upload.php" method="POST" enctype="multipart/form-data">
-					<input type="file" name="file" accept="image/png, image/jpeg"/>
-					<button type="submit" name="btn-upload">Upload</button>
-				</form>
-			</div>
+		
+
+		<!-- // <div class="col-1-2">
+		// 	<div id="vanilla-demo"></div>
+		// </div> -->
+
+
+
+
+		<div class="actions">
+			<span>Upload</span>
+			<input type="file" id="upload" value="Choose a file" accept="image/*" onchange="readURL(this);" />
+		
+			<!-- Div contenente il toggle croppie con l'immagine inviata -->
+			<div id="upload-demo" style="display: none"></div>
+
+			<!-- Button che restituisce l'immagine ritagliata -->
+			<button id="upload-result" class="upload-result" style="display:none" onclick="getResult()">Result</button>
+
+			<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
+			<div id="result-img" style="display: none" class="animate"></div>
+
+
+
+
+			<form method="post" id="form" action="./uploadtest.php">
+				<input style="display:none" name="hidden" id="hidden">
+				<input type="submit" value="ok">
+			</form>
 		</div>
+
 	</div>
+
+
+
+
+	
 
 	<footer class="main-footer">
 		<ul>

@@ -57,13 +57,13 @@ if (!isLogged()){
 					<li style="border-bottom: 1px solid grey;">Impostazioni Utente</li>
 					<li><a href='./profile.php'>Profilo</a></li>
 					<li><a href="./followed_events.php">Eventi in programma</a></li>
-					<li><a href="#">Eventi a cui hai partecipato</a></li>
-					<li><a href="./created_events.php">Eventi creati</a></li>
+					<li><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
+					<li><a href="#">Eventi creati</a></li>
 					<li><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 			<?php
-			$events = get_past_events($_SESSION['userid']);
+			$events = get_created_events($_SESSION['userid']);
 			echo "<section class=\"cards\">";
 				if ($events->num_rows > 0) {
 					while($row = $events->fetch_assoc()){
