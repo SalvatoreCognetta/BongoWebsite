@@ -73,7 +73,7 @@
 }
 
 .event_card img {
-	width: 170px;
+	width: 177px; /*Ratio 16:9*/
 	height: 100px;
 	border-radius: 5px 0 0 5px;
 }

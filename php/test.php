@@ -24,6 +24,7 @@ require_once DIR_UTIL . 'sessionUtil.php';
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
+	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
@@ -47,40 +48,49 @@ require_once DIR_UTIL . 'sessionUtil.php';
 			?>
 
 		</header>
-		
+
 
 		<!-- // <div class="col-1-2">
 		// 	<div id="vanilla-demo"></div>
 		// </div> -->
 
 
+<?php
+	$option = [
+		'salt' =>mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
+	];
+	$pass = password_hash("test", PASSWORD_BCRYPT);
+	echo $pass."\n";
+	if(password_verify('test', $pass))
+		echo "giusto"."\n";
 
+?>
 
-		<div class="actions">
-		
-			<span>Upload</span>
-			<input type="file" id="upload" value="Choose a file" accept="image/*" onchange="readURL(this);" />
-		
+		<div class="upload-croppie">
+			<label for="upload-img">Inserisci un'immagine per l'evento</label>
+			
+			<input type="file" id="upload-img" value="Choose a file" accept="image/*" onchange="readURL(this);" />
+
 			<!-- Div contenente il toggle croppie con l'immagine inviata -->
-			<div id="upload-demo" style="display: none"></div>
+			<div id="upload-croppie" style="display: none"></div>
 
 			<!-- Button che restituisce l'immagine ritagliata -->
-			<button id="upload-result" class="upload-result" style="display:none" onclick="getResult()">Result</button>
+			<input type="button" id="btn-croppie-result" class="get-result" value="Risultato" style="display:none" onclick="getResult()">
 
 			<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
-			<div id="crop-img-container" style="display: none" class="modal-container animate">
-				<span onclick="document.getElementById('crop-img-container').style.display='none'" class="close" title="Close Login">&times;</span>
-				<div id="result-img" class="wrap-login"></div>
-				<form method="post" id="form" action="./uploadtest.php">
-					<input style="display:none" name="hidden" id="hidden">
-					<input type="submit" value="ok">
-				</form>
+			<div id="croppied-wrapper" class="grey-wrapper animate">
+				<span onclick="document.getElementById('croppied-wrapper').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+				<div id="croppied-img-container" class="alert-container ">
+
+					<div id="result-img" class="wrap-login"></div>
+					<form method="post" id="form" action="#">
+						<input style="display:none" name="hidden-img" id="hidden-img">
+						<input type="button" value="ok" onclick="document.getElementById('croppied-wrapper').style.display='none'">
+					</form>
+				</div>
 			</div>
 
-
-
-
-			
 		</div>
 
 	</div>
@@ -88,7 +98,7 @@ require_once DIR_UTIL . 'sessionUtil.php';
 
 
 
-	
+
 
 	<footer class="main-footer">
 		<ul>

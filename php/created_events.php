@@ -54,12 +54,12 @@ if (!isLogged()){
 		<div class="content">
 			<aside class="profile-side-menu">
 				<ul>
-					<li style="border-bottom: 1px solid grey;">Impostazioni Utente</li>
-					<li><a href='./profile.php'>Profilo</a></li>
-					<li><a href="./followed_events.php">Eventi in programma</a></li>
-					<li><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
-					<li><a href="#">Eventi creati</a></li>
-					<li><a href="./test.php">Test</a></li>
+					<li class="title-settings">Impostazioni Utente</li>
+					<li class="is-over"><a href='./profile.php'>Profilo</a></li>
+					<li class="is-over"><a href="./followed_events.php">Eventi in programma</a></li>
+					<li class="is-over"><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
+					<li class="is-over active"><a href="#">Eventi creati</a></li>
+					<li class="is-over"><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 			<?php

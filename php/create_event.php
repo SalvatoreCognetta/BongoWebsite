@@ -13,13 +13,18 @@ if (isLogged() == false) {
 	header("Location: ./create_event_page.php?err=" . $err);
 }
 
-$uid_img = upload_file();
+// $uid_img = upload_file();
+$uid_img = upload_base64file($_POST['hidden-img']);
 
 // print_r($_POST);
+echo $uid_img;
+$id_event = uniqid("event_");
 
-$parameters[] =  uniqid("event_");
+$parameters[] =  $id_event;
 
 foreach($_POST as $key=>$field) {
+	if($key === 'hidden-img')
+		continue;
 	if($key === 'date') {
 		$date = $field;
 		continue;
@@ -44,11 +49,13 @@ foreach($_POST as $key=>$field) {
 	}
 }
 $parameters[] = $uid_img;
-$parameters[] = $_SESSION['userid'];
 
-insert_event($parameters);
+insert_event($_SESSION['userid'], $parameters);
 
-header("Location: ./event_page.php?id=" . $parameters[0]);
+
+partecipate_event($_SESSION['userid'], $id_event);
+
+header("Location: ./event_page.php?id=" . $id_event);
 
 
 ?>

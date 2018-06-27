@@ -34,30 +34,16 @@ input[type=text]{
 	/* display: none; */
 }
 
+.upload-croppie {
+	display: flex;
+	flex-direction: column;
+}
+
 textarea[name=description] {
 	resize:none;
 	overflow: none;
 }
 
-
-
-
-/* Make circles that indicate the steps of the form: */
-.step {
-	height: 15px;
-	width: 15px;
-	margin: 0 2px;
-	background-color: #bbbbbb;
-	border: none;
-	border-radius: 50%;
-	display: inline-block;
-	opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-opacity: 1;
-}
 
 
 

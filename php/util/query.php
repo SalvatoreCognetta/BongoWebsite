@@ -46,10 +46,10 @@
 			return $result;
 		}
 	
-		function get_location($userid) {	
+		function get_avatar_location($user_id) {	
 			global $bongoDb;
 			$query = "SELECT location FROM upload INNER JOIN user ON idavatar = uidimg WHERE userid = ?";
-			$result = $bongoDb->performQueryWithParameters($query, "s", $userid);
+			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
 			if(!$row = $result->fetch_assoc()) {
 				return null;
 			} else {
@@ -101,18 +101,18 @@
 			}
 		}
 
-		function insert_event($params) {
+		function insert_event($user_id, $params) {
 			global $bongoDb;
 			$query = "INSERT INTO evento (idevent, title, city, date, description, category, price, img, uid_creator) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
+			$params[] = $user_id;
 			$result = $bongoDb->performQueryWithParameters($query, "ssssssdss", $params);
 			// $row = $result->fetch_assoc();
 		}
 
-		function update_avatar($userid, $uid_img) {
+		function update_avatar($user_id, $uid_img) {
 			global $bongoDb;
 
-			$query = "UPDATE user SET idavatar = '$uid_img' WHERE userid = '$userid'";
+			$query = "UPDATE user SET idavatar = '$uid_img' WHERE userid = '$user_id'";
 			$result = $bongoDb->performQuery($query);
 		}
 
@@ -179,10 +179,118 @@
 		function upload_img($file_name, $file) {
 			global $bongoDb;
 
-			$query = "INSERT INTO `uploadtest` (uidimg, location) VALUES (?, ?)";
+			$query = "INSERT INTO `upload` (uidimg, location) VALUES (?, ?)";
 
 			$params = array($file_name, $file);
 			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
 		}
+
+		function get_user_info($user_id) {
+			global $bongoDb;
+
+			$query = "SELECT username, fullname, email FROM user WHERE userid = ?";
+
+			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
+			
+			$numRow = $result->num_rows;
+			if($numRow == 0) 
+				return null;
+			else {
+				if($row = $result->fetch_assoc()) 
+					return $row;
+			}
+		}
+
+		function update_user_info($user_id, $params) {
+			global $bongoDb;
+
+			$query = "UPDATE user SET username = ?, fullname = ?, email = ? WHERE userid = ?";
+	
+			array_push($params, $user_id);
+			$result = $bongoDb->performQueryWithParameters($query, "ssss", $params);
+
+		}
+
+		function authenticate ($username, $password){   
+			global $bongoDb;
+			$username = $bongoDb->sqlInjectionFilter($username);
+			$password = $bongoDb->sqlInjectionFilter($password);
+			echo "init:".$password.":fine";
+		
+			$query = "
+					SELECT userid, username, password
+					FROM user
+					WHERE username = ?";
+		
+
+			
+			$result = $bongoDb->performQueryWithParameters($query, "s", $username);
+		
+		
+			$numRow = $result->num_rows;
+			if ($numRow != 1)
+				return -1;
+			
+			$userRow = $result->fetch_assoc();
+			echo "init:".strlen($userRow['password']) .":fine";
+
+
+
+			if(password_verify($password, $userRow['password'])){
+				echo "test";
+				return $userRow['userid'];
+			}
+			else{
+				echo "Testerr";
+				return -1;
+			}
+		
+			
+				
+		}
+
+		function user_already_exist($username, $email){
+			//Controllo se c'è già un utente registrato con quella mail e/o username	
+			global $bongoDb;
+			$username = $bongoDb->sqlInjectionFilter($username);
+			$email = $bongoDb->sqlInjectionFilter($email);
+	
+			$query = "
+				SELECT username, email
+				FROM user
+				WHERE username = ? OR email = ?";
+			
+			$params = array($username, $email);
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+	
+			return $result;
+		}
+
+		function create_user($username, $email, $fullname, $password){
+			global $bongoDb;
+			$username = $bongoDb->sqlInjectionFilter($username);
+			$password = password_hash($bongoDb->sqlInjectionFilter($password), PASSWORD_BCRYPT);
+			$userid = uniqid("user_");
+			
+			$query = "INSERT INTO user (`userid`, `username`, `email`, `fullname`, `password`) VALUES (?, ?, ?, ?, ?);";
+			
+			$params = array($userid, $username, $email, $fullname, $password);
+			print_r($params);
+
+			$result = $bongoDb->performQueryWithParameters($query, "sssss", $params);
+
+		}
+
+		// function update_psw($user_id, $params) {
+		// 	global $bongoDb;
+
+		// 	$query = ""
+
+		// 	$query = "UPDATE user SET username = ?, fullname = ?, email = ? WHERE userid = ?";
+	
+		// 	array_push($params, $user_id);
+		// 	$result = $bongoDb->performQueryWithParameters($query, "ssss", $params);
+
+		// }
 
 ?>

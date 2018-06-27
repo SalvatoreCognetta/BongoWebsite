@@ -12,7 +12,8 @@ require_once DIR_UTIL . 'query.php';
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
 	<script src="../js/comuni.js"></script>
-	<script src="../js/get_hint.js" async></script>
+	<script src="../js/get_hint.js" defer></script>
+	<script src="../js/create_event.js" defer></script>
 	
 
 
@@ -22,8 +23,13 @@ require_once DIR_UTIL . 'query.php';
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 	<link href="../css/create_event.css" rel="stylesheet" type="text/css">
+	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
+
+	<!-- Croppie tool for image picker -->
+	<link rel="stylesheet" href="../css/croppie.css" />
+	<script src="../js/croppie.js"></script>
 
 
 </head>
@@ -35,7 +41,9 @@ require_once DIR_UTIL . 'query.php';
 			<?php 
 			include DIR_BASE . 'nav_bar.php';   	
 			include_once DIR_BASE . 'login_form.php';
-			if(isLogged() === false) { ?>
+			if(isLogged() === false) {
+				//Mostrare un errore nella pagina index 
+				?>
 				<script type="text/javascript">
 					document.getElementById('login-container').style.display='block';				
 				</script>
@@ -70,8 +78,37 @@ require_once DIR_UTIL . 'query.php';
 					<input type="time" value="13:30" name="time">
 
 					
-					<label for="img">Inserisci un'immagine per l'evento</label>
-					<input id="img" type="file" name="file" accept="image/png, image/jpeg"/>
+					<!-- <input id="img" type="file" name="file" accept="image/png, image/jpeg"/> -->
+					
+					<div class="upload-croppie">
+						<label for="upload-img">Inserisci un'immagine per l'evento</label>
+		
+						<input type="file" id="upload-img" value="Choose a file" accept="image/*" onchange="readURL(this);" />
+					
+						<!-- Div contenente il toggle croppie con l'immagine inviata -->
+						<div id="upload-croppie" style="display: none"></div>
+
+						<!-- Button che restituisce l'immagine ritagliata -->
+						<input type="button" id="btn-croppie-result" class="get-result" value="Risultato" style="display:none" onclick="getResult()">
+
+						<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
+						<div id="croppied-wrapper" class="grey-wrapper animate">
+							<span onclick="document.getElementById('croppied-wrapper').style.display='none'" class="close" title="Close Modal">&times;</span>
+						
+							<div id="croppied-img-container"  class="alert-container ">
+								<div id="result-img" class="wrap-result"></div>
+								<input style="display:none" name="hidden-img" id="hidden-img">
+							
+								<div class="row">
+									<input type="reset" class="croppie-btn cancel-btn" value="Annulla" onclick="document.getElementById('croppied-wrapper').style.display='none'">								
+									<input class="croppie-btn" type="button" value="ok" onclick="document.getElementById('croppied-wrapper').style.display='none'">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+			
+
 
 					<label for="description">Descrivi il tuo evento</label>
 					<textarea name="description" id="description" rows="7" placeholder="Descrizione"></textarea>
@@ -106,7 +143,7 @@ require_once DIR_UTIL . 'query.php';
 						<input type="text" id="price" name="ticket-price">
 					</div>
 				
-					<button type="submit" >Crea evento</button>
+					<button type="submit">Crea evento</button>
 
 
 				</div>

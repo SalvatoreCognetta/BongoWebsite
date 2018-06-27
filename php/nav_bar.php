@@ -33,7 +33,7 @@ include_once DIR_UTIL . 'sessionUtil.php';
 		<li class="user-dropdown">
 			<span class="user-avatar-menu" onclick="arrow_change('user-arrow')">
 				<?php 
-				$location = get_location($_SESSION['userid']);
+				$location = get_avatar_location($_SESSION['userid']);
 				?>
 				<img class="user-avatar" src="<?php echo $location;?>" width="30" height="30" alt=" ">
 				<img id="user-arrow" class="arrow-down" src="../img/icon/arrow_drop_down_black_24px.svg" alt="Arrow">
@@ -42,7 +42,7 @@ include_once DIR_UTIL . 'sessionUtil.php';
 				<li><?php echo $_SESSION['username'];?></li>
 				<hr>
 				<li><a href="./profile.php">Profilo</a></li>
-				<li><a href="./events_followed.php">Eventi</a></li>
+				<li><a href="./followed_events.php">Eventi</a></li>
 				<li style="border-top: 1px solid grey;">
 					<a href="./logout.php">Logout</a>
 				</li>

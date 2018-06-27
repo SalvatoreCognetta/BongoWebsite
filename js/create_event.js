@@ -1,14 +1,23 @@
+function show(id) {
+	document.getElementById(id).style.display = 'block';
+};
+
+function hide(id) {
+	document.getElementById(id).style.display = 'none';
+};
+
+
 var el = document.getElementById('upload-croppie');
 var vanilla = new Croppie(el, {
   // enableExif: true,
   viewport: {
-    width: 177,
-    height: 100,
+    width: 480,
+    height: 270,
     type: 'square'
   },
   boundary: {
-    width: 200,
-    height: 200
+    width: 500,
+    height: 300
   }
 })
 
@@ -37,13 +46,11 @@ function readURL(input) {
 function getResult(){
   vanilla.result({type: 'rawcanvas',  circle: false, format: 'png'}).then(function(result) {
     var existing = document.getElementById('result-img');
-    console.log(result);
     if(existing.children.length > 0) {
       existing.removeChild(existing.children[0]);
     } 
     document.getElementById('result-img').appendChild(result);
     document.getElementById("croppied-wrapper").style.display = "block";
-    document.getElementById("hidden-img").value = result.toDataURL('image/png');
-    console.log(result.toDataURL('image/jpeg'));
+    document.getElementById("hidden-img").value = result.toDataURL('image/jpeg');
   })
 }

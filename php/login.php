@@ -14,10 +14,10 @@ $password = test_input($_POST["password"]);
 
 $error = login($username, $password); // Variable To Store Error Message
 
-if($error === null)
-	header('location: ./profile.php');
-else
-	header('location: ./index.php?error=' . $error );
+// if($error === null)
+// 	header('location: ./profile.php');
+// else
+// 	header('location: ./index.php?error=' . $error );
 
 
 function login($username, $password){   
@@ -38,29 +38,6 @@ function login($username, $password){
 
 }
 
-function authenticate ($username, $password){   
-	global $bongoDb;
-	$username = $bongoDb->sqlInjectionFilter($username);
-	$password = $bongoDb->sqlInjectionFilter($password);
 
-	$query = "
-			SELECT userid, username
-			FROM user
-			WHERE username = ? AND password = ?";
-
-	$params = array($username, $password);
-	$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
-
-
-	$numRow = $result->num_rows;
-	if ($numRow != 1)
-		return -1;
-	
-	$userRow = $result->fetch_assoc();
-	return $userRow['userid'];
-
-	
-		
-}
 
 ?>

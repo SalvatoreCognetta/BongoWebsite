@@ -17,7 +17,7 @@ if (!empty($_POST["username"])) {
 }
 
 if (!empty($_POST["password"])) {
-	$password = test_input($_POST["password"]);
+	$password = password_hash(test_input($_POST["password"]), PASSWORD_BCRYPT);
 } else {
 	$error = "Password mancante";
 }
@@ -59,16 +59,12 @@ function signin($username, $password, $fullname, $email, $emailConfirm) {
 
 		$err = isValid($fullname, $username, $email);
 		if($err === null) {
-			global $bongoDb;
-			$username = $bongoDb->sqlInjectionFilter($username);
-			$password = $bongoDb->sqlInjectionFilter($password);
-			$userid = uniqid("user_");
+			$hash = password_hash($password, PASSWORD_DEFAULT);
+			$params = array($username, $email, $fullname, $hash);
+
 			
-			$query = "INSERT INTO user (`userid`, `username`, `email`, `fullname`, `password`) VALUES (?, ?, ?, ?, ?);";
-			
-			$params = array($userid, $username, $email, $fullname, $password);
-			$result = $bondoDb->performQueryWithParameters($query, "sssss", $params);
-	
+
+			$userid = create_user($username, $email, $fullname, $hash);
 			session_start();
 			setSession($username, $userid);
 			return null;	
@@ -87,19 +83,9 @@ function isValid($fullname, $username, $email){
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		return "Invalid email format";
 	}
-	
-	//Controllo se c'è già un utente registrato con quella mail e/o username	
-	global $bongoDb;
-	$username = $bongoDb->sqlInjectionFilter($username);
-	$email = $bongoDb->sqlInjectionFilter($email);
 
-	$query = "
-		SELECT *
-		FROM user
-		WHERE username = ? OR email = ?";
-	
-	$params = array($username, $email);
-	$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+	$result =  user_already_exist($username, $email);
+
 	$numRow = $result->num_rows;
 
 	if($numRow == 0)

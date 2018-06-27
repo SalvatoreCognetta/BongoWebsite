@@ -109,26 +109,29 @@ require_once DIR_UTIL . 'query.php';
 	function upload_base64file($img) {
 		global $uploaddir, $bongoDb;
 
-		$img = str_replace('data:image/png;base64,', '', $img);
+		$img = str_replace('data:image/jpeg;base64,', '', $img);
 		$img = str_replace(' ', '+', $img);
 
 		$data = base64_decode($img);
 
-		$file_name = uniqid("img_") . ".png";
+		$uid_img = uniqid("img_");
+
+		$file_name = $uid_img . ".jpeg";
 
 		$file = $uploaddir . $file_name;
 
 		//Copio il file nella cartella upload
 		$success = file_put_contents($file, $data);
 
-		upload_img($file_name, $file);
+		upload_img($uid_img, $file);
 			
 			
 
-			//Se l'operazione è andata a buon fine...
+		//Se l'operazione è andata a buon fine...
+		if($success) 
+			return $uid_img;
 
-
-		echo $success ? $file : 'Unable';
+		return null;
 
 	}
 ?>
