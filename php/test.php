@@ -54,17 +54,11 @@ require_once DIR_UTIL . 'sessionUtil.php';
 		// 	<div id="vanilla-demo"></div>
 		// </div> -->
 
-
-<?php
-	$option = [
-		'salt' =>mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
-	];
-	$pass = password_hash("test", PASSWORD_BCRYPT);
-	echo $pass."\n";
-	if(password_verify('test', $pass))
-		echo "giusto"."\n";
-
-?>
+<a href="#" class="modify-card"><img class="test-fix" src="../img/icon/modify.png"></a>
+<form action="./uploadtest.php">
+	Test
+	<button>Btn</button>
+</form>
 
 		<div class="upload-croppie">
 			<label for="upload-img">Inserisci un'immagine per l'evento</label>

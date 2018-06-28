@@ -7,7 +7,7 @@ require_once DIR_UTIL . 'query.php';
 require_once DIR_UTIL . 'sessionUtil.php'; 
 
 if (!isLogged()){
-	header('Location: ./index.php?error="Non sei loggato."');
+	header('Location: ./index.php?err="Non sei loggato."');
 	exit;
 }	
 ?>
@@ -110,7 +110,7 @@ if (!isLogged()){
 				<form method="POST" action="./update_profile.php" class="column profile-info">
 					<h2>Impostazioni principali</h2>
 					<label>Nickname</label>
-					<input type="text" name="nickname" value="<?php echo $user_info['username'];?>" autocomplete="off">
+					<input type="text" name="username" value="<?php echo $user_info['username'];?>" autocomplete="off">
 				
 					<label>Fullname</label>
 					<input type="text" name="name" value="<?php echo $user_info['fullname']?>" autocomplete="off">
@@ -118,11 +118,15 @@ if (!isLogged()){
 					<label>Email</label>
 					<input type="text" name="email" value="<?php echo $user_info['email']?>" autocomplete="off">
 
+					
+
+					<button>Aggiorna</button>
+				</form>
+
+				<form method="post" action="./update_psw.php" class="column profile-info">
 					<label>Password</label>
-					<input type="password" name="old-psw" placeholder="Vecchia password">
-					<input type="password" name="new-psw" placeholder="Nuova password" autocomplete="off">
-
-
+					<input type="password" name="old-psw" placeholder="Vecchia password" required>
+					<input type="password" name="new-psw" placeholder="Nuova password" required>
 					<button>Aggiorna</button>
 				</form>
 			</div>

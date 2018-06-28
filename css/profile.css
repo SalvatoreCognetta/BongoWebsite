@@ -4,6 +4,7 @@
 }
 
 .profile-side-menu {
+	/* width: 250px; */
 	border-right: 1px solid #ccc;
 	margin-right: 10px;
 	font-family: Roboto;
@@ -15,6 +16,7 @@
 	border-bottom: 1px solid grey;
 	padding: 10px 15px;
 	color: #030303;
+	font-size: 21px;
 
 }
 
@@ -27,7 +29,7 @@
 
 .active {
 	background-color: rgba(0,0,0,0.04);
-	box-shadow: inset 4px 0 0 #C63D0F;
+	box-shadow: inset 4px 0 0 #C63D0F !important;
 }
 
 .active>a{
@@ -35,7 +37,8 @@
 }
 
 .is-over:hover {
-	background-color: #a8a8a8;
+	/* box-shadow: inset 4px 0 0 #8a8a8a; */
+	background-color: #cfcfcf;
 }
 
 .is-over:hover>a {
@@ -73,10 +76,32 @@
 	margin-bottom: 5px;
 }
 
-.profile-info>input[type=text] {
+.profile-info>input[type=text], .profile-info>input[type=password] {
 	width: 260px;
 }
 
 .profile-info>button {
 	width: 100px;
+}
+
+
+
+/*Created events cards*/
+.modify-icon {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	/* background-color: #c2c2c296;
+	border-radius: 3px; */
+
+	position: relative;
+	left: -15px;
+	top: -113px;
+	
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: all 1.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.modify-icon:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }

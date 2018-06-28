@@ -7,7 +7,7 @@ require_once DIR_UTIL . 'query.php';
 require_once DIR_UTIL . 'sessionUtil.php'; 
 
 if (!isLogged()){
-	header('Location: ./index.php?error="Non sei loggato."');
+	header('Location: ./index.php?err="Non sei loggato."');
 	exit;
 }	
 ?>
@@ -79,7 +79,7 @@ if (!isLogged()){
 						$price = $row[$pricecol];
 
 						//Creo la card con la funzione presente in card.php
-						create_event_card($id, $img, $title, $description, $date, $time, $price);
+						create_modify_card($id, $img, $title, $description, $date, $time, $price);
 					
 					}
 

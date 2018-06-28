@@ -18,7 +18,9 @@ if (!isLogged()){
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/test.js"></script>
+	<script src="../js/profile_img_croppie.js" defer></script>
+	
+	<!-- <script src="../js/test.js"></script> -->
 
 
 	<title>Bongo</title>
@@ -27,16 +29,17 @@ if (!isLogged()){
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
-	<link href="../css/search_page.css" rel="stylesheet" type="text/css">
+	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
+
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 
 	<!-- Croppie tool for image picker -->
-	<!-- <link rel="stylesheet" href="croppie.css" />
-	<script src="croppie.js"></script>
+	<link rel="stylesheet" href="../css/croppie.css" />
+	<script src="../js/croppie.js"></script>
 
- -->
+
 
 </head>
 
@@ -45,8 +48,10 @@ if (!isLogged()){
 	<div class="wrapper">
 		<header>
 			<?php 
-			include DIR_BASE . 'nav_bar.php';  
-			include_once DIR_LAYOUT . 'card.php'; 	
+			include DIR_BASE . 'nav_bar.php';   
+			
+			$location = get_avatar_location($_SESSION['userid']);
+			$user_info = get_user_info($_SESSION['userid']);
 			?>
 				
 		</header>
@@ -56,36 +61,14 @@ if (!isLogged()){
 				<ul>
 					<li class="title-settings">Impostazioni Utente</li>
 					<li class="is-over"><a href='./profile.php'>Profilo</a></li>
-					<li class="is-over active"><a href="#">Eventi in programma</a></li>
+					<li class="is-over"><a href="./followed_events.php">Eventi in programma</a></li>
 					<li class="is-over"><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
 					<li class="is-over"><a href="./created_events.php">Eventi creati</a></li>
 					<li class="is-over"><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
-			<?php
-			$events = get_future_events($_SESSION['userid']);
-			echo "<section class=\"cards\">";
-				if ($events->num_rows > 0) {
-					while($row = $events->fetch_assoc()){
-						//Inizializzo tutti i valori necessari per creare la card con i risultati presi dal db
-						$timestamp = strtotime($row[$datecol]);
-						$date = date('d-m-Y', $timestamp);
-						$time = date('H:i', $timestamp);
 
-						$id = $row[$idcol];
-						$img = get_event_img_location($id);
-						$title = $row[$titlecol];
-						$description = $row[$descol];
-						$price = $row[$pricecol];
 
-						//Creo la card con la funzione presente in card.php
-						create_event_card($id, $img, $title, $description, $date, $time, $price);
-					
-					}
-
-				} 
-			echo "</section>";
-			?>
 		</div>
 
 	</div>

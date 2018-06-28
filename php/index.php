@@ -35,6 +35,12 @@
 			<?php 
 			include DIR_BASE . 'nav_bar.php'; 	
 			include DIR_BASE . 'login_form.php';
+
+			if(!empty($_GET['err'])) {
+				$message = $_GET['err'];
+				echo "<script>alert('$message');</script>";
+				
+			}
 			?>
 		</header>
 

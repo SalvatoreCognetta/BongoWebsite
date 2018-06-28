@@ -2,6 +2,29 @@
 	function create_event_card($id, $img, $title, $description, $date, $time, $price) {
 		$card = sprintf("
 		<div class='card-margin'>
+			%s
+		
+		</div>
+			", card($id, $img, $title, $description, $date, $time, $price));
+
+		echo $card;
+	}
+
+
+	function create_modify_card($id, $img, $title, $description, $date, $time, $price) {
+		$card = sprintf("
+		<div class='card-margin'>
+			%s
+			<a href='./modify_event.php?id=%s'><img class='modify-icon' src='../img/icon/modify.png'></a>
+
+		</div>
+			", card($id, $img, $title, $description, $date, $time, $price), $id);
+
+		echo $card;
+	}
+
+	function card($id, $img, $title, $description, $date, $time, $price) {
+		$card = sprintf("
 		<a href='./event_page.php?id=%s'>
 		
 			<div class='event_card'> 
@@ -28,11 +51,9 @@
 					
 				</div>
 			</div>
-		</a>
-		</div>
-			",$id, $img, $title, $description, $date, $time, $price);
+		</a>", $id, $img, $title, $description, $date, $time, $price);
 
-			echo $card;
+		return $card;
 	}
 
 

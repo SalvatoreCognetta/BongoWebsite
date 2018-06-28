@@ -211,11 +211,10 @@
 
 		}
 
-		function authenticate ($username, $password){   
+		function authenticate($username, $password){   
 			global $bongoDb;
 			$username = $bongoDb->sqlInjectionFilter($username);
 			$password = $bongoDb->sqlInjectionFilter($password);
-			echo "init:".$password.":fine";
 		
 			$query = "
 					SELECT userid, username, password
@@ -232,16 +231,11 @@
 				return -1;
 			
 			$userRow = $result->fetch_assoc();
-			echo "init:".strlen($userRow['password']) .":fine";
-
-
-
+			
 			if(password_verify($password, $userRow['password'])){
-				echo "test";
 				return $userRow['userid'];
 			}
 			else{
-				echo "Testerr";
 				return -1;
 			}
 		
@@ -269,28 +263,47 @@
 		function create_user($username, $email, $fullname, $password){
 			global $bongoDb;
 			$username = $bongoDb->sqlInjectionFilter($username);
-			$password = password_hash($bongoDb->sqlInjectionFilter($password), PASSWORD_BCRYPT);
+			
+			$password = $bongoDb->sqlInjectionFilter($password);
+			
 			$userid = uniqid("user_");
 			
 			$query = "INSERT INTO user (`userid`, `username`, `email`, `fullname`, `password`) VALUES (?, ?, ?, ?, ?);";
 			
 			$params = array($userid, $username, $email, $fullname, $password);
-			print_r($params);
 
 			$result = $bongoDb->performQueryWithParameters($query, "sssss", $params);
 
+			
+			return $userid;
 		}
 
-		// function update_psw($user_id, $params) {
-		// 	global $bongoDb;
+		function update_psw($user_id, $password) {
+			global $bongoDb;
 
-		// 	$query = ""
 
-		// 	$query = "UPDATE user SET username = ?, fullname = ?, email = ? WHERE userid = ?";
+			$query = "UPDATE user SET password = ? WHERE userid = ?";
 	
-		// 	array_push($params, $user_id);
-		// 	$result = $bongoDb->performQueryWithParameters($query, "ssss", $params);
+			$params = array($password, $user_id);
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
 
-		// }
+		}
+
+		function is_event_creator($user_id, $id_event) {
+			global $bongoDb;
+
+			$query = "
+				SELECT COUNT(*) AS creator
+				FROM evento
+				WHERE idevent = ? AND uid_creator = ?";
+			
+			$params = array($id_event, $user_id);
+			$result = $bongoDb->performQueryWithParameters($query, "ss", $params);
+			$result = $result->fetch_assoc();
+
+			if($result['creator'] == 1)
+				return true;
+			return false;
+		}
 
 ?>

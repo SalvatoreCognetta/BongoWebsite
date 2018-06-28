@@ -16,7 +16,7 @@ require_once DIR_UTIL . 'query.php';
 
 
 	<title>Bongo</title>
-	<link href="../css/home.css" rel="stylesheet" type="text/css">
+	<!-- <link href="../css/home.css" rel="stylesheet" type="text/css"> -->
 
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
@@ -34,68 +34,92 @@ require_once DIR_UTIL . 'query.php';
 		<header>
 			<?php 
 			include DIR_BASE . 'login_form.php'; 
-			include DIR_BASE . 'nav_bar.php';   	
+			include DIR_BASE . 'nav_bar.php';   
+			
+			$id_event = $_GET['id'];
+			$row = get_event($id_event);
+
+
+			$img = get_event_img_location($id_event);
+			$title = $row[$titlecol];
+			// $date = $row['date'];
+
+			$timestamp = strtotime($row[$datecol]);
+			$date = date('d-m-Y', $timestamp);
+			$time = date('H:i', $timestamp);
+
+			$place = $row['city'];
+
+			$description = $row[$descol];	
+			
+			$category = $row['category'];
+
+			$num_p = $row['numParticipants'];
+
+			print_r($row);
 			?>
 				
 		</header>
 
 
-		<section class="event-container">
-			<?php 
-				$id_event = $_GET['id'];
-				$row = get_event($id_event);
+		<div class="event-container">
+			<div class="event-description">
+					<img class='event-img' src='<?php echo $img; ?>' alt='Immagine evento'>
+				<aside class="event-info">
+					<h1 class="title"><?php echo $title;?></h1>
+					<h2 class="title-info"><?php echo $time . " " . $date;?></h2>
+					<h2 class="title-info"><?php echo $place;?></h2>
+					<h2 class="title-info">Categoria: <?php echo $category;?></h2>
+					<h2 class="title-info">Numero di partecipanti: <?php echo $num_p;?></h2>
 
-
-				$img = get_event_img_location($id_event);
-				$title = $row[$titlecol];
-				$description = $row[$descol];
-
-				echo "<img class='img-container' src='{$img}' alt='Immagine evento'>";
-				echo "<h1>{$title}</h1>";
-				echo "<article>{$description}</article>";
-				echo $row['date'];
-			
-
-				echo $id_event;
-			?> 
-
-			<section class="event-description">
-				<section class="">
-					<h1>Titolo | Ore Data Luogo</h1>
-					<article>Descrizione</article>
-				</section>
-				<aside>
 					<?php 
 					if(isLogged()) {
-						if(!already_partecipates($_SESSION['userid'], $id_event)) {
-					
+						if(!is_event_creator($_SESSION['userid'], $_GET['id'])){
+							if(!already_partecipates($_SESSION['userid'], $id_event)) {
 					?>
+
 					<form method="get" action="./partecipate.php">
-
 						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
-
-						<button name="btn">Partecipa</button>
+						<button class="btn btn-partecipate" name="btn">Partecipa</button>
 					</form>
+
 					<?php 
+							} else {
+					?>
+
+					<form method="get" action="./del_partecipation.php">
+						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
+						<button class="btn btn-undo" name="btn">Non partecipo</button>
+					</form>
+
+					<?php
+							}
 						} else {
 					?>
-					<form method="get" action="./del_partecipation.php">
+				
+					<a href="./modify_event.php?id=<?php echo $_GET['id'];?>" ><button class="btn btn-modify" title="Modifica l'evento" >Modifica</button></a>
 
-						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
-
-						<button name="btn">Annulla partecipazione</button>
-					</form>
 					<?php
 						}
 					} else {
 					?>
-					Per partecipare all'evento devi accedere prima.
+
+					<button class="btn disabled-btn" title="Per partecipare all'evento devi accedere" disabled>Partecipa</button>
+					
 					<?php
 					}
 					?>
 				</aside>
-			</section>
-		</section>
+				<!-- $row['date']; -->
+			
+
+				<!-- echo $id_event; -->
+
+			</div>
+
+			<article><?php echo $description; ?></article>
+			
+		</div>
 	</div>
 
 

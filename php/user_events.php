@@ -7,7 +7,7 @@ require_once DIR_UTIL . 'query.php';
 require_once DIR_UTIL . 'sessionUtil.php'; 
 
 if (!isLogged()){
-	header('Location: ./index.php?error="Non sei loggato."');
+	header('Location: ./index.php?err="Non sei loggato."');
 	exit;
 }	
 ?>

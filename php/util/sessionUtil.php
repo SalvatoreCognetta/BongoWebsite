@@ -7,7 +7,7 @@
 	}
 
 	//isLogged: check if user has logged in and, if it is the case, returns the username
-	function isLogged(){		
+	function isLogged(){	
 		if(isset($_SESSION['userid']))
 			return $_SESSION['userid'];
 		else

@@ -46,7 +46,7 @@ if($error === null)
 if($error === null)
 	header('location: ./profile.php');
 else
-	header('location: ./index.php?error=' . $error);
+	header('location: ./index.php?err=' . $error);
 
 
 function signin($username, $password, $fullname, $email, $emailConfirm) {
@@ -59,12 +59,11 @@ function signin($username, $password, $fullname, $email, $emailConfirm) {
 
 		$err = isValid($fullname, $username, $email);
 		if($err === null) {
-			$hash = password_hash($password, PASSWORD_DEFAULT);
-			$params = array($username, $email, $fullname, $hash);
+			$hash = password_hash($password, PASSWORD_BCRYPT);
+			$params = array($username, $email, $fullname, $password);
 
-			
 
-			$userid = create_user($username, $email, $fullname, $hash);
+			$userid = create_user($username, $email, $fullname, $password);
 			session_start();
 			setSession($username, $userid);
 			return null;	

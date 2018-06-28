@@ -3,6 +3,13 @@ session_start();
 require_once __DIR__ . '/config.php';
 require_once DIR_UTIL . 'dbManager.php';
 require_once DIR_UTIL . 'query.php';
+require_once DIR_UTIL . 'sessionUtil.php';
+
+if(isLogged() === false) {
+	//Mostrare un errore nella pagina index 
+	$err = "Devi essere loggato per creare un nuovo evento.";
+	header("Location: ./index.php?err=" . $err);
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,14 +48,8 @@ require_once DIR_UTIL . 'query.php';
 			<?php 
 			include DIR_BASE . 'nav_bar.php';   	
 			include_once DIR_BASE . 'login_form.php';
-			if(isLogged() === false) {
-				//Mostrare un errore nella pagina index 
-				?>
-				<script type="text/javascript">
-					document.getElementById('login-container').style.display='block';				
-				</script>
-			<?php
-			}
+
+
 			?>
 		</header>
 		

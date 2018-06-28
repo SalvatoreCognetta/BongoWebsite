@@ -50,6 +50,7 @@
 
 .card-margin {
 	margin: 20px 10px;
+	max-height: 100px;
 }
 
 .card-margin a {

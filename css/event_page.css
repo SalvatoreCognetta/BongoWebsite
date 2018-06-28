@@ -7,18 +7,62 @@
 	border-radius: 3px;
 
 	margin: 12px auto;
-	max-width: 1240px;
+	max-width: 960px;
 	display: flex;
 
 	z-index: 1;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+	padding: 0 10px 5px;
+}
+
+.event-description {
+	display: flex;
 }
 
 
+.event-img {
+	/* object-fit: scale-down; */
 
-.img-container {
-	object-fit: scale-down;
-	height: 300px;
+	width: 480px;
+	height: 270px;
 	border-width: 1px;
 }
 
+.event-info {
+	padding-left: 15px;
+	width: 100%;
+}
+
+.title {
+	font-family: trenchFont;
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.title-info {
+	font-family: trenchFont;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.btn-partecipate {
+	background-color: rgb(69, 196, 118);	
+	width: 100px;
+}
+
+
+.btn-undo {
+	background-color: rgb(197, 51, 51);
+	width: 150px;
+}
+
+.btn-modify {
+
+	background-color: rgba(104, 93, 93, 0.678);
+}
+
+.disabled-btn {
+	background-color: rgba(143, 143, 143, 0.678);
+	cursor: auto;
+}

@@ -7,7 +7,7 @@ require_once DIR_UTIL . 'query.php';
 require_once DIR_UTIL . 'sessionUtil.php'; 
 
 if (!isLogged()){
-	header('Location: ./index.php?error="Non sei loggato."');
+	header('Location: ./index.php?err="Non sei loggato."');
 	exit;
 }	
 ?>
@@ -55,11 +55,11 @@ if (!isLogged()){
 			<aside class="profile-side-menu">
 				<ul>
 					<li class="title-settings">Impostazioni Utente</li>
-					<li class="is-over active"><a href='./profile.php'>Profilo</a></li>
-					<li class="is-over active"><a href="./followed_events.php">Eventi in programma</a></li>
-					<li class="title-settings"><a href="#">Eventi a cui hai partecipato</a></li>
-					<li class="is-over active"><a href="./created_events.php">Eventi creati</a></li>
-					<li class="is-over active"><a href="./test.php">Test</a></li>
+					<li class="is-over "><a href='./profile.php'>Profilo</a></li>
+					<li class="is-over "><a href="./followed_events.php">Eventi in programma</a></li>
+					<li class="is-over active"><a href="#">Eventi a cui hai partecipato</a></li>
+					<li class="is-over "><a href="./created_events.php">Eventi creati</a></li>
+					<li class="is-over "><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 			<?php
