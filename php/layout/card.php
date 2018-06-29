@@ -15,7 +15,7 @@
 		$card = sprintf("
 		<div class='card-margin'>
 			%s
-			<a href='./modify_event.php?id=%s'><img class='modify-icon' src='../img/icon/modify.png'></a>
+			<a class='wrapper-icon' href='./modify_event.php?id=%s'><img class='modify-icon' src='../img/icon/modify.svg'></a>
 
 		</div>
 			", card($id, $img, $title, $description, $date, $time, $price), $id);

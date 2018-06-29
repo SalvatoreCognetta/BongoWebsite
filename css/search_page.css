@@ -5,6 +5,9 @@
 	width: 100%;
 	max-width: 200px;
 	border-right: 1px solid #ccc;
+	border-radius: 3px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082), 0 3px 6px rgba(0,0,0,0.13);
+	background: white;
 }
 
 
@@ -18,7 +21,7 @@
 } */
 
 .filter-form {
-	/* width: 100%; */
+	width: 100%;
 	margin: 0px;
 	padding: 10px;
 	display: flex;
@@ -32,8 +35,9 @@
 	border-bottom: 1px solid #e5e5e5;
 }
 
-.filter-form *{
-	margin-bottom:5px;
+.filter-form>*{
+	margin: 0 0 5px 0 !important;
+	width: 100% !important;
 }
 
 
@@ -49,7 +53,9 @@
 }
 
 .card-margin {
-	margin: 20px 10px;
+	background-color: white;
+	border-radius: 5px;
+	margin: 10px 10px;
 	max-height: 100px;
 }
 
@@ -70,7 +76,7 @@
 }
 
 .event_card:hover {
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 14px 28px rgba(0,0,0,0.20), 0 10px 10px rgba(0,0,0,0.18);
 }
 
 .event_card img {

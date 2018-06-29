@@ -51,6 +51,11 @@ if (!isLogged()){
 				
 		</header>
 
+		<div class="stripes">
+			<span></span>
+			<span></span>		
+		</div>
+
 		<div class="content">
 			<aside class="profile-side-menu">
 				<ul>

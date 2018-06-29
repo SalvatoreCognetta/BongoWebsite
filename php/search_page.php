@@ -34,18 +34,24 @@ require_once DIR_UTIL . 'query.php';
 		?>
 		</header>
 
+		<div id="stripes" class="stripes">
+			<span></span>
+			 <span></span>
+			<!-- <span></span> --> 
+		</div>
+
 		<section class="content">
 
 			<aside class="side-filter">
 				<form class="filter-form" action="search_page.php" method="get">
-					<input type="text" name="title" placeholder="Filtra">
+					<input class="form-input" type="text" name="title" placeholder="Filtra">
 					<fieldset class="filter-form-item">
 						<legend>Categoria eventi</legend>
 						<input type="checkbox" name="category" value="test1">test
 						<br/>
 					</fieldset>
-					<input type="date" name="date">
-					<input type="time" name="time" value="21:00">
+					<input class="form-input" type="date" name="date">
+					<input class="form-input" type="time" name="time" value="21:00">
 					<select name="city" required>
 						<option value="" disabled selected>Citt&agrave;</option>
 						<?php 
@@ -62,7 +68,7 @@ require_once DIR_UTIL . 'query.php';
 							}
 						?>
 					</select>
-					<input type="submit" value="Cerca">
+					<input class="btn" type="submit" value="Cerca">
 				</form>
 			</aside>
 
@@ -72,25 +78,8 @@ require_once DIR_UTIL . 'query.php';
 			include DIR_LAYOUT . 'card.php';  
 			
 			//Creo un array contenente i filtri inseriti dall'utente
-			$filter_values	 = array();
-			if(!empty($_GET['title']))
-				$filter_values[] = new filter_value('title', 's', "%{$_GET['title']}%", 'LIKE');
-			if(!empty($_GET['category']))				
-				$filter_values[] = new filter_value('category', 's', $_GET['category'], '=');
-			if(!empty($_GET['city']))				
-				$filter_values[] = new filter_value('city', 's', $_GET['city'], '=');
-			if(!empty($_GET['date'])) {
-				if(!empty($_GET['time'])) {
-					$dateTime = strtotime($_GET['date'] . ' ' . $_GET['time']);
-					$dateTime = date("Y-m-d H:i:s", $dateTime);
-				} else {
-					$dateTime = date("Y-m-d", $_GET['date']);
-				}
-				$filter_values[] = new filter_value('date', 's', $dateTime, '>=');
-			} else {
-				$dateTime = date("Y-m-d");
-				$filter_values[] = new filter_value('date', 's', $dateTime, '>=');
-			}
+			$filter_values	 = get_filter();
+			
 
 			//Se l'utente ha inserito almeno un filtro allora aggiorno la pagina
 			if(count($filter_values)) { 
@@ -124,7 +113,7 @@ require_once DIR_UTIL . 'query.php';
 					}
 					echo "</section>";
 				}
-			} else { //Qui non dovrebbe mai arrivare!
+			} else { //Qui non dovrebbe mai arrivare
 				echo "L'utente non ha inserito nessun filtro.";
 			}
 

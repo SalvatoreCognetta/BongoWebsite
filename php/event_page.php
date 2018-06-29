@@ -56,23 +56,34 @@ require_once DIR_UTIL . 'query.php';
 
 			$num_p = $row['numParticipants'];
 
-			print_r($row);
+			$price = $row['price'];
+
+			$creator_info = get_user_info($row['uid_creator']);
+			$creator = $creator_info['fullname'];
+
 			?>
 				
 		</header>
 
 
 		<div class="event-container">
-			<div class="event-description">
-					<img class='event-img' src='<?php echo $img; ?>' alt='Immagine evento'>
-				<aside class="event-info">
+			<div class="wrapper-flex">
+				<img class='event-img' src='<?php echo $img; ?>' alt='Immagine evento'>
+				<aside class="wrapper-info">
 					<h1 class="title"><?php echo $title;?></h1>
-					<h2 class="title-info"><?php echo $time . " " . $date;?></h2>
-					<h2 class="title-info"><?php echo $place;?></h2>
-					<h2 class="title-info">Categoria: <?php echo $category;?></h2>
-					<h2 class="title-info">Numero di partecipanti: <?php echo $num_p;?></h2>
-
-					<?php 
+					
+					
+					
+					<div class="event-info">
+						<h2 class="info"><?php echo $date . " " . $time;?></h2>
+						<h2 class="info"><?php echo $place;?></h2>
+						<h2 class="info">Categoria: <?php echo $category;?></h2>
+						<h2 class="info">Numero di partecipanti: <?php echo $num_p;?></h2>
+						<h2 class="info">Prezzo biglietto: <?php echo $price;?>&euro;</h2>
+						<h2 class="info">Creatore evento: <?php echo $creator;?></h2>					
+					</div>
+					<div class="wrapper-partecipate">
+				<?php 
 					if(isLogged()) {
 						if(!is_event_creator($_SESSION['userid'], $_GET['id'])){
 							if(!already_partecipates($_SESSION['userid'], $id_event)) {
@@ -97,7 +108,7 @@ require_once DIR_UTIL . 'query.php';
 						} else {
 					?>
 				
-					<a href="./modify_event.php?id=<?php echo $_GET['id'];?>" ><button class="btn btn-modify" title="Modifica l'evento" >Modifica</button></a>
+					<a class="modify" href="./modify_event.php?id=<?php echo $_GET['id'];?>"><button class="btn btn-modify" title="Modifica l'evento" >Modifica</button></a>
 
 					<?php
 						}
@@ -109,15 +120,16 @@ require_once DIR_UTIL . 'query.php';
 					<?php
 					}
 					?>
+					</div>
 				</aside>
 				<!-- $row['date']; -->
-			
+				
 
 				<!-- echo $id_event; -->
 
 			</div>
 
-			<article><?php echo $description; ?></article>
+			<article class="event-description"><?php echo $description; ?></article>
 			
 		</div>
 	</div>

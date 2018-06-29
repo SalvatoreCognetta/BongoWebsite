@@ -29,9 +29,15 @@ function arrow_change(id) {
 
 function activate_form(id) {
 	if(id === "signin") {
+		document.getElementById("signin").classList = "active-form";
+		document.getElementById("login").classList = "";
+
 		document.getElementById("login-form").style.display = 'none';
 		document.getElementById("signin-form").style.display = 'flex';
 	} else if(id === "login") {
+		document.getElementById("login").classList = "active-form";
+		document.getElementById("signin").classList = "";
+
 		document.getElementById("signin-form").style.display = 'none';
 		document.getElementById("login-form").style.display = 'flex';	
 	}	

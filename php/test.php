@@ -15,7 +15,7 @@ require_once DIR_UTIL . 'sessionUtil.php';
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/test.js" defer></script>
+	<script src="../js/test.js" async></script>
 
 
 	<title>Bongo</title>
@@ -53,12 +53,14 @@ require_once DIR_UTIL . 'sessionUtil.php';
 		<!-- // <div class="col-1-2">
 		// 	<div id="vanilla-demo"></div>
 		// </div> -->
-
-<a href="#" class="modify-card"><img class="test-fix" src="../img/icon/modify.png"></a>
-<form action="./uploadtest.php">
+<div id="stripes" class="stripes">
+	<span></span>
+	<span></span>
+</div>
+<!-- <form action="./uploadtest.php"> -->
 	Test
-	<button>Btn</button>
-</form>
+	<button id="btn" onclick="test()">Btn</button>
+<!-- </form> -->
 
 		<div class="upload-croppie">
 			<label for="upload-img">Inserisci un'immagine per l'evento</label>

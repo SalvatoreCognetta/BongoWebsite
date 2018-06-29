@@ -15,9 +15,6 @@ include_once DIR_UTIL . 'sessionUtil.php';
 		</form>
 	</div>
 	<ul class="main-nav-list">
-		<li>
-			
-		</li>
 		<!-- <li>
 			<a href="./index.php">Home</a>
 		</li> -->

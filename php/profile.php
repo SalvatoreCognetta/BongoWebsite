@@ -56,6 +56,12 @@ if (!isLogged()){
 				
 		</header>
 
+		<div id="stripes" class="stripes">
+			<span></span>
+			 <span></span>
+			<!-- <span></span> --> 
+		</div>
+
 		<div class="content">
 			<aside class="profile-side-menu">
 				<ul>
@@ -76,14 +82,17 @@ if (!isLogged()){
 					<div class="upload-croppie">
 						<label for="upload-img">Modifica l'immagine del profilo</label>
 						
-						<input type="file" id="upload-img" value="Choose a file" accept="image/*" onchange="readURL(this);" />
-
 						<!-- Div contenente il toggle croppie con l'immagine inviata -->
 						<div id="upload-croppie" style="display: none"></div>
 
-						<!-- Button che restituisce l'immagine ritagliata -->
-						<input type="button" id="btn-croppie-result" class="get-result" value="Risultato" style="display:none" onclick="getResult()">
-
+						<div class="flex">
+							<!-- In questo modo elimino il testo del file selezionato -->
+							<input type="file" id="upload-img" style="display: none;" value="Choose a file" accept="image/*" onchange="readURL(this);"  />						
+							<input type="button" value="Scegli un file" class="btn btn-wide" onclick="document.getElementById('upload-img').click();" />
+						
+							<!-- Button che restituisce l'immagine ritagliata -->
+							<input type="button" id="btn-croppie-result" class="btn btn-wide get-result" value="Anteprima" style="display:none" onclick="getResult()">
+						</div>
 						<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
 						<div id="croppied-wrapper" class="grey-wrapper animate">
 							<span onclick="document.getElementById('croppied-wrapper').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -105,29 +114,28 @@ if (!isLogged()){
 
 				</div>
 
-				<hr>
 
 				<form method="POST" action="./update_profile.php" class="column profile-info">
 					<h2>Impostazioni principali</h2>
 					<label>Nickname</label>
-					<input type="text" name="username" value="<?php echo $user_info['username'];?>" autocomplete="off">
+					<input type="text" name="username" class="form-input" value="<?php echo $user_info['username'];?>" autocomplete="off">
 				
 					<label>Fullname</label>
-					<input type="text" name="name" value="<?php echo $user_info['fullname']?>" autocomplete="off">
+					<input type="text" name="name" class="form-input" value="<?php echo $user_info['fullname']?>" autocomplete="off">
 			
 					<label>Email</label>
-					<input type="text" name="email" value="<?php echo $user_info['email']?>" autocomplete="off">
+					<input type="text" name="email" class="form-input" value="<?php echo $user_info['email']?>" autocomplete="off">
 
 					
 
-					<button>Aggiorna</button>
+					<button class="btn">Aggiorna</button>
 				</form>
 
 				<form method="post" action="./update_psw.php" class="column profile-info">
 					<label>Password</label>
-					<input type="password" name="old-psw" placeholder="Vecchia password" required>
-					<input type="password" name="new-psw" placeholder="Nuova password" required>
-					<button>Aggiorna</button>
+					<input type="password" class="form-input" name="old-psw" placeholder="Vecchia password" required>
+					<input type="password" class="form-input" name="new-psw" placeholder="Nuova password" required>
+					<button class="btn">Aggiorna</button>
 				</form>
 			</div>
 		</div>

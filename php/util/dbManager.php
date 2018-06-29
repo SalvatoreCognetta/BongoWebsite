@@ -74,7 +74,7 @@ class BongoDbManager {
 			$this->openConnection();
 		if(count($parameters) != strlen(utf8_decode($parameters_type))) {
 			$error = "Errore nella query, il numero di parametri non coincidono con il numero di tipi inseriti.";
-			// header("Location: index.php?error=" . $error);
+			header("Location: index.php?err=" . $error);
 		}
 		
 		try {

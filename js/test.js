@@ -47,3 +47,4 @@ function getResult(){
     console.log(result.toDataURL('image/jpeg'));
   })
 }
+

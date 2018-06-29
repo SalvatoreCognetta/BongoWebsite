@@ -47,7 +47,7 @@
 		<div class="wrap-container">
 			<div class="container">
 				<h1>Cosa fare stasera?</h1>
-				<h2>Cerca gli eventi nella tua zona.</h2>
+				<h2>Cerca gli eventi nella tua citt&agrave;.</h2>
 
 				<!-- <form action="./search_page.php">
 					<input type="text" name="city" placeholder="Inserisci una citt&agrave;">
@@ -55,10 +55,10 @@
 				</form> -->
 
 				<form action="./search_page.php">
-					<input type="text" name="city" id="city_input" list="cities_list" placeholder="Inserisci una citt&agrave;" autocomplete="off" required>
+					<input class="form-input" type="text" name="city" id="city_input" list="cities_list" placeholder="Inserisci una citt&agrave;" autocomplete="off" required>
 					<datalist id="cities_list">
 					</datalist>
-					<input type="submit" value="Cerca">					
+					<input class="btn btn-search" type="submit" value="Cerca">					
 				</form>
 
 				<!-- <a href="./map.php">Mappa Test</a> -->

@@ -5,7 +5,7 @@
 	<div class="wrap-login">
 		<ul class="login-signin">
 			<li>
-				<a id="login" onclick="activate_form(this.id);">Login</a>
+				<a id="login" class="active-form" onclick="activate_form(this.id);">Login</a>
 			</li>
 			<li>
 				<a id="signin" onclick="activate_form(this.id);">Registrati</a>
@@ -24,12 +24,12 @@
 
 			<div class="wrap-input">
 				<img src="../img/icon/face_black.svg" class="input-icon" alt="Account icon">
-				<input class="login-input" type="text" name="username" placeholder="Username" required>
+				<input class="input login-input" type="text" name="username" placeholder="Username" required>
 			</div>
 
 			<div class="wrap-input">
 				<img src="../img/icon/lock_black.svg" class="input-icon" alt="Password icon">
-				<input class="login-input" type="password" name="password" placeholder="Password" required>
+				<input class="input login-input" type="password" name="password" placeholder="Password" required>
 			</div>
 
 			<div class="remember-me">
@@ -38,7 +38,7 @@
 			</div>
 
 			<div class="container-login-form-btn">
-				<input type="submit" value="Login" name="submit" class="login-form-btn">
+				<input type="submit" value="Login" name="submit" class="btn btn-wide">
 			</div>
 
 			<a class="forgot" href=#>Forgot Password?</a>
@@ -55,37 +55,37 @@
 
 			<div class="wrap-input">
 				<label>Nome completo</label>
-				<input class="signin-input" type="text" name="fullname" required>
+				<input class="input signin-input" type="text" name="fullname" required>
 			</div>
 
 			<div class="wrap-input">
 				<img src="../img/icon/face_black.svg" class="input-icon" alt="Account icon">
 				<label class="input-label">Username</label> <br>
-				<input class="signin-input" type="text" name="username" required>
+				<input class="input signin-input" type="text" name="username" required>
 			</div>
 
 			<div class="wrap-input">
 				<img src="../img/icon/email-24px.svg" class="input-icon" alt="Email icon" > 
 				<label class="input-label">Email</label><br>
-				<input class="signin-input" type="email" name="email" required>
+				<input class="input signin-input" type="email" name="email" required>
 			</div>
 
 			<div class="wrap-input">
 				<img src="../img/icon/email-24px.svg" class="input-icon" alt="Email icon"> 
 				<label class="input-label">Conferma Email</label><br>
-				<input class="signin-input" type="email" name="email-confirm" required>
+				<input class="input signin-input" type="email" name="email-confirm" required>
 			</div>
 
 			<div class="wrap-input">
 				<img src="../img/icon/lock_black.svg" class="input-icon" alt="Password icon"> 
 				<label class="input-label">Password</label><br>
-				<input class="signin-input" type="password" name="password" required>
+				<input class="input signin-input" type="password" name="password" required>
 			</div>
 
 			
 
 			<div class="container-login-form-btn">
-				<input type="submit" value="Signin" name="submit" class="login-form-btn">
+				<input type="submit" value="Signin" name="submit" class="btn btn-wide">
 			</div>
 
 		</form>

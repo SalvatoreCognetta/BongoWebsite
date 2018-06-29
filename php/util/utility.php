@@ -134,4 +134,33 @@ require_once DIR_UTIL . 'query.php';
 		return null;
 
 	}
+
+	function get_filter() {
+		//Creo un array contenente i filtri inseriti dall'utente
+		$filter_values	 = array();
+		if(!empty($_GET['title']))
+			$filter_values[] = new filter_value('title', 's', "%{$_GET['title']}%", 'LIKE');
+		if(!empty($_GET['category']))				
+			$filter_values[] = new filter_value('category', 's', $_GET['category'], '=');
+		if(!empty($_GET['city']))				
+			$filter_values[] = new filter_value('city', 's', $_GET['city'], '=');
+		if(!empty($_GET['date'])) {
+			if(!empty($_GET['time'])) {
+				//Mostro soltanto gli eventi futuri
+				$dateTime = strtotime($_GET['date'] . ' ' . $_GET['time']);
+				$dateTime = date("Y-m-d H:i:s", $dateTime);
+			} else {
+				$time = date("H:i:s", time());
+				$dateTime = strtotime($_GET['date'] . ' ' . $time);
+				$dateTime = date("Y-m-d H:i:s", $dateTime);
+			}
+			$filter_values[] = new filter_value('date', 's', $dateTime, '>=');
+		} else {
+			//Mostro soltanto gli eventi futuri
+			$dateTime = date("Y-m-d H:i:s", time());
+			$filter_values[] = new filter_value('date', 's', $dateTime, '>=');
+		}
+
+		return $filter_values;
+	}
 ?>
