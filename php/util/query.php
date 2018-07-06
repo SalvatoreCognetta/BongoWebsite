@@ -68,6 +68,22 @@
 			}
 		}
 
+		function get_img_location($id_img) {
+			global $bongoDb;
+			
+			$query = "SELECT location FROM upload WHERE uidimg = ?";
+			$result = $bongoDb->performQueryWithParameters($query, "s", $id_img);
+			
+
+			$numRow = $result->num_rows;
+			if($numRow == 0) 
+				return null;
+			else {
+				$result = $result->fetch_assoc();
+				return $result['location'];
+			}
+		}
+
 		function get_categories() {
 			global $bongoDb;
 			

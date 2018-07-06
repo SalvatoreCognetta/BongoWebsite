@@ -156,8 +156,8 @@ if(isLogged() === false) {
 
 					</div>
 					<div class="wrapper-price-input" id="wrapper-price-input">
-						<label for="price">Inserisci il prezzo del biglietto:</label>
-						<input id="price-input" class="form-input" type="number" min="0.50" max="100.00" step="0.1" id="price" value="5.0" name="ticket-price">
+						<label for="price-input">Inserisci il prezzo del biglietto:</label>
+						<input id="price-input" class="form-input" type="number" min="0.50" max="100.00" step="0.1" value="5.0" name="ticket-price">
 						<span>&euro;</span>
 					</div>
 				

@@ -1,4 +1,8 @@
 /*Profilo*/
+.content {
+	flex-direction: row !important;
+}
+
 .profile-settings {
 	width: 100%;
 

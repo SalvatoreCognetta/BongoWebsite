@@ -46,7 +46,7 @@
 	padding: 15px 5px 5px;
 	width: 100%;
 	background-color: #fefefe;
-    margin: 0 auto 5px ; /* 15% from the top and centered */
+	margin: 0 auto 5px ; /* 15% from the top and centered */
     /* border: 1px solid #888; */
 
 	display: flex;
@@ -200,9 +200,9 @@
 	font-weight: 600;
 	text-align: center;
 
-	-webkit-transition: background-color 100s linear, color 100ms linear, border 100ms linear;
-    -ms-transition: background-color 100ms linear, color 100ms linear, border 100ms linear;
-	transition: background-color 100ms linear, color 100ms linear, border 100ms linear;
+	-webkit-transition: background-color 100s linear, color 200ms linear, border 200ms linear;
+    -ms-transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
+	transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
 
 }
 

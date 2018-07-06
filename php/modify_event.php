@@ -18,9 +18,11 @@ if (!isLogged()){
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/profile_img_croppie.js" defer></script>
-	
-	<!-- <script src="../js/test.js"></script> -->
+	<script src="../js/comuni.js"></script>
+	<script src="../js/get_hint.js" defer></script>
+	<script src="../js/create_event.js" defer></script>
+
+	<script src="../js/test.js" defer></script>
 
 
 	<title>Bongo</title>
@@ -30,6 +32,8 @@ if (!isLogged()){
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
+	<link href="../css/create_event.css" rel="stylesheet" type="text/css">
+
 
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
@@ -49,8 +53,16 @@ if (!isLogged()){
 		<header>
 			<?php 
 			include DIR_BASE . 'nav_bar.php';   
+
+			$event = get_event($_GET['id']);
+
+			$timestamp = strtotime($event['date']);
+			$date = date('Y-m-d', $timestamp);
+			$time = date('H:i', $timestamp);
+
+			$img_location = get_img_location($event['img']);
 			
-			$location = get_avatar_location($_SESSION['userid']);
+			// $location = get_avatar_location($_SESSION['userid']);
 			$user_info = get_user_info($_SESSION['userid']);
 			?>
 				
@@ -72,16 +84,16 @@ if (!isLogged()){
 				</ul>
 			</aside>
 
-			<form class="creation-form" method="post" action="create_event.php" enctype="multipart/form-data">
+			<form class="creation-form" method="post" action="update_event.php" enctype="multipart/form-data">
 				<div class="column">
 					<div class="flex">
 						<div class="column" style="margin-right: 100px;">
 							<label for="name">Titolo evento</label>
-							<input id="name" class="form-input" name="title" type="text" placeholder="Nome evento" required>
+							<input id="name" class="form-input" value="<?php echo $event['title']?>" name="title" type="text" placeholder="Nome evento" required>
 
 							<label for="city">Localit&agrave;</label>
 							<form>
-								<input type="text" name="city" id="city_input" class="form-input" list="cities_list" placeholder="Luogo" autocomplete="off" required>
+								<input value="<?php echo $event['city']?>" type="text" name="city" id="city_input" class="form-input" list="cities_list" placeholder="Luogo" autocomplete="off" required>
 								<datalist id="cities_list">
 								</datalist>
 								<br/>
@@ -89,14 +101,15 @@ if (!isLogged()){
 
 							
 							<label for="date">Quando si terr&agrave; l'evento?</label><br>
-							<input id="date-input" class="form-input" type="date" name="date" required>
-							<input class="form-input" type="time" value="13:30" name="time" required>
+							<input id="date-input" class="form-input" type="date" name="date" value="<?php echo $date;?>" required>
+							<input class="form-input" type="time" value="<?php echo $time;?>" name="time" required>
 						</div>
 						
 						<!-- <input id="img" type="file" name="file" accept="image/png, image/jpeg"/> -->
 						
 						<div class="upload-croppie">
-							<label>Inserisci un'immagine per l'evento</label>
+							<img src="<?php echo $img_location;?>">
+							<label>Modifica l'immagine dell'evento</label>
 			
 							
 							<!-- Div contenente il toggle croppie con l'immagine inviata -->
@@ -129,7 +142,7 @@ if (!isLogged()){
 
 
 					<label for="description">Descrivi il tuo evento</label>
-					<textarea class="form-input" name="description" id="description" rows="7" placeholder="Descrizione" minlength="50" maxlength="500" required></textarea>
+					<textarea class="form-input" name="description" id="description" rows="7" placeholder="Descrizione" minlength="50" maxlength="500" required><?php echo $event['description']?></textarea>
 
 					<div class="column">
 						<label>Tipo di evento</label>
@@ -157,12 +170,12 @@ if (!isLogged()){
 
 					</div>
 					<div class="wrapper-price-input" id="wrapper-price-input">
-						<label for="price">Inserisci il prezzo del biglietto:</label>
-						<input id="price-input" class="form-input" type="number" min="0.50" max="100.00" step="0.1" id="price" value="5.0" name="ticket-price">
+						<label for="price-input">Inserisci il prezzo del biglietto:</label>
+						<input id="price-input" class="form-input" style="text-align:left; width:100px;" type="number" min="0.50" max="100.00" step="0.1" value="5.0" name="ticket-price">
 						<span>&euro;</span>
 					</div>
 				
-					<button id="btn-submit" type="submit" class="btn">Crea evento</button>
+					<button id="btn-submit" type="submit" class="btn">Modifica evento</button>
 
 
 				</div>

@@ -65,6 +65,10 @@ require_once DIR_UTIL . 'query.php';
 				
 		</header>
 
+		<div class="stripes">
+			<span></span>
+		</div>	
+
 
 		<div class="event-container">
 			<div class="wrapper-flex">

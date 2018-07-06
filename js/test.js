@@ -1,50 +1,29 @@
-var el = document.getElementById('upload-croppie');
-var vanilla = new Croppie(el, {
-  // enableExif: true,
-  viewport: {
-    width: 177,
-    height: 100,
-    type: 'square'
-  },
-  boundary: {
-    width: 200,
-    height: 200
-  }
-})
+var input_file = document.getElementById('upload-img');
 
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    
-    reader.onloadend = function() {
-      el.style.display = "block";
+// Create a new XMLHttpRequest.
+var request = new XMLHttpRequest();
 
-      vanilla.bind({
-        url: reader.result
+// Handle state changes for the request.
+request.onreadystatechange = function(response) {
+  if (request.readyState === 4) {
+    if (request.status === 200) {
+        vanilla.bind({
+          url: response
+        });
       });
 
-      document.getElementById('btn-croppie-result').style.display = "block";
+      // Update the placeholder text.
+      input.placeholder = "e.g. datalist";
+    } else {
+      // An error occured :(
+      input.placeholder = "Couldn't load datalist options :(";
     }
-
-    reader.readAsDataURL(input.files[0]);
-    
-
   }
-}
+};
 
+// Update the placeholder text.
+input.placeholder = "Loading options...";
 
-
-function getResult(){
-  vanilla.result({type: 'rawcanvas',  circle: false, format: 'png'}).then(function(result) {
-    var existing = document.getElementById('result-img');
-    console.log(result);
-    if(existing.children.length > 0) {
-      existing.removeChild(existing.children[0]);
-    } 
-    document.getElementById('result-img').appendChild(result);
-    document.getElementById("croppied-wrapper").style.display = "block";
-    document.getElementById("hidden-img").value = result.toDataURL('image/png');
-    console.log(result.toDataURL('image/jpeg'));
-  })
-}
-
+// Set up and make the request.
+request.open('GET', 'get_img.php', true);
+request.send(idevent=);
