@@ -22,6 +22,8 @@ if (!isLogged()){
 	<script src="../js/get_hint.js" defer></script>
 	<script src="../js/create_event.js" defer></script>
 
+	<script src="../js/utility.js" ></script>
+
 	<script src="../js/test.js" defer></script>
 
 
@@ -33,7 +35,7 @@ if (!isLogged()){
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 	<link href="../css/create_event.css" rel="stylesheet" type="text/css">
-
+	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
@@ -88,6 +90,8 @@ if (!isLogged()){
 				<div class="column">
 					<div class="flex">
 						<div class="column" style="margin-right: 100px;">
+							<input type="text" style="display: none" name="id" value="<?php echo $_GET['id'];?>">
+
 							<label for="name">Titolo evento</label>
 							<input id="name" class="form-input" value="<?php echo $event['title']?>" name="title" type="text" placeholder="Nome evento" required>
 
@@ -142,7 +146,7 @@ if (!isLogged()){
 
 
 					<label for="description">Descrivi il tuo evento</label>
-					<textarea class="form-input" name="description" id="description" rows="7" placeholder="Descrizione" minlength="50" maxlength="500" required><?php echo $event['description']?></textarea>
+					<textarea class="form-input" name="description" id="description" rows="7" placeholder="Descrizione" minlength="50" maxlength="2000" required><?php echo $event['description']?></textarea>
 
 					<div class="column">
 						<label>Tipo di evento</label>
@@ -150,10 +154,10 @@ if (!isLogged()){
 							<?php 
 								$categories = get_categories();
 								for($i = 0; $i < count($categories); $i++) {
-									echo "<option value=".$categories[$i].">" . $categories[$i] . "</option>";
-									// echo '<input type="checkbox" id="categoria' . $i . '" name="test" value="test">';
-									// echo '<label for="categoria' . $i . '">' .$categories[$i]. '</label>';
-									// echo "</div>";
+									echo "<option value=".$categories[$i];
+									if($event['category'] == $categories[$i])
+										echo " selected='selected'";
+									echo ">" . $categories[$i] . "</option>";
 								}
 							?>
 						</select>
@@ -161,19 +165,23 @@ if (!isLogged()){
 					
 					<label>Il biglietto sar&agrave gratuito o a pagamento?</label>
 					<div class="radio-choice">
-						<input type="radio" id="radioChoice1" name="price-choice" onclick="hide('wrapper-price-input');" value="free">
+						<input type="radio" id="radioChoice1" name="price-choice" onclick="hide('wrapper-price-input');" value="free" <?php if($event['price'] === '0.00') echo "checked";?>>
 						<label for="radioChoice1">Gratuito</label><br>
 					
-						<input type="radio" id="radioChoice2" name="price-choice" onclick="show('wrapper-price-input');" value="pay">
+						<input type="radio" id="radioChoice2" name="price-choice" value="pay" onclick="show('wrapper-price-input');" <?php 
+						if($event['price'] !== '0.00') 
+							echo "checked";
+						?>>
 						<label for="radioChoice2">A pagamento</label><br>
 						
 
 					</div>
 					<div class="wrapper-price-input" id="wrapper-price-input">
 						<label for="price-input">Inserisci il prezzo del biglietto:</label>
-						<input id="price-input" class="form-input" style="text-align:left; width:100px;" type="number" min="0.50" max="100.00" step="0.1" value="5.0" name="ticket-price">
+						<input id="price-input" class="form-input" style="text-align:left; width:100px;" type="number" min="0.50" max="100.00" step="0.1" value="<?php echo $event['price']?>" name="ticket-price">
 						<span>&euro;</span>
 					</div>
+
 				
 					<button id="btn-submit" type="submit" class="btn">Modifica evento</button>
 
@@ -201,3 +209,50 @@ if (!isLogged()){
 </body>
 
 </html>
+
+<script type="text/javascript" async>
+window.addEventListener('load', function() {
+	if(document.getElementById("radioChoice2").checked) 
+		document.getElementById('wrapper-price-input').style.display = 'block';
+
+	// 	var request = new XMLHttpRequest();
+
+	// 	request.onreadystatechange = function(response) {
+	// 		if (request.readyState === 4) {
+	// 			if (request.status === 200) {
+	// 				console.log(request.responseText);
+	// 				// document.getElementById("hidden-img").value = request.responseText;
+	// 				document.getElementById('price-input').value = request.responseText;
+
+	// 			} else {
+	// 				console.log("Sì è verificato un problema con la richiesta.");
+	// 			}
+	// 		}
+	// 	}
+
+
+	// 	//Per ottenere l'id dell'evento dall'array $_GET
+	// 	var $_GET = {};
+	// 	if(document.location.toString().indexOf('?') !== -1) {
+	// 			var query = document.location
+	// 										.toString()
+	// 										// get the query string
+	// 										.replace(/^.*?\?/, '')
+	// 										// and remove any existing hash string (thanks, @vrijdenker)
+	// 										.replace(/#.*$/, '')
+	// 										.split('&');
+	// 			console.log(query);
+	// 			for(var i=0, l=query.length; i<l; i++) {
+	// 				var aux = decodeURIComponent(query[i]).split('=');
+	// 				$_GET[aux[0]] = aux[1];
+	// 			}
+	// 	}
+	// 	//get the 'index' query parameter
+	// 	var id= $_GET['id'];
+
+	// 	request.open('GET', 'get_price.php?idevent=' + id, true);
+	// 	request.send();
+		
+	// }
+});
+</script>

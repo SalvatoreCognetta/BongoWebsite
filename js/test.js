@@ -1,3 +1,4 @@
+
 var input_file = document.getElementById('upload-img');
 
 // Create a new XMLHttpRequest.
@@ -7,23 +8,38 @@ var request = new XMLHttpRequest();
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
     if (request.status === 200) {
-        vanilla.bind({
-          url: response
-        });
-      });
+      console.log(request.responseText);
+      // document.getElementById("hidden-img").value = request.responseText;
+
+    }
 
       // Update the placeholder text.
-      input.placeholder = "e.g. datalist";
-    } else {
+  } else {
       // An error occured :(
-      input.placeholder = "Couldn't load datalist options :(";
-    }
   }
 };
 
 // Update the placeholder text.
-input.placeholder = "Loading options...";
+
+//Per ottenere l'id dell'evento dall'array $_GET
+var $_GET = {};
+if(document.location.toString().indexOf('?') !== -1) {
+    var query = document.location
+                   .toString()
+                   // get the query string
+                   .replace(/^.*?\?/, '')
+                   // and remove any existing hash string (thanks, @vrijdenker)
+                   .replace(/#.*$/, '')
+                   .split('&');
+    console.log(query);
+    for(var i=0, l=query.length; i<l; i++) {
+       var aux = decodeURIComponent(query[i]).split('=');
+       $_GET[aux[0]] = aux[1];
+    }
+}
+//get the 'index' query parameter
+var id= $_GET['id'];
 
 // Set up and make the request.
-request.open('GET', 'get_img.php', true);
-request.send(idevent=);
+request.open('GET', 'get_img.php?idevent=' + id, true);
+request.send();

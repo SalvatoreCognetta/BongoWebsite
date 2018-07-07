@@ -21,8 +21,9 @@ if(isLogged() === false) {
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 	<script src="../js/create_event.js" defer></script>
-
 	
+	<script src="../js/utility.js" ></script>
+
 
 
 	<title>Bongo</title>

@@ -322,4 +322,38 @@
 			return false;
 		}
 
+
+		function update_event($id_event, $parameters) {
+			global $bongoDb;
+
+			$query = "
+				UPDATE evento SET ";
+
+				$query = "
+				UPDATE evento SET ";
+
+				$num_params = count($parameters);
+
+				$parameters_type = "";
+
+				for($i = 0; $i < $num_params; $i++) {
+					$query .= $parameters[$i]->name . " = ?";
+					echo $parameters[$i]->name . '=' . $parameters[$i]->value . ' ';
+					$parameters_type .=  $parameters[$i]->type;
+					$params[] =  $parameters[$i]->value;
+					if($i != $num_params-1)
+						$query .= ', ';
+				}
+
+
+				$query .= " WHERE idevent = ?"; 
+
+				//Aggiungo l'id dell'evento alla lista di parametri da passare alla funzione
+				$params[] = $id_event;
+				$parameters_type .= "s";
+				
+				$result = $bongoDb->performQueryWithParameters($query, $parameters_type, $params);
+				
+			}
+
 ?>
