@@ -18,7 +18,7 @@
 }
 
 .profile-side-menu {
-	/* width: 250px; */
+	min-width: 200px;
 	/* border-right: 1px solid #ccc; */
 	border-radius: 3px;
 	margin-right: 10px;
