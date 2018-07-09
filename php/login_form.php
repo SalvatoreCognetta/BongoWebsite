@@ -85,7 +85,7 @@
 			
 
 			<div class="container-login-form-btn">
-				<input type="submit" value="Signin" name="submit" class="btn btn-wide">
+				<input type="submit" value="Registrati" name="submit" class="btn btn-wide">
 			</div>
 
 		</form>

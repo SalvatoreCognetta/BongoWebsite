@@ -12,7 +12,7 @@ require_once DIR_UTIL . 'query.php';
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/test.js"></script>
+	<script src="../js/test.js" defer></script>
 
 
 	<title>Bongo</title>
@@ -94,7 +94,7 @@ require_once DIR_UTIL . 'query.php';
 					?>
 
 					<form method="get" action="./partecipate.php">
-						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
+						<input type="hidden" name="id" value="<?php echo $id_event;?>" />
 						<button class="btn btn-partecipate" name="btn">Partecipa</button>
 					</form>
 
@@ -103,8 +103,8 @@ require_once DIR_UTIL . 'query.php';
 					?>
 
 					<form method="get" action="./del_partecipation.php">
-						<input type="hidden" name="event" value="<?php echo $id_event;?>" />
-						<button class="btn btn-undo" name="btn">Non partecipo</button>
+						<input type="hidden" name="id" value="<?php echo $id_event;?>" />
+						<button  class="btn btn-undo" name="btn">Non partecipo</button>
 					</form>
 
 					<?php

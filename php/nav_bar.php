@@ -11,7 +11,10 @@ include_once DIR_UTIL . 'sessionUtil.php';
 			<a href="./index.php">Bongo</a>
 		</h1>
 		<form class="search-form" action="search_page.php">
-			<input type="text" name="city" >
+			<!-- <input type="text" name="city" > -->
+			<input type="text" name="city" id="nav_city_input" list="nav_cities_list" autocomplete="off">
+			<datalist id="nav_cities_list">
+			</datalist>
 		</form>
 	</div>
 	<ul class="main-nav-list">
@@ -20,7 +23,6 @@ include_once DIR_UTIL . 'sessionUtil.php';
 		</li> -->
 
 		<?php 
-		include_once DIR_UTIL . 'sessionUtil.php';
 		if (!isLogged()) { 
 		?>
 		<li>
@@ -48,10 +50,10 @@ include_once DIR_UTIL . 'sessionUtil.php';
 		<?php } ?>
 
 		<li>
-			<a href="./../html/help.html">Aiuto</a>
+			<a href="./help.php">Aiuto</a>
 		</li>
 		<li>
-			<a href="./../html/about.html">Chi siamo</a>
+			<a href="./about.php">Chi siamo</a>
 		</li>
 		<li>
 			<a href="./create_event_page.php">Crea un evento</a>

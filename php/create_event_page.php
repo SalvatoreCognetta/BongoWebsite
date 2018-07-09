@@ -23,6 +23,7 @@ if(isLogged() === false) {
 	<script src="../js/create_event.js" defer></script>
 	
 	<script src="../js/utility.js" ></script>
+	<script src="../js/check_validity.js"></script>
 
 
 
@@ -184,7 +185,6 @@ if(isLogged() === false) {
 		</ul>
 	</footer>
 
-	<script src="../js/check_validity.js"></script>
 </body>
 
 </html>

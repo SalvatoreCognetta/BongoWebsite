@@ -9,7 +9,7 @@ include_once DIR_UTIL . 'sessionUtil.php';
 include_once DIR_UTIL . 'utility.php';
 
 
-$id = $_GET['event'];
+$id = $_GET['id'];
 // print_r($_GET);
 partecipate_event($_SESSION['userid'], $id);
 header("location: event_page.php?id=" . $id);

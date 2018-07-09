@@ -15,7 +15,19 @@
 		$card = sprintf("
 		<div class='card-margin'>
 			%s
-			<a class='wrapper-icon' href='./modify_event.php?id=%s'><img class='modify-icon' src='../img/icon/modify.svg'></a>
+			<a title='Modifica l&#39;evento' class='wrapper-icon' href='./modify_event.php?id=%s'><img class='modify-icon' src='../img/icon/modify.png'></a>
+
+		</div>
+			", card($id, $img, $title, $description, $date, $time, $price), $id);
+
+		echo $card;
+	}
+
+	function create_delete_card($id, $img, $title, $description, $date, $time, $price) {
+		$card = sprintf("
+		<div class='card-margin'>
+			%s
+			<a title='Annulla partecipazione' class='wrapper-icon' href='./del_partecipation.php?id=%s'><img class='modify-icon' src='../img/icon/delete.svg'></a>
 
 		</div>
 			", card($id, $img, $title, $description, $date, $time, $price), $id);

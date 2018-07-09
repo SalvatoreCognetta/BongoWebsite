@@ -11,7 +11,12 @@ require_once DIR_UTIL . 'query.php';
 
 <head>
 	<script src="../js/login.js"></script>	
-	<script src="../js/test.js"></script>	
+	<script src="../js/check_date.js" defer></script>	
+
+	<script src="../js/comuni.js"></script>
+	<script src="../js/get_hint.js" defer></script>
+
+	<!-- <script src="../js/test.js"></script>	 -->
 	
 	<title>Bongo</title>
 	<link href="../css/search_page.css" rel="stylesheet" type="text/css">	
@@ -47,15 +52,23 @@ require_once DIR_UTIL . 'query.php';
 					<input class="form-input" type="text" name="title" placeholder="Filtra">
 					<fieldset class="filter-form-item">
 						<legend>Categoria eventi</legend>
-						<input type="checkbox" name="category" value="test1">test
-						<br/>
+						<?php
+						$categories = get_categories();
+						for($i = 0; $i < count($categories); $i++) {
+
+							echo "<input id='checkbox" . $i . "' type='checkbox' name='category' value=".$categories[$i].">";
+							echo "<label for='checkbox" . $i . "'>" . $categories[$i] . "</label>";
+							
+							echo "<br>";
+						}
+						?>
 					</fieldset>
-					<input class="form-input" type="date" name="date">
+					<input id="date-input" class="form-input" type="date" name="date">
 					<input class="form-input" type="time" name="time" value="21:00">
 					<select name="city" required>
 						<option value="" disabled selected>Citt&agrave;</option>
 						<?php 
-							$query = "SELECT DISTINCT city FROM evento";
+							$query = "SELECT DISTINCT city FROM evento WHERE date >= NOW()";
 							$result = $bongoDb->performQuery($query); 
 							
 							if(!$result)

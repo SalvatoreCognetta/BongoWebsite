@@ -84,7 +84,7 @@ if (!isLogged()){
 						$price = $row[$pricecol];
 
 						//Creo la card con la funzione presente in card.php
-						create_event_card($id, $img, $title, $description, $date, $time, $price);
+						create_delete_card($id, $img, $title, $description, $date, $time, $price);
 					
 					}
 

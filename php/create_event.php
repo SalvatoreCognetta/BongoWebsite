@@ -48,15 +48,14 @@ if(!empty($_POST['hidden-img'])){
 				$parameters[] = $field;
 			}
 		}
-		$parameters[] = $uid_img;
-
-		insert_event($_SESSION['userid'], $parameters);
-
-
-		partecipate_event($_SESSION['userid'], $id_event);
-
-		header("Location: ./event_page.php?id=" . $id_event);
 	}
+	$parameters[] = $uid_img;
+	insert_event($_SESSION['userid'], $parameters);
+
+
+	partecipate_event($_SESSION['userid'], $id_event);
+
+	header("Location: ./event_page.php?id=" . $id_event);
 } else {
 	$err = "Inserire un\'immagine";
 	header("Location: ./create_event_page.php?err=" . $err);
