@@ -28,14 +28,13 @@ function show_participants(id_evento) {
 					// console.log(participants[i]);
 					list.appendChild(li);
 				}
-				document.getElementById('croppied-wrapper').style.display = 'block';
+				document.getElementById('list-wrapper').style.display = 'block';
 			} else {
 				// An error occured :(
 			}
 		}
 	};
 
-console.log(id_evento);
 	// Set up and make the request.
 	request.open('GET', './participants.php?id=' + id_evento, true);
 	request.send();

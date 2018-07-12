@@ -360,7 +360,7 @@
 			function get_participants($id_event) {
 				global $bongoDb;
 
-				$query = "SELECT fullname FROM partecipazione_evento INNER JOIN user ON user = userid  WHERE evento = ?";
+				$query = "SELECT fullname FROM partecipazione_evento INNER JOIN user ON user = userid  WHERE evento = ? ORDER BY fullname";
 
 				$result = $bongoDb->performQueryWithParameters($query, "s", $id_event);
 				

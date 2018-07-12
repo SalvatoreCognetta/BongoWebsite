@@ -75,7 +75,7 @@
 	position: absolute;
 	left: 20px;
 	top: 0;
-	color: #000;
+	color: rgb(0, 0, 0);
     font-size: 35px;
     font-weight: bold;
 }

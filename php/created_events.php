@@ -98,12 +98,13 @@ if (!isLogged()){
 		</div>
 
 		<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
-		<div id="croppied-wrapper" class="grey-wrapper animate">
+		<div id="list-wrapper" class="grey-wrapper animate">
 			<span onclick="document.getElementById('ok-btn').click();" class="close" title="Close Modal">&times;</span>
 		
-			<div id="croppied-img-container"  class="alert-container ">
-				<ul id='participants'></ul>
-				<input id="ok-btn" class="croppie-btn" type="button" value="Ok" onclick="document.getElementById('croppied-wrapper').style.display='none'">
+			<div class="list-container">
+				<h1>Partecipanti</h1>
+				<ol id='participants'></ol>
+				<input id="ok-btn" class="croppie-btn" type="button" value="Ok" style="display: none;" onclick="document.getElementById('list-wrapper').style.display='none'">
 			</div>
 		</div>
 

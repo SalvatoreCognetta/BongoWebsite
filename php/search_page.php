@@ -52,8 +52,9 @@ require_once DIR_UTIL . 'query.php';
 			<aside class="side-filter">
 				<form class="filter-form" action="search_page.php" method="get">
 					<input class="form-input" type="text" name="title" placeholder="Filtra">
+
+					<legend>Categoria eventi</legend>
 					<fieldset class="filter-form-item">
-						<legend>Categoria eventi</legend>
 						<?php
 						$categories = get_categories();
 						for($i = 0; $i < count($categories); $i++) {
@@ -67,22 +68,6 @@ require_once DIR_UTIL . 'query.php';
 					</fieldset>
 					<input id="date-input" class="form-input" type="date" name="date">
 					<input class="form-input" type="time" name="time" value="21:00">
-					<!--<select name="city" required>
-						<option value="" disabled selected>Citt&agrave;</option>
-						<?php 
-							// $query = "SELECT DISTINCT city FROM evento WHERE date >= NOW()";
-							// $result = $bongoDb->performQuery($query); 
-							
-							// if(!$result)
-							// 	echo "Errore nella query.";
-							// else {
-							// 	while($row = $result->fetch_assoc()) {	
-							// 		$city = $row[$citycol];	
-							// 		echo "<option value=\"{$city}\">{$city}</option>";
-							// 	}
-							// }
-						?>
-					</select>-->
 					
 					<input type="text" style="display: none" name="city" value="<?php echo $_GET['city']; ?>">
 					<input class="btn" type="submit" value="Cerca">

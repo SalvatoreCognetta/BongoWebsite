@@ -9,7 +9,7 @@
 <html lang="it">
 
 <head>
-	<script src="../js/login.js"></script>
+	<script src="../js/login.js" defer></script>
 	<script src="../js/slideshow.js"></script>	
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>

@@ -14,7 +14,7 @@ for(var i = 0; i < len; i++){
 			first_city_index[j] = i;
 	}
 }
-
+// console.log("test");
 
 
 var input = document.getElementById('city_input');

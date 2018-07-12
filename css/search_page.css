@@ -33,6 +33,8 @@
 .filter-form-item {
 	margin-bottom:5px;
 	border-bottom: 1px solid #e5e5e5;
+	height: 150px;
+	overflow: auto;
 }
 
 .filter-form>*{
@@ -117,7 +119,7 @@
 }
 
 .event_card-date h3 {
-	color: #007489;
+	color: rgb(0, 116, 137);
 	font-family: trenchFont;
 	font-size: 20px;
 	font-weight: bold;

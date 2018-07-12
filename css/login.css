@@ -79,10 +79,10 @@
 	box-shadow: none;
 	font-size: 17px;
 	font-weight: 500;
-	border-radius: 2px;
+	border-radius: 4px;
 
 	width: 100%;
-	height: 29px;
+	height: 32px;
 }
 
 .login-input {	
@@ -90,7 +90,7 @@
 }
 
 .wrap-input>input:focus {
-	border-color: #80bdff;
+	border-color: rgb(128, 189, 255);
 	box-shadow: 0 0 0 1px rgba(0,123,255,0.25);
 }
 
@@ -180,6 +180,8 @@
 
 .login-signin li {
 	width: 50%;
+	min-height: 50px;
+	height: 100%;
 	text-align: center;
 }
 
@@ -200,8 +202,8 @@
 	font-weight: 600;
 	text-align: center;
 
-	-webkit-transition: background-color 100s linear, color 200ms linear, border 200ms linear;
-    -ms-transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
+	-webkit-transition: background-color 200s linear, color 200ms linear, border 200ms linear;
+	-ms-transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
 	transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
 
 }
@@ -223,8 +225,16 @@
 
 .login-signin li a:not(.active-form) {
 
+	border-bottom: 2px solid rgba(163, 163, 163, 0.678);
+	background-color: rgba(184, 182, 182, 0.659);
+	color: rgb(73, 80, 87);
+
+} 
+
+/* .not-active-form {
+
 	border-bottom: 2px solid #a3a3a3ad;
 	background-color: #b8b6b6a8;
 	color: #495057;
 
-}
+}  */
