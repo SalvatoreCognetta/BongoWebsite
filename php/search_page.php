@@ -10,7 +10,9 @@ require_once DIR_UTIL . 'query.php';
 <html lang="it">
 
 <head>
-	<script src="../js/login.js"></script>	
+	<script src="../js/login.js" defer></script>	
+	<script src="../js/utility.js"></script>	
+	
 	<script src="../js/check_date.js" defer></script>	
 
 	<script src="../js/comuni.js"></script>
@@ -65,22 +67,24 @@ require_once DIR_UTIL . 'query.php';
 					</fieldset>
 					<input id="date-input" class="form-input" type="date" name="date">
 					<input class="form-input" type="time" name="time" value="21:00">
-					<select name="city" required>
+					<!--<select name="city" required>
 						<option value="" disabled selected>Citt&agrave;</option>
 						<?php 
-							$query = "SELECT DISTINCT city FROM evento WHERE date >= NOW()";
-							$result = $bongoDb->performQuery($query); 
+							// $query = "SELECT DISTINCT city FROM evento WHERE date >= NOW()";
+							// $result = $bongoDb->performQuery($query); 
 							
-							if(!$result)
-								echo "Errore nella query.";
-							else {
-								while($row = $result->fetch_assoc()) {	
-									$city = $row[$citycol];	
-									echo "<option value=\"{$city}\">{$city}</option>";
-								}
-							}
+							// if(!$result)
+							// 	echo "Errore nella query.";
+							// else {
+							// 	while($row = $result->fetch_assoc()) {	
+							// 		$city = $row[$citycol];	
+							// 		echo "<option value=\"{$city}\">{$city}</option>";
+							// 	}
+							// }
 						?>
-					</select>
+					</select>-->
+					
+					<input type="text" style="display: none" name="city" value="<?php echo $_GET['city']; ?>">
 					<input class="btn" type="submit" value="Cerca">
 				</form>
 			</aside>
@@ -89,9 +93,11 @@ require_once DIR_UTIL . 'query.php';
 			<?php
 			include_once DIR_UTIL . 'utility.php';
 			include DIR_LAYOUT . 'card.php';  
+			if(!empty($_GET['title']))
+				echo "test";
 			
 			//Creo un array contenente i filtri inseriti dall'utente
-			$filter_values	 = get_filter();
+			$filter_values	= get_filter();
 			
 
 			//Se l'utente ha inserito almeno un filtro allora aggiorno la pagina

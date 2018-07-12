@@ -16,7 +16,9 @@ else
 	day = day.toString();
 
 var date = year + "-" + month + "-" + day;
+document.getElementById('date-input').value = date;
 document.getElementById('date-input').min = date;
+
 
 
 

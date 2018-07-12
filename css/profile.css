@@ -86,11 +86,15 @@
 	display: flex;
 	flex-direction: column;
 	padding-left: 10px;
+	height: 260px;
+	justify-content: center;
 }
 
 .upload-croppie label {
 	text-align: center;
 }
+
+
 
 .flex *{
 	margin: 3px;

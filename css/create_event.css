@@ -37,6 +37,7 @@ input[type=text]{
 .upload-croppie {
 	display: flex;
 	flex-direction: column;
+	height: 420px;
 }
 
 .upload-croppie label {

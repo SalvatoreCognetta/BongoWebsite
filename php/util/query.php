@@ -152,7 +152,7 @@
 
 		function get_created_events($user_id) {
 			global $bongoDb;
-			$query = "SELECT * FROM evento WHERE uid_creator =  ? ORDER BY date";
+			$query = "SELECT * FROM evento WHERE uid_creator =  ? ORDER BY date DESC";
 			$result = $bongoDb->performQueryWithParameters($query, "s", $user_id);
 			
 

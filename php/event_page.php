@@ -86,6 +86,10 @@ require_once DIR_UTIL . 'query.php';
 						<h2 class="info">Prezzo biglietto: <?php echo $price;?>&euro;</h2>
 						<h2 class="info">Creatore evento: <?php echo $creator;?></h2>					
 					</div>
+					<?php 
+					if($row['date'] >= date('Y-m-d H:i:s')){ //Mostro il button per partecipare/annullare/modificare solo se l'evento non è passato
+						
+					?>
 					<div class="wrapper-partecipate">
 				<?php 
 					if(isLogged()) {
@@ -123,8 +127,10 @@ require_once DIR_UTIL . 'query.php';
 					
 					<?php
 					}
+					echo "</div>";
+					}
 					?>
-					</div>
+
 				</aside>
 				<!-- $row['date']; -->
 				

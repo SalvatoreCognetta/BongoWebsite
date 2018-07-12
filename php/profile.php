@@ -19,7 +19,10 @@ if (!isLogged()){
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
 	<script src="../js/profile_img_croppie.js" defer></script>
-	
+
+	<script src="../js/comuni.js"></script>
+	<script src="../js/get_hint.js" defer></script>
+
 	<!-- <script src="../js/test.js"></script> -->
 
 

@@ -5,7 +5,7 @@ document.onkeydown = function (evt) {
 		var form = document.getElementById("login-container");
 		form.className += ' animate-out ';
 		console.log("Esc premuto.");
-		setTimeout(() => {
+		setTimeout( function() {
 			document.getElementById("login-container").style.display = 'none';
 			form.className = 'modal-container modal animate ';
 		}, 600);

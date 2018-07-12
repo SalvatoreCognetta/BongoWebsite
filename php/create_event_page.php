@@ -23,7 +23,7 @@ if(isLogged() === false) {
 	<script src="../js/create_event.js" defer></script>
 	
 	<script src="../js/utility.js" ></script>
-	<script src="../js/check_validity.js"></script>
+	<script src="../js/check_validity.js" defer></script>
 
 
 
