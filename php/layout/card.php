@@ -12,13 +12,16 @@
 
 
 	function create_modify_card($id, $img, $title, $description, $date, $time, $price) {
+		// $list = 
 		$card = sprintf("
 		<div class='card-margin'>
 			%s
 			<a title='Modifica l&#39;evento' class='wrapper-icon' href='./modify_event.php?id=%s'><img class='modify-icon' src='../img/icon/modify.png'></a>
+			<span title='Lista di partecipanti' class='wrapper-icon' onclick='show_participants(%s%s%s);'><img class='modify-icon' src='../img/icon/list-circle-blue.png'></span>
+			<a title='Elimina evento' class='wrapper-icon' href=''><img class='modify-icon' src='../img/icon/delete.svg'></a>
 
 		</div>
-			", card($id, $img, $title, $description, $date, $time, $price), $id);
+			", card($id, $img, $title, $description, $date, $time, $price), $id, '"', $id, '"');
 
 		echo $card;
 	}

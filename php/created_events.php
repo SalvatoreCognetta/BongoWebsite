@@ -18,7 +18,10 @@ if (!isLogged()){
 <head>
 	<script src="../js/login.js"></script>
 	<script src="../js/slideshow.js"></script>
-	<script src="../js/test.js"></script>
+	<script src="../js/comuni.js"></script>
+	<script src="../js/get_hint.js" defer></script>
+	
+	<script src="../js/utility.js"></script>
 
 
 	<title>Bongo</title>
@@ -28,6 +31,8 @@ if (!isLogged()){
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	<link href="../css/search_page.css" rel="stylesheet" type="text/css">
+	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
+	
 
 	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
@@ -90,6 +95,16 @@ if (!isLogged()){
 				} 
 			echo "</section>";
 			?>
+		</div>
+
+		<!-- Div contentente il risultato dell'immagine dopo il ritaglio -->
+		<div id="croppied-wrapper" class="grey-wrapper animate">
+			<span onclick="document.getElementById('ok-btn').click();" class="close" title="Close Modal">&times;</span>
+		
+			<div id="croppied-img-container"  class="alert-container ">
+				<ul id='participants'></ul>
+				<input id="ok-btn" class="croppie-btn" type="button" value="Ok" onclick="document.getElementById('croppied-wrapper').style.display='none'">
+			</div>
 		</div>
 
 	</div>

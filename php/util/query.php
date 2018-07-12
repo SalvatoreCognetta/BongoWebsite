@@ -356,4 +356,19 @@
 				
 			}
 
+
+			function get_participants($id_event) {
+				global $bongoDb;
+
+				$query = "SELECT fullname FROM partecipazione_evento INNER JOIN user ON user = userid  WHERE evento = ?";
+
+				$result = $bongoDb->performQueryWithParameters($query, "s", $id_event);
+				
+				$numRow = $result->num_rows;
+				if($numRow == 0) 
+					return null;
+				return $result;
+				
+			}
+
 ?>
