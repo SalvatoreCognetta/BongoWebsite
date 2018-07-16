@@ -10,16 +10,6 @@
 	background: white;
 }
 
-
-/* .filter-nav {
-	border: 3px solid blue;
-	display: flex;
-} */
-
-/* .filter-nav form {
-	width: 100%;
-} */
-
 .filter-form {
 	width: 100%;
 	margin: 0px;
@@ -45,9 +35,7 @@
 
 
 
-
 .cards {
-	/* margin: 0 auto; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -72,7 +60,6 @@
 	display: flex;
 	border-radius: 5px;
 	max-height: 100px;
-	/* justify-content: space-between; */
 	transition: all 1.3s cubic-bezier(.25,.8,.25,1);  
 	width: 100%;
 }

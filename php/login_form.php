@@ -1,4 +1,3 @@
-
 <div id="login-container" class="modal-container animate" style="display:none;">
 	<span onclick="document.getElementById('login-container').style.display='none'" class="close" title="Close Login">&times;</span>
 	
@@ -38,7 +37,6 @@
 			</div>
 
 		</form>
-
 
 
 

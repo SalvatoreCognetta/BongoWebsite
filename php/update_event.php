@@ -42,5 +42,4 @@ if(!empty($_POST['hidden-img'])) {
 update_event($_POST['id'], $filter_values);
 header("location: ./event_page.php?id=" . $_POST['id']);
 
-
 ?>

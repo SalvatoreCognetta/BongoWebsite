@@ -64,8 +64,7 @@ if (!isLogged()){
 
 		<div id="stripes" class="stripes">
 			<span></span>
-			 <span></span>
-			<!-- <span></span> --> 
+			<span></span>
 		</div>
 
 		<div class="content">

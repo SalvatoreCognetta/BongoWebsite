@@ -2,7 +2,6 @@
 .event-container {
 	flex-direction: column;
 
-
 	background: #fff;
 	border-radius: 3px;
 
@@ -22,8 +21,6 @@
 
 
 .event-img {
-	/* object-fit: scale-down; */
-
 	width: 480px;
 	height: 270px;
 	border-width: 1px;
@@ -100,5 +97,4 @@
 	padding: 10px;
 	font-family: Roboto;
 	font-size: 20px;
-
 }

@@ -17,7 +17,6 @@ require_once DIR_UTIL . 'query.php';
 
 
 	<title>Bongo</title>
-	<!-- <link href="../css/home.css" rel="stylesheet" type="text/css"> -->
 
 	<link href="../css/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
@@ -76,8 +75,6 @@ require_once DIR_UTIL . 'query.php';
 				<aside class="wrapper-info">
 					<h1 class="title"><?php echo $title;?></h1>
 					
-					
-					
 					<div class="event-info">
 						<h2 class="info"><?php echo $date . " " . $time;?></h2>
 						<h2 class="info"><?php echo $place;?></h2>
@@ -132,10 +129,6 @@ require_once DIR_UTIL . 'query.php';
 					?>
 
 				</aside>
-				<!-- $row['date']; -->
-				
-
-				<!-- echo $id_event; -->
 
 			</div>
 

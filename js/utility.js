@@ -29,8 +29,6 @@ function show_participants(id_evento) {
 					list.appendChild(li);
 				}
 				document.getElementById('list-wrapper').style.display = 'block';
-			} else {
-				// An error occured :(
 			}
 		}
 	};

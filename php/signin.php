@@ -101,8 +101,4 @@ if($error === null)
 else
 	header('location: ./index.php?err=' . $error);
 
-
-
-
-
 ?>

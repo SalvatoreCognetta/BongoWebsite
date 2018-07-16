@@ -34,8 +34,6 @@ if (!isLogged()){
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 	<link href="../css/create_event.css" rel="stylesheet" type="text/css">
-	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
-
 
 
 
@@ -62,7 +60,6 @@ if (!isLogged()){
 
 			$img_location = get_img_location($event['img']);
 			
-			// $location = get_avatar_location($_SESSION['userid']);
 			$user_info = get_user_info($_SESSION['userid']);
 			?>
 				
@@ -105,8 +102,6 @@ if (!isLogged()){
 							<input id="date-input" class="form-input" type="date" name="date" value="<?php echo $date;?>" required>
 							<input class="form-input" type="time" value="<?php echo $time;?>" name="time" required>
 						</div>
-						
-						<!-- <input id="img" type="file" name="file" accept="image/png, image/jpeg"/> -->
 						
 						<div class="upload-croppie">
 							<img src="<?php echo $img_location;?>">
@@ -180,10 +175,8 @@ if (!isLogged()){
 						<input id="price-input" class="form-input" style="text-align:left; width:100px;" type="number" min="0.50" max="100.00" step="0.1" value="<?php echo $event['price']?>" name="ticket-price">
 						<span>&euro;</span>
 					</div>
-
 				
 					<button id="btn-submit" type="submit" class="btn">Modifica evento</button>
-
 
 				</div>
 

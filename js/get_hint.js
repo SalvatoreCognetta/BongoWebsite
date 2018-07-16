@@ -49,13 +49,9 @@ function showhint(event) {
 	 	var list = this.list;
 		var len = this.value.length;
 		console.log("Test5: " + new Date);
-		
 
 		console.log("Valore inserito: " + this.value);
 
-
-
-		
 		if(this.value.length == 0){
 			console.log("E' stato cancellato tutto l'input, quindi e' inutile cercare comuni che corrispondono.");
 			return;
@@ -70,7 +66,6 @@ function showhint(event) {
 			list.removeChild(list.firstChild);
 		}
 
-		
 		if(oldValue !== this.value.substring(0, oldValue.length) ) {
 			console.log("Gli input non coincidono, quindi l'input e' stato eliminato parzialmente o totalmente.");
 			sublist = comuni;

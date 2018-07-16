@@ -13,7 +13,6 @@ if (isLogged() == false) {
 	header("Location: ./create_event_page.php?err=" . $err);
 }
 
-// $uid_img = upload_file();
 if(!empty($_POST['hidden-img'])){
 	$uid_img = upload_base64file($_POST['hidden-img']);
 	echo $uid_img;
@@ -60,9 +59,6 @@ if(!empty($_POST['hidden-img'])){
 	$err = "Inserire un\'immagine";
 	header("Location: ./create_event_page.php?err=" . $err);
 }
-
-// print_r($_POST);
-
 
 
 ?>

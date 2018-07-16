@@ -47,7 +47,6 @@
 	width: 100%;
 	background-color: #fefefe;
 	margin: 0 auto 5px ; /* 15% from the top and centered */
-    /* border: 1px solid #888; */
 
 	display: flex;
 	flex-direction: column;
@@ -174,8 +173,6 @@
 	height: 50px;
 	display: flex;
 	overflow: hidden; /*Senza il border-radius veniva resettato con l'onhover */
-	/* border-bottom: 1px solid #e5e5e5; */
-	
 }
 
 .login-signin li {
@@ -205,7 +202,6 @@
 	-webkit-transition: background-color 200s linear, color 200ms linear, border 200ms linear;
 	-ms-transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
 	transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
-
 }
 
 
@@ -216,10 +212,6 @@
 .active-form {
 	border-bottom: 3px solid rgb(214, 68, 19);
 	background-color: #fefefe;
-
-
-
-
 }
 
 
@@ -230,11 +222,3 @@
 	color: rgb(73, 80, 87);
 
 } 
-
-/* .not-active-form {
-
-	border-bottom: 2px solid #a3a3a3ad;
-	background-color: #b8b6b6a8;
-	color: #495057;
-
-}  */

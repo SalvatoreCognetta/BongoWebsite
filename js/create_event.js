@@ -27,10 +27,7 @@ function readURL(input) {
 
       document.getElementById('btn-croppie-result').style.display = "block";
     }
-
     reader.readAsDataURL(input.files[0]);
-    
-
   }
 }
 

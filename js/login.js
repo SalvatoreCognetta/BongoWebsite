@@ -52,7 +52,6 @@ function checkLogin(form) {
 		return false;
 	} else {
 		form.login_username.style.borderColor = 'rgb(216, 216, 216)';
-
 	}
 
 	return true;
@@ -65,13 +64,10 @@ function checkSignup(form) {
 
 		form.signup_fullname.style.borderColor = 'red';
 		form.signup_fullname.title = 'Nome non valido';
-
-
 		
 		return false;
 	} else {
 		form.signup_fullname.style.borderColor = 'rgb(216, 216, 216)';
-
 	}
 
 	if(RegExp(/^[a-zA-Z0-9_-]*$/).test(form.signup_username.value) == false) {
@@ -79,14 +75,11 @@ function checkSignup(form) {
 
 		form.signup_username.style.borderColor = 'red';
 		form.signup_username.title = 'Username non valido';
-
 		
 		return false;
 	} else {
 		form.signup_username.style.borderColor = 'rgb(216, 216, 216)';
-
 	}
-
 
 
 	if(!RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(form.signup_email.value)) { //RFC 5322 Official Standard
@@ -94,11 +87,9 @@ function checkSignup(form) {
 		form.signup_email.style.borderColor = 'red';
 		form.signup_email.title = 'Email non valida';
 
-		
 		return false;
 	} else {
 		form.signup_email.style.borderColor = 'rgb(216, 216, 216)';
-
 	}
 
 	if(form.signup_email.value !== form.signup_emailconfirm.value) {
@@ -107,7 +98,6 @@ function checkSignup(form) {
 		form.signup_emailconfirm.style.borderColor = 'red';
 		form.signup_emailconfirm.title = 'Email non combaciano';
 
-		
 		return false;
 	} else {
 		form.signup_emailconfirmconfirm.style.borderColor = 'rgb(216, 216, 216)';

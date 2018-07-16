@@ -33,7 +33,6 @@ a {
 /* Nav bar */
 
 header {
-	/* width: 100%; */
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	background-color: rgb(247, 234, 220);
 }
@@ -123,7 +122,6 @@ textarea[name=description] {
 .main-nav-list {
 	display: flex;
 	height: 100%;
-	/* align-items: center; */
 }
 
 .main-nav-list>li {
@@ -131,7 +129,6 @@ textarea[name=description] {
 	display: flex;
 	align-items: center;
 	height: 100%;
-	/* border-right: 2px solid rgba(235, 98, 98, 0.04); */
 }
 
 .user-dropdown:hover {
@@ -230,14 +227,12 @@ textarea[name=description] {
 }
 
 .content {
-	/* background: rgba(255, 255, 255, 0.144); */
 	border-radius: 3px;
 	margin: 12px auto;
 	/* padding: 12px 2px; */
 	max-width: 1240px;
 	display: flex;
 	z-index: 1;
-	/* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082), 0 3px 6px rgba(0,0,0,0.13); */
 }
 
 .doc {
@@ -273,7 +268,6 @@ textarea[name=description] {
 	text-align: center;
 	border-radius: 2px;
 	padding: 10px;
-	/* margin: 26px 5px 5px 5px; */
 	cursor: pointer;
 	background-color: rgba(128, 128, 128, 0.795);
 	min-height: 40px;

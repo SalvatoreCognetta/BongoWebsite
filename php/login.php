@@ -13,7 +13,6 @@ $password = test_input($_POST["password"]);
 
 
 $error = login($username, $password); // Variable To Store Error Message
-// print_r($_SESSION);
 
 if($error === null)
 	header('location: ./profile.php');
@@ -39,7 +38,5 @@ function login($username, $password){
 	return "Username o Password invalidi.";	
 
 }
-
-
 
 ?>
