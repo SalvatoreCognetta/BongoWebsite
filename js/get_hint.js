@@ -1,4 +1,6 @@
 //Variabile contenente, per ogni lettera dell'alfabeto, l'indice del primo comune corrispondente che inizia con quella lettera
+
+console.log("Test0: " + new Date);
 var first_city_index = [];
 for(var i = 0; i < 26; i++) {
 	first_city_index[i] = -1;
@@ -15,12 +17,14 @@ for(var i = 0; i < len; i++){
 	}
 }
 // console.log("test");
+console.log("Test1: " + new Date);
 
 
 var input = document.getElementById('city_input');
 var nav_input = document.getElementById('nav_city_input');
 var oldValue = "";
 var sublist = comuni;
+console.log("Test2: " + new Date);
 
 if(input) {
 	input.onkeyup = showhint;
@@ -35,25 +39,26 @@ if(nav_input){
 
 
 function showhint(event) {
+	console.log("Test3: " + new Date);
 	
 	// if(event.keyCode != "38" && event.keyCode != "40") { //se l'utente scorre nella lista mostrata questa non deve essere aggiornata
 	if(RegExp(/^[a-zA-Zà-ù\s']*$/).test(this.value) || event.keyCode != "38" && event.keyCode != "40"){
 		var sublisttemp = [];
+		console.log("Test4: " + new Date);
+
 	 	var list = this.list;
 		var len = this.value.length;
+		console.log("Test5: " + new Date);
 		
-		while (list.firstChild) {
-				list.removeChild(list.firstChild);
-		}
 
 		console.log("Valore inserito: " + this.value);
 
 
 
-		if(oldValue !== this.value.substring(0, oldValue.length) ) {
-			console.log("Gli input non coincidono, quindi l'input e' stato eliminato parzialmente o totalmente.");
-			sublist = comuni;
-			
+		
+		if(this.value.length == 0){
+			console.log("E' stato cancellato tutto l'input, quindi e' inutile cercare comuni che corrispondono.");
+			return;
 		}
 
 		if(oldValue === this.value) {
@@ -61,9 +66,15 @@ function showhint(event) {
 			return;
 		}
 
-		if(this.value.length == 0){
-			console.log("E' stato cancellato tutto l'input, quindi e' inutile cercare comuni che corrispondono.");
-			return;
+		while (list.firstChild) {
+			list.removeChild(list.firstChild);
+		}
+
+		
+		if(oldValue !== this.value.substring(0, oldValue.length) ) {
+			console.log("Gli input non coincidono, quindi l'input e' stato eliminato parzialmente o totalmente.");
+			sublist = comuni;
+			
 		}
 
 		//Variabile utile per ridurre il numero di cicli del foreach successivo: se è stato trovato un comune, match = true; inoltre, se le prime n lettere del comune successivo non corrispondono con l'input dell'utente, allora stoppa il for, poichè di sicuro non ci saranno altri comuni.
@@ -101,7 +112,7 @@ function showhint(event) {
 		sublisttemp = [];
 		console.log("L'array inizia da " + first_city_index[letter_index] + " ed e' lungo  " + sublist.length);
 
-		for(var i = 0; i < sublist.length || i < 50; i++) {
+		for(var i = 0; i < sublist.length && i < 50; i++) {
 			// console.log(sublist.length)
 			var option = document.createElement('option');
 			option.value = sublist[i];

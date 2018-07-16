@@ -87,7 +87,7 @@
 		function get_categories() {
 			global $bongoDb;
 			
-			$query = "SELECT nome FROM categorie";
+			$query = "SELECT nome FROM categorie ORDER BY nome";
 			$result = $bongoDb->performQuery($query);
 			
 
