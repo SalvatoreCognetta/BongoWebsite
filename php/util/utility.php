@@ -140,8 +140,11 @@ require_once DIR_UTIL . 'query.php';
 		$filter_values	 = array();
 		if(!empty($_GET['title']))
 			$filter_values[] = new filter_value('title', 's', "%{$_GET['title']}%", 'LIKE');
-		if(!empty($_GET['category']))				
-			$filter_values[] = new filter_value('category', 's', $_GET['category'], '=');
+		if(!empty($_GET['category'])) {
+			$len = count($_GET['category']);
+			for($i = 0; $i < $len; $i++)
+				$filter_values[] = new filter_value('category', 's', $_GET['category'][$i], '=');
+		}				
 		if(!empty($_GET['city']))				
 			$filter_values[] = new filter_value('city', 's', $_GET['city'], '=');
 		if(!empty($_GET['date'])) {

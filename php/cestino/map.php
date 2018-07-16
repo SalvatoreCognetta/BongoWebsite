@@ -64,7 +64,7 @@ var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 			 <a href="../html/help.html">Manuale utente</a>
 		</li>
 		<li>
-			<small>  copyright 2018 Example Corp.</small>
+			<small>  Copyright 2018 Cognetta Corp.</small>
 		</li>
 	</ul>
 </footer>

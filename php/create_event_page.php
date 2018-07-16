@@ -99,6 +99,8 @@ if(isLogged() === false) {
 			
 							
 							<!-- Div contenente il toggle croppie con l'immagine inviata -->
+							<!-- Il tool inserirà un img che non ha l'attributo src, provocando un errore nella validazione -->
+
 							<div id="upload-croppie" style="display: none"></div>
 						
 							<div class="flex">
@@ -153,7 +155,7 @@ if(isLogged() === false) {
 						
 
 					</div>
-					<div class="wrapper-price-input" id="wrapper-price-input">
+					<div class="wrapper-price-input" id="wrapper-price-input" style="display:none;">
 						<label for="price-input">Inserisci il prezzo del biglietto:</label>
 						<input id="price-input" class="form-input" type="number" min="0.50" max="100.00" step="0.1" value="5.0" name="ticket-price">
 						<span>&euro;</span>
@@ -176,7 +178,7 @@ if(isLogged() === false) {
 				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>  copyright 2018 Example Corp.</small>
+				<small>  Copyright 2018 Cognetta Corp.</small>
 			</li>
 		</ul>
 	</footer>

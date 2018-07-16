@@ -49,9 +49,6 @@ include_once DIR_UTIL . 'sessionUtil.php';
 			<a href="../html/help.html">Aiuto</a>
 		</li>
 		<li>
-			<a href="./about.php">Chi siamo</a>
-		</li>
-		<li>
 			<a href="./create_event_page.php">Crea un evento</a>
 		</li>
 	</ul>

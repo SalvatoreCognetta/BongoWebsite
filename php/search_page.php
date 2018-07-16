@@ -57,8 +57,8 @@ require_once DIR_UTIL . 'query.php';
 						$categories = get_categories();
 						for($i = 0; $i < count($categories); $i++) {
 
-							echo "<input id='checkbox" . $i . "' type='checkbox' name='category' value=".$categories[$i].">";
-							echo "<label for='checkbox" . $i . "'>" . $categories[$i] . "</label>";
+							echo "<input id='checkbox' type='checkbox' name='category[]' value='".$categories[$i]."'>";
+							echo  $categories[$i];
 							
 							echo "<br>";
 						}
@@ -79,40 +79,35 @@ require_once DIR_UTIL . 'query.php';
 			
 			//Creo un array contenente i filtri inseriti dall'utente
 			$filter_values	= get_filter();
-			
 
 			//Se l'utente ha inserito almeno un filtro allora aggiorno la pagina
 			if(count($filter_values)) { 
 				$result = filter_query($filter_values);
+				
+				echo "<section class=\"cards\">";
+				if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {						
+						//Inizializzo tutti i valori necessari per creare la card con i risultati presi dal db
+						$timestamp = strtotime($row[$datecol]);
+						$date = date('d-m-Y', $timestamp);
+						$time = date('H:i', $timestamp);
 
-				if(!$result)
-					echo "Errore nella query.";
+						$id = $row[$idcol];
+						$img = get_event_img_location($id);
+						$title = $row[$titlecol];
+						$description = $row[$descol];
+						$price = $row[$pricecol];
 
-				else {
-					echo "<section class=\"cards\">";
-					if ($result->num_rows > 0) {
-						// output data of each row
-						while($row = $result->fetch_assoc()) {						
-							//Inizializzo tutti i valori necessari per creare la card con i risultati presi dal db
-							$timestamp = strtotime($row[$datecol]);
-							$date = date('d-m-Y', $timestamp);
-							$time = date('H:i', $timestamp);
-
-							$id = $row[$idcol];
-							$img = get_event_img_location($id);
-							$title = $row[$titlecol];
-							$description = $row[$descol];
-							$price = $row[$pricecol];
-
-							//Creo la card con la funzione presente in card.php
-							create_event_card($id, $img, $title, $description, $date, $time, $price);
-						}
-
-					} else {
-						create_error_card();
+						//Creo la card con la funzione presente in card.php
+						create_event_card($id, $img, $title, $description, $date, $time, $price);
 					}
-					echo "</section>";
+
+				} else {
+					create_error_card();
 				}
+				echo "</section>";
+				
 			} else { //Qui non dovrebbe mai arrivare
 				echo "L'utente non ha inserito nessun filtro.";
 			}
@@ -129,7 +124,7 @@ require_once DIR_UTIL . 'query.php';
 				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>  copyright 2018 Example Corp.</small>
+				<small>  Copyright 2018 Cognetta Corp.</small>
 			</li>
 		</ul>
 	</footer>

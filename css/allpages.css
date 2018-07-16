@@ -144,7 +144,7 @@ textarea[name=description] {
 
 .main-nav-list li a {
 	font-family: trenchFont;
-	font-size: 1.2em;
+	font-size: 1.4em;
 	text-decoration: none;
 	color: rgb(198, 61, 15);
 	cursor: pointer;
@@ -217,7 +217,7 @@ textarea[name=description] {
 	text-align: left;
 }
 
-.drop-menu a:hover {
+.drop-menu li:hover {
 	background-color: rgba(0, 0, 0, 0.04);
 }
 

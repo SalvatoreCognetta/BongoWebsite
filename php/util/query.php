@@ -13,6 +13,11 @@
 	
 			$num_params = 0; //numero di parametri già inseriti nella query
 
+			$num_categories = 0;
+			foreach($params as $field) {
+				if($field->name == 'category')	//Controllo se ci sono più categorie inserite
+					$num_categories++;
+			} 
 
 			$parameters_type = "";
 			
@@ -34,7 +39,11 @@
 	
 				//Se non sto inserendo l'ultimo parametro allora aggiungo l'AND
 				if($num_params != count($params)) {
-					$query .= " AND ";
+					if($field->name == 'category' && $num_categories != 1) { //Se il parametro è una categoria e ce ne sono altre dopo questa allora aggiungo l'OR
+						$query .= " OR ";
+						$num_categories--;
+					} else
+						$query .= " AND ";
 				}
 			}
 	

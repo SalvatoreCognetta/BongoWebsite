@@ -54,6 +54,10 @@ if (!isLogged()){
 			
 			$location = get_avatar_location($_SESSION['userid']);
 			$user_info = get_user_info($_SESSION['userid']);
+
+			if(!empty($_GET['success']) && $_GET['success'] == 0) {
+				echo "<script>alert('Vecchia password non corretta.')</script>";
+			}
 			?>
 				
 		</header>
@@ -84,6 +88,7 @@ if (!isLogged()){
 						<label for="upload-img">Modifica l'immagine del profilo</label>
 						
 						<!-- Div contenente il toggle croppie con l'immagine inviata -->
+						<!-- Il tool inserirà un img che non ha l'attributo src, provocando un errore nella validazione -->
 						<div id="upload-croppie" style="display: none"></div>
 
 						<div class="flex">
@@ -149,7 +154,7 @@ if (!isLogged()){
 				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>  copyright 2018 Example Corp.</small>
+				<small>  Copyright 2018 Cognetta Corp.</small>
 			</li>
 		</ul>
 	</footer>
