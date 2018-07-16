@@ -78,8 +78,11 @@ if (!isLogged()){
 						$description = $row['description'];
 						$price = $row['price'];
 
-						//Creo la card con la funzione presente in card.php
-						create_delete_card($id, $img, $title, $description, $date, $time, $price);
+						if(isset($_SESSION['userid']) && $_SESSION['userid'] !== $row['uid_creator']){ //Non inserito l'evento tra quelli seguiti poichè creato dall'utente
+					
+							//Creo la card con la funzione presente in card.php
+							create_delete_card($id, $img, $title, $description, $date, $time, $price);
+						}
 					
 					}
 

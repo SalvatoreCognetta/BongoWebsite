@@ -229,7 +229,6 @@ textarea[name=description] {
 .content {
 	border-radius: 3px;
 	margin: 12px auto;
-	/* padding: 12px 2px; */
 	max-width: 1240px;
 	display: flex;
 	z-index: 1;

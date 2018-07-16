@@ -52,7 +52,11 @@ require_once DIR_UTIL . 'query.php';
 			
 			$category = $row['category'];
 
-			$num_p = get_participants($id_event)->num_rows;
+			$participants_row = get_participants($id_event);
+			if($participants_row)
+				$num_p = $participants_row->num_rows;
+			else 
+				$num_p = 0;
 
 			$price = $row['price'];
 

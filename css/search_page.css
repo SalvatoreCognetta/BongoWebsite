@@ -1,0 +1,145 @@
+/*Search page*/
+.side-filter {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 200px;
+	border-right: 1px solid #ccc;
+	border-radius: 3px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082), 0 3px 6px rgba(0,0,0,0.13);
+	background: white;
+}
+
+.filter-form {
+	width: 100%;
+	margin: 0px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.filter-form-item {
+	margin-bottom:5px;
+	border-bottom: 1px solid #e5e5e5;
+	max-height: 150px;
+	overflow: auto;
+}
+
+.filter-form>*{
+	margin: 0 0 5px 0 !important;
+	width: 100% !important;
+}
+
+
+
+
+.cards {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.card-margin {
+	background-color: white;
+	border-radius: 5px;
+	margin: 10px 10px;
+	max-height: 100px;
+}
+
+.card-margin a {
+	color: black;
+}
+
+/* Dimensione della card: 1240px(grid)-200px(side filter)-20px(margini delle cards) = 1020px  */
+.event_card {
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+	box-sizing: content-box;
+	display: flex;
+	border-radius: 5px;
+	max-height: 100px;
+	transition: all 1.3s cubic-bezier(.25,.8,.25,1);  
+	width: 100%;
+}
+
+.event_card:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.20), 0 10px 10px rgba(0,0,0,0.18);
+}
+
+.event_card img {
+	width: 177px; /*Ratio 16:9*/
+	height: 100px;
+	border-radius: 5px 0 0 5px;
+}
+
+.event_card-info {
+	margin: 5px;
+	width: 650px;
+	display: flex;
+	flex-direction: column;
+	max-height: inherit;
+	padding-bottom: 5px;
+}
+
+.event_card-info h2 {
+	color: #007489;
+	font-family: trenchFont;
+	font-size: 20px;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
+.event_card-info p {
+	overflow: auto;
+}
+
+.event_card-date {
+	margin: 5px 5px 5px 0;
+	display: flex;
+	flex-direction: column;
+	max-width: 200px;
+}
+
+.event_card-date-info {
+	display: flex;
+	margin-bottom: 3px;
+}
+
+.event_card-date h3 {
+	color: rgb(0, 116, 137);
+	font-family: trenchFont;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.event_card-button {
+	cursor: pointer;
+	text-align: center;
+	font-size: 30px;
+	background-color: #007489;
+	color: white;
+	padding: 2px 23px;
+	border: none;
+	border-radius: 3px;
+
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+
+
+
+
+.error_card {
+	background-color: rgba(199, 6, 6, 0.432);
+	border: 2px solid red;
+	padding: 5vh 1vw;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+	box-sizing: content-box;
+	border-radius: 5px;
+
+	width: 950px;
+	display: flex;
+	justify-content: center;	
+}
