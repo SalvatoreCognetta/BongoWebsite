@@ -1,6 +1,5 @@
 //Variabile contenente, per ogni lettera dell'alfabeto, l'indice del primo comune corrispondente che inizia con quella lettera
 
-console.log("Test0: " + new Date);
 var first_city_index = [];
 for(var i = 0; i < 26; i++) {
 	first_city_index[i] = -1;
@@ -17,14 +16,12 @@ for(var i = 0; i < len; i++){
 	}
 }
 // console.log("test");
-console.log("Test1: " + new Date);
 
 
 var input = document.getElementById('city_input');
 var nav_input = document.getElementById('nav_city_input');
 var oldValue = "";
 var sublist = comuni;
-console.log("Test2: " + new Date);
 
 if(input) {
 	input.onkeyup = showhint;
@@ -39,16 +36,13 @@ if(nav_input){
 
 
 function showhint(event) {
-	console.log("Test3: " + new Date);
 	
 	// if(event.keyCode != "38" && event.keyCode != "40") { //se l'utente scorre nella lista mostrata questa non deve essere aggiornata
 	if(RegExp(/^[a-zA-Zà-ù\s']*$/).test(this.value) || event.keyCode != "38" && event.keyCode != "40"){
 		var sublisttemp = [];
-		console.log("Test4: " + new Date);
 
 	 	var list = this.list;
 		var len = this.value.length;
-		console.log("Test5: " + new Date);
 
 		console.log("Valore inserito: " + this.value);
 
