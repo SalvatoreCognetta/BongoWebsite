@@ -14,7 +14,7 @@ require_once DIR_UTIL . 'sessionUtil.php';
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
+	
 	<script src="../js/test.js" async></script>
 
 

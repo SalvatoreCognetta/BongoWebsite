@@ -32,16 +32,11 @@
 				<input id="login_psw" class="input login-input" type="password" name="password" placeholder="Password" required>
 			</div>
 
-			<div class="remember-me">
-				<input class="input-checkbox" id="ckbox" type="checkbox" name="remember-me">
-				<label class="label-checkbox" for="ckbox">Remember me</label>
-			</div>
 
 			<div class="container-login-form-btn">
 				<input id="login-btn" type="submit" value="Login" name="submit" class="btn btn-wide">
 			</div>
 
-			<a class="forgot" href=#>Forgot Password?</a>
 		</form>
 
 

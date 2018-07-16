@@ -92,6 +92,8 @@
 	width: 650px;
 	display: flex;
 	flex-direction: column;
+	max-height: inherit;
+	padding-bottom: 5px;
 }
 
 .event_card-info h2 {

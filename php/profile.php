@@ -17,7 +17,9 @@ if (!isLogged()){
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
+	<script src="../js/utility.js"></script>
+
+	
 	<script src="../js/profile_img_croppie.js" defer></script>
 
 	<script src="../js/comuni.js"></script>
@@ -90,7 +92,7 @@ if (!isLogged()){
 
 						<div class="flex">
 							<!-- In questo modo elimino il testo del file selezionato -->
-							<input type="file" id="upload-img" style="display: none;" value="Choose a file" accept="image/*" onchange="readURL(this);"  />						
+							<input type="file" id="upload-img" style="display: none;"  accept="image/*" onchange="readURL(this);"  />						
 							<input type="button" value="Scegli un file" class="btn btn-wide" onclick="document.getElementById('upload-img').click();" />
 						
 							<!-- Button che restituisce l'immagine ritagliata -->
@@ -118,7 +120,7 @@ if (!isLogged()){
 				</div>
 
 
-				<form method="POST" action="./update_profile.php" class="column profile-info">
+				<form onsubmit="return checkProfileInfo();" method="POST" action="./update_profile.php" class="column profile-info">
 					<h2>Impostazioni principali</h2>
 					<label>Nickname</label>
 					<input type="text" name="username" class="form-input" value="<?php echo $user_info['username'];?>" autocomplete="off">
@@ -127,7 +129,7 @@ if (!isLogged()){
 					<input type="text" name="name" class="form-input" value="<?php echo $user_info['fullname']?>" autocomplete="off">
 			
 					<label>Email</label>
-					<input type="text" name="email" class="form-input" value="<?php echo $user_info['email']?>" autocomplete="off">
+					<input type="email" name="email" class="form-input" value="<?php echo $user_info['email']?>" autocomplete="off">
 
 					
 

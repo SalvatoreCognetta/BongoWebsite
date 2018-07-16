@@ -17,13 +17,12 @@ if(isLogged() === false) {
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
+	
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 	<script src="../js/create_event.js" defer></script>
 	
 	<script src="../js/utility.js" ></script>
-	<script src="../js/check_validity.js" defer></script>
 
 
 
@@ -44,7 +43,7 @@ if(isLogged() === false) {
 
 </head>
 
-<body>
+<body onload="initDate();">
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
 		<header>
@@ -73,14 +72,14 @@ if(isLogged() === false) {
 
 			<h1>Crea il tuo nuovo evento</h1>
 		
-			<form class="creation-form" method="post" action="create_event.php" enctype="multipart/form-data">
+			<form class="creation-form" method="post" action="create_event.php"  onsubmit="return checkCreateEvent()" enctype="multipart/form-data">
 				<div class="column">
 					<div class="flex">
 						<div class="column" style="margin-right: 100px;">
 							<label for="name">Titolo evento</label>
 							<input id="name" class="form-input" name="title" type="text" placeholder="Nome evento" required>
 
-							<label for="city">Localit&agrave;</label>
+							<label for="city_input">Localit&agrave;</label>
 							<form>
 								<input type="text" name="city" id="city_input" class="form-input" list="cities_list" placeholder="Luogo" autocomplete="off" required>
 								<datalist id="cities_list">
@@ -89,7 +88,7 @@ if(isLogged() === false) {
 							</form>
 
 							
-							<label for="date">Quando si terr&agrave; l'evento?</label><br>
+							<label for="date-input">Quando si terr&agrave; l'evento?</label><br>
 							<input id="date-input" class="form-input" type="date" name="date" required>
 							<input class="form-input" type="time" value="13:30" name="time" required>
 						</div>
@@ -105,8 +104,8 @@ if(isLogged() === false) {
 						
 							<div class="flex">
 								<!-- In questo modo elimino il testo del file selezionato -->
-								<input type="file" id="upload-img" style="display: none;" value="Choose a file" accept="image/*" onchange="readURL(this);"  />						
-								<input type="button" value="Scegli un file" class="btn btn-wide" onclick="document.getElementById('upload-img').click();" />
+								<input type="file" id="upload-img" style="display: none;" accept="image/*" onchange="readURL(this);"  />						
+								<input id="file-choice" type="button" value="Scegli un file" class="btn btn-wide" onclick="document.getElementById('upload-img').click();" />
 								
 								<!-- Button che restituisce l'immagine ritagliata -->
 								<input type="button" id="btn-croppie-result" class="btn btn-wide" value="Anteprima" style="display:none" onclick="getResult()">
@@ -119,7 +118,6 @@ if(isLogged() === false) {
 									<div id="result-img" class="wrap-result"></div>
 									<input style="display:none" name="hidden-img" id="hidden-img">
 								
-										<!-- <input type="reset" class="croppie-btn cancel-btn" value="Annulla" onclick="document.getElementById('croppied-wrapper').style.display='none'">								 -->
 										<input id="ok-btn" class="croppie-btn" type="button" value="Ok" onclick="document.getElementById('croppied-wrapper').style.display='none'">
 								</div>
 							</div>
@@ -134,21 +132,20 @@ if(isLogged() === false) {
 
 					<div class="column">
 						<label>Tipo di evento</label>
-						<select name="categories" required>
+						<select id="categories" name="categories" required>
+							<option value="" disabled selected>Seleziona una categoria</option>
+
 							<?php 
 								$categories = get_categories();
 								for($i = 0; $i < count($categories); $i++) {
 									echo "<option value=".$categories[$i].">" . $categories[$i] . "</option>";
-									// echo '<input type="checkbox" id="categoria' . $i . '" name="test" value="test">';
-									// echo '<label for="categoria' . $i . '">' .$categories[$i]. '</label>';
-									// echo "</div>";
 								}
 							?>
 						</select>
 					</div>
 					
-					<label>Il biglietto sar&agrave gratuito o a pagamento?</label>
-					<div class="radio-choice">
+					<h2 >Il biglietto sar&agrave gratuito o a pagamento?</h2>
+					<div id="radioChoices" class="radio-choice">
 						<input type="radio" id="radioChoice1" name="price-choice" onclick="hide('wrapper-price-input');" value="free">
 						<label for="radioChoice1">Gratuito</label><br>
 					

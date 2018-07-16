@@ -47,14 +47,15 @@ require_once DIR_UTIL . 'query.php';
 			<!-- <span></span> --> 
 		</div>
 
-		<section class="content">
+		<div class="content">
 
 			<aside class="side-filter">
-				<form class="filter-form" action="search_page.php" method="get">
-					<input class="form-input" type="text" name="title" placeholder="Filtra">
-
-					<legend>Categoria eventi</legend>
-					<fieldset class="filter-form-item">
+				<form class="filter-form" action="search_page.php" onsubmit="return checkSearch();" method="get">
+					<input id="title" class="form-input" type="text" name="title" placeholder="Filtra">
+				
+					<label>Categoria eventi</label>
+					<fieldset id="categories" class="filter-form-item">
+						
 						<?php
 						$categories = get_categories();
 						for($i = 0; $i < count($categories); $i++) {
@@ -124,7 +125,7 @@ require_once DIR_UTIL . 'query.php';
 			?>
 
 
-		</section>
+		</div>
 	</div>
 
 	<footer class="main-footer">

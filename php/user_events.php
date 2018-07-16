@@ -17,7 +17,7 @@ if (!isLogged()){
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
+	
 	<script src="../js/test.js"></script>
 
 

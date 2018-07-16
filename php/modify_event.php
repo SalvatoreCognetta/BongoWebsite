@@ -17,7 +17,7 @@ if (!isLogged()){
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
+	
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 	<script src="../js/create_event.js" defer></script>
@@ -86,7 +86,7 @@ if (!isLogged()){
 				</ul>
 			</aside>
 
-			<form class="creation-form" method="post" action="update_event.php" enctype="multipart/form-data">
+			<form class="creation-form" method="post" onsubmit="return checkInputEvent()" action="update_event.php" enctype="multipart/form-data">
 				<div class="column">
 					<div class="flex">
 						<div class="column" style="margin-right: 100px;">
@@ -95,7 +95,7 @@ if (!isLogged()){
 							<label for="name">Titolo evento</label>
 							<input id="name" class="form-input" value="<?php echo $event['title']?>" name="title" type="text" placeholder="Nome evento" required>
 
-							<label for="city">Localit&agrave;</label>
+							<label for="city_input">Localit&agrave;</label>
 							<form>
 								<input value="<?php echo $event['city']?>" type="text" name="city" id="city_input" class="form-input" list="cities_list" placeholder="Luogo" autocomplete="off" required>
 								<datalist id="cities_list">
@@ -104,7 +104,7 @@ if (!isLogged()){
 							</form>
 
 							
-							<label for="date">Quando si terr&agrave; l'evento?</label><br>
+							<label for="date-input">Quando si terr&agrave; l'evento?</label><br>
 							<input id="date-input" class="form-input" type="date" name="date" value="<?php echo $date;?>" required>
 							<input class="form-input" type="time" value="<?php echo $time;?>" name="time" required>
 						</div>
@@ -121,8 +121,8 @@ if (!isLogged()){
 						
 							<div class="flex">
 								<!-- In questo modo elimino il testo del file selezionato -->
-								<input type="file" id="upload-img" style="display: none;" value="Choose a file" accept="image/*" onchange="readURL(this);"  />						
-								<input type="button" value="Scegli un file" class="btn btn-wide" onclick="document.getElementById('upload-img').click();" />
+								<input type="file" id="upload-img" style="display: none;" accept="image/*" onchange="readURL(this);"  />						
+								<input id="file-choice" type="button" value="Scegli un file" class="btn btn-wide" onclick="document.getElementById('upload-img').click();" />
 								
 								<!-- Button che restituisce l'immagine ritagliata -->
 								<input type="button" id="btn-croppie-result" class="btn btn-wide" value="Anteprima" style="display:none" onclick="getResult()">
@@ -150,7 +150,9 @@ if (!isLogged()){
 
 					<div class="column">
 						<label>Tipo di evento</label>
-						<select name="categories" required>
+						<select id="categories" name="categories" required>
+							<option value="" disabled>Seleziona una categoria</option>
+						
 							<?php 
 								$categories = get_categories();
 								for($i = 0; $i < count($categories); $i++) {
@@ -163,8 +165,8 @@ if (!isLogged()){
 						</select>
 					</div>
 					
-					<label>Il biglietto sar&agrave gratuito o a pagamento?</label>
-					<div class="radio-choice">
+					<h2>Il biglietto sar&agrave gratuito o a pagamento?</h2>
+					<div id="radioChoices" class="radio-choice">
 						<input type="radio" id="radioChoice1" name="price-choice" onclick="hide('wrapper-price-input');" value="free" <?php if($event['price'] === '0.00') echo "checked";?>>
 						<label for="radioChoice1">Gratuito</label><br>
 					
@@ -209,50 +211,3 @@ if (!isLogged()){
 </body>
 
 </html>
-
-<script type="text/javascript" async>
-window.addEventListener('load', function() {
-	if(document.getElementById("radioChoice2").checked) 
-		document.getElementById('wrapper-price-input').style.display = 'block';
-
-	// 	var request = new XMLHttpRequest();
-
-	// 	request.onreadystatechange = function(response) {
-	// 		if (request.readyState === 4) {
-	// 			if (request.status === 200) {
-	// 				console.log(request.responseText);
-	// 				// document.getElementById("hidden-img").value = request.responseText;
-	// 				document.getElementById('price-input').value = request.responseText;
-
-	// 			} else {
-	// 				console.log("Sì è verificato un problema con la richiesta.");
-	// 			}
-	// 		}
-	// 	}
-
-
-	// 	//Per ottenere l'id dell'evento dall'array $_GET
-	// 	var $_GET = {};
-	// 	if(document.location.toString().indexOf('?') !== -1) {
-	// 			var query = document.location
-	// 										.toString()
-	// 										// get the query string
-	// 										.replace(/^.*?\?/, '')
-	// 										// and remove any existing hash string (thanks, @vrijdenker)
-	// 										.replace(/#.*$/, '')
-	// 										.split('&');
-	// 			console.log(query);
-	// 			for(var i=0, l=query.length; i<l; i++) {
-	// 				var aux = decodeURIComponent(query[i]).split('=');
-	// 				$_GET[aux[0]] = aux[1];
-	// 			}
-	// 	}
-	// 	//get the 'index' query parameter
-	// 	var id= $_GET['id'];
-
-	// 	request.open('GET', 'get_price.php?idevent=' + id, true);
-	// 	request.send();
-		
-	// }
-});
-</script>

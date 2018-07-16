@@ -10,7 +10,7 @@
 
 <head>
 	<script src="../js/login.js" defer></script>
-	<script src="../js/slideshow.js"></script>	
+		
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 	
@@ -38,7 +38,7 @@
 
 			if(!empty($_GET['err'])) {
 				$message = $_GET['err'];
-				echo "<script>alert('$message');</script>";
+				echo "<script type='text/javascript'>alert('". $message ."');</script>";
 				
 			}
 			?>

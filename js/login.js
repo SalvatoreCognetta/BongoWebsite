@@ -47,13 +47,12 @@ function activate_form(id) {
 
 function checkLogin(form) {
 	if(RegExp(/^[a-zA-Z0-9_-]*$/).test(form.login_username.value) == false) {
-		alert("L'username deve contenere solo lettere, numeri o trattini");
+		form.login_username.style.borderColor = 'red';
+		form.login_username.title = 'Username non valido';
 		return false;
-	}
+	} else {
+		form.login_username.style.borderColor = 'rgb(216, 216, 216)';
 
-	if(RegExp(/^[a-zA-Z0-9_-]*$/).test(form.login_psw.value) == false) {
-		alert("La password deve contenere solo lettere, numeri o trattini");
-		return false;
 	}
 
 	return true;
@@ -62,28 +61,57 @@ function checkLogin(form) {
 
 function checkSignup(form) {
 	if(RegExp(/^[a-zA-Zà-ù\s']*$/).test(form.signup_fullname.value) == false) {
-		alert("Il nome deve contenere solo lettere o spazi");
+		console.log("fullname: " + form.signup_fullname.value);
+
+		form.signup_fullname.style.borderColor = 'red';
+		form.signup_fullname.title = 'Nome non valido';
+
+
+		
 		return false;
+	} else {
+		form.signup_fullname.style.borderColor = 'rgb(216, 216, 216)';
+
 	}
 
 	if(RegExp(/^[a-zA-Z0-9_-]*$/).test(form.signup_username.value) == false) {
-		alert("L'username deve contenere solo lettere, numeri o trattini");
+		console.log("username: " + form.signup_username.value);
+
+		form.signup_username.style.borderColor = 'red';
+		form.signup_username.title = 'Username non valido';
+
+		
 		return false;
+	} else {
+		form.signup_username.style.borderColor = 'rgb(216, 216, 216)';
+
 	}
 
-	if(RegExp(/^[a-zA-Z0-9_-]*$/).test(form.singup_psw.value) == false) {
-		alert("La password deve contenere solo lettere, numeri o trattini");
+
+
+	if(!RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(form.signup_email.value)) { //RFC 5322 Official Standard
+		console.log("email: " + form.signup_email.value);
+		form.signup_email.style.borderColor = 'red';
+		form.signup_email.title = 'Email non valida';
+
+		
 		return false;
+	} else {
+		form.signup_email.style.borderColor = 'rgb(216, 216, 216)';
+
 	}
 
-	if(RegExp(/\S+@\S+\.\S+/).test(form.signup_email) == false) {
-		alert("Email non valida.");
-		return false;
-	}
+	if(form.signup_email.value !== form.signup_emailconfirm.value) {
+		console.log("email: " + form.signup_emailconfirm.value);
 
-	if(form.signup_email !== form.signup_emailconfim) {
-		alert("Le email devono coincidere.");
+		form.signup_emailconfirm.style.borderColor = 'red';
+		form.signup_emailconfirm.title = 'Email non combaciano';
+
+		
 		return false;
+	} else {
+		form.signup_emailconfirmconfirm.style.borderColor = 'rgb(216, 216, 216)';
+
 	}
 
 	return true;

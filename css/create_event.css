@@ -28,7 +28,7 @@ input[type=text]{
 	margin: 3px;
 }
 
-.creation-form label {
+.creation-form label, h2 {
 	font-family: Roboto;
 	font-size: 23px;
 	color: rgb(116, 61, 25);

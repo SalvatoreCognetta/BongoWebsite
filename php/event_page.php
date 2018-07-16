@@ -11,7 +11,7 @@ require_once DIR_UTIL . 'query.php';
 
 <head>
 	<script src="../js/login.js"></script>
-	<script src="../js/slideshow.js"></script>
+	
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 

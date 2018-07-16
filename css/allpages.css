@@ -192,8 +192,8 @@ textarea[name=description] {
 	z-index: 10;
 }
 
-.drop-menu hr {
-	margin: 0;
+.drop-menu>li:first-child {
+	border-bottom: 1px solid grey;
 }
 
 .drop-menu li {
@@ -256,6 +256,7 @@ textarea[name=description] {
 	/* margin: 26px 5px 5px 5px; */
 	cursor: pointer;
 	background-color: rgba(128, 128, 128, 0.795);
+	min-height: 40px;
 }
 
 .btn-wide {

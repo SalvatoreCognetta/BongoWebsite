@@ -7,9 +7,9 @@ include_once DIR_UTIL . 'sessionUtil.php';
 ?>
 <nav class="main-nav">
 	<div class="logo-search">
-		<h1 class="logo">
+		<h2 class="logo">
 			<a href="./index.php">Bongo</a>
-		</h1>
+		</h2>
 		<form class="search-form" action="search_page.php">
 			<!-- <input type="text" name="city" > -->
 			<input type="text" name="city" id="nav_city_input" list="nav_cities_list" autocomplete="off">
@@ -39,7 +39,7 @@ include_once DIR_UTIL . 'sessionUtil.php';
 			</span>
 			<ul id="drop-menu" class="drop-menu" style="display:none;">
 				<li><?php echo $_SESSION['username'];?></li>
-				<hr>
+			
 				<li><a href="./profile.php">Profilo</a></li>
 				<li><a href="./followed_events.php">Eventi</a></li>
 				<li style="border-top: 1px solid grey;">
