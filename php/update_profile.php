@@ -12,7 +12,6 @@ foreach($_POST as $key=>$field) {
 }
 update_user_info($_SESSION['userid'], $params);
 
-// update_password($_SESSION['userid'], $psw);
 header("Location: ./profile.php");
 exit();
 ?>

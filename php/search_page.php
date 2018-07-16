@@ -13,7 +13,6 @@ require_once DIR_UTIL . 'query.php';
 	<script src="../js/login.js" defer></script>	
 	<script src="../js/utility.js"></script>	
 	
-	<script src="../js/check_date.js" defer></script>	
 
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
@@ -29,7 +28,7 @@ require_once DIR_UTIL . 'query.php';
 
 </head>
 
-<body>
+<body onload='initDate();'>
 	<!-- Necessario per lo sticky footer -->
 	<div class="wrapper">
 		<header>
