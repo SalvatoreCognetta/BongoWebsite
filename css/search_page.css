@@ -23,7 +23,7 @@
 .filter-form-item {
 	margin-bottom:5px;
 	border-bottom: 1px solid #e5e5e5;
-	height: 150px;
+	max-height: 150px;
 	overflow: auto;
 }
 
