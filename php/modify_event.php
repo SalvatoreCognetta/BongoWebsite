@@ -24,7 +24,6 @@ if (!isLogged()){
 
 	<script src="../js/utility.js" ></script>
 
-	<script src="../js/test.js" defer></script>
 
 
 	<title>Bongo</title>
@@ -38,7 +37,6 @@ if (!isLogged()){
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 
 
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 
 	<!-- Croppie tool for image picker -->
@@ -82,7 +80,6 @@ if (!isLogged()){
 					<li class="is-over"><a href="./followed_events.php">Eventi in programma</a></li>
 					<li class="is-over"><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
 					<li class="is-over"><a href="./created_events.php">Eventi creati</a></li>
-					<li class="is-over"><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 
@@ -178,7 +175,7 @@ if (!isLogged()){
 						
 
 					</div>
-					<div class="wrapper-price-input" id="wrapper-price-input">
+					<div class="wrapper-price-input" <?php if($event['price'] == '0.00') echo "style='display:none;'"; ?> id="wrapper-price-input">
 						<label for="price-input">Inserisci il prezzo del biglietto:</label>
 						<input id="price-input" class="form-input" style="text-align:left; width:100px;" type="number" min="0.50" max="100.00" step="0.1" value="<?php echo $event['price']?>" name="ticket-price">
 						<span>&euro;</span>
@@ -199,10 +196,10 @@ if (!isLogged()){
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

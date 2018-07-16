@@ -24,7 +24,7 @@ function show_participants(id_evento) {
 
 				for(var i = 0; i < len; i++) {
 					var li = document.createElement('li');
-					li.innerHTML = participants[i];
+					li.appendChild(document.createTextNode(participants[i])) ;
 					// console.log(participants[i]);
 					list.appendChild(li);
 				}
@@ -99,7 +99,8 @@ function checkInputEvent() {
 	} else {
 		if(!document.getElementById('radioChoice1').checked) {
 			var p = document.createElement('p');
-			p.innerHTML	= ' *Effettuare una scelta';
+			li.appendChild(document.createTextNode(' *Effettuare una scelta')) ;
+			p.appendChild()
 			p.style.color = 'red';
 			document.getElementById('radioChoices').appendChild(p);
 			error = true;
@@ -115,7 +116,6 @@ function checkInputEvent() {
 	return !error;
 }
 
-var submit = document.getElementById('btn-submit');
 
 function checkCreateEvent() {
 	var check = false;

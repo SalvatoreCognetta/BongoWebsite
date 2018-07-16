@@ -34,7 +34,6 @@ if(isLogged() === false) {
 	<link href="../css/create_event.css" rel="stylesheet" type="text/css">
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 	<!-- Croppie tool for image picker -->
 	<link rel="stylesheet" href="../css/croppie.css" />
@@ -174,10 +173,10 @@ if(isLogged() === false) {
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

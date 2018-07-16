@@ -55,10 +55,10 @@
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

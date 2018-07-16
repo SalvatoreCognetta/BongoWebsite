@@ -25,7 +25,6 @@ if (!isLogged()){
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 
-	<!-- <script src="../js/test.js"></script> -->
 
 
 	<title>Bongo</title>
@@ -36,8 +35,6 @@ if (!isLogged()){
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 
-
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 
 	<!-- Croppie tool for image picker -->
@@ -75,7 +72,6 @@ if (!isLogged()){
 					<li class="is-over"><a href="./followed_events.php">Eventi in programma</a></li>
 					<li class="is-over"><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
 					<li class="is-over"><a href="./created_events.php">Eventi creati</a></li>
-					<li class="is-over"><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 			<div class="profile-settings">
@@ -150,10 +146,10 @@ if (!isLogged()){
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

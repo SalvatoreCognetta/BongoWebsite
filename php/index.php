@@ -13,9 +13,7 @@
 		
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
-	
-
-	
+		
 	<title>Bongo</title>
 	<link href="../css/home.css" rel="stylesheet" type="text/css">
 
@@ -23,9 +21,6 @@
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
 	<link href="../css/login.css" rel="stylesheet" type="text/css">	
 
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">		
-	
-	
 </head>
 
 <body>
@@ -70,10 +65,10 @@
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

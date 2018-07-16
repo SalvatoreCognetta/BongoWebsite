@@ -1,32 +1,69 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <title>Bongo</title>
-    </head>
-    
-    <body>
-        <header>
-            <nav>
-            <h1>Bongo</h1>
-                <ul>
-                    <li><a href="./home.html">Home</a></li>
-                    <li><a href="./login.html">Accedi</a></li>
-                    <li><a href="./signin.html">Registrati</a></li>
-                    <li><a href="./help.html">Aiuto</a></li>
-                    <li><a href="./about.html">Chi siamo</a></li>
-                </ul>    
-            </nav>
-        </header>
-        
-        <h1>A cosa serve Bongo?</h1>
-        <h2>Pasquale &egrave coglione</h2>
-        
-        <footer>
-                <ul>
-                    <li><a href="">Termini &amp; Condizioni</a></li>
-                    <li><p><small>© copyright 2017 Example Corp.</small></p></li>
-                </ul>
-        </footer>
-        
-    </body>
+
+<head>
+	<title>Bongo</title>
+	<link href="../css/reset.css" rel="stylesheet" type="text/css">
+	<link href="../css/allpages.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!-- Necessario per lo sticky footer -->
+	<div class="wrapper">
+		<header>
+			<nav class="main-nav">
+				<div class="logo-search">
+					<h2 class="logo">
+						<a href="../index.php">Bongo</a>
+					</h2>
+				</div>
+			</nav>
+		</header>
+
+		<div id="stripes" class="stripes">
+			<span></span>
+			<span></span>
+			<!-- <span></span> -->
+		</div>
+
+		<div class="content doc">
+			<h2>Manuale Utente</h2>
+			<p>
+				Bongo &egrave; una piattaforma di ricerca eventi, in cui chiunque pu&ograve; effettuare questa ricerca in base alla citt&agrave; inserita.  <br>
+				Inserendo la citt&agrave; otterremo la lista di tutti gli eventi futuri che si terranno nella citt&agrave; stessa, lista che l'utente pu&ograve; filtrare in base al titolo e/o categoria e/o data. <br>
+				Cliccando su un evento si otterranno maggiori informazioni sullo stesso, dando anche la possibilit&agrave;, a chi &egrave; iscritto al sito, di poter 'partecipare' all'evento stesso. Questa partecipazione &egrave; utile sia all'utente che visualizza l'evento, in modo da avere la lista di eventi in programma (cio&egrave; a cui ha messo partecipa), sia al creatore dell'evento, che pu&ograve; quindi avere informazioni (nome e cognome) sui partecipanti. <br>
+				Ogni utente, inoltre, una volta effettuato l'accesso, pu&ograve; creare un nuovo evento, inserendo: <br>
+			</p>
+			<ul>
+				<li>il titolo;</li>
+				<li>la decrizione dell'evento;</li>
+				<li> il luogo dove si terr&agrave;</li>
+				<li>la data e l'ora;</li>
+				<li>una categoria;</li>
+				<li>un'immagine che lo descrive;</li>
+				<li>il prezzo del biglietto, se l'evento non &egrave; gratuito.</li>
+			</ul>
+			<p>Inoltre l'utente che ha creato l'evento pu&ograve; modificarlo, tramite una sezione del profilo, ed ottenere una lista numerata dei partecipanti all'evento da lui creato.</p>
+			
+			<h2>Credits</h2>
+			<p>Si ringraziano <a href="https://github.com/napolux/italia">Napolux</a>, per la lista di tutti i comuni italiani sottoforma di JSON, utilizzata per il suggerimento della citt&agrave; durante l'input dell'utente, e <a href="https://foliotek.github.io/Croppie/">Foliotek</a> che ha messo a disposizione, sotto licenza MIT, un comodo tool per ritagliare immagini.</p>
+		</div>
+
+	</div>
+
+	<footer class="main-footer">
+		<ul>
+			<li>
+				 <a href="#">Manuale utente</a>
+			</li>
+			<li>
+				<p>
+					<small> copyright 2018 Example Corp.</small>
+				</p>
+			</li>
+		</ul>
+	</footer>
+</body>
+
 </html>

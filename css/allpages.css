@@ -52,7 +52,7 @@ header {
 
 textarea[name=description] {
 	resize: none;
-	overflow: none;
+	overflow: auto;
 	width: 100% !important;
 }
 
@@ -196,6 +196,10 @@ textarea[name=description] {
 	border-bottom: 1px solid grey;
 }
 
+.drop-menu>li:last-child {
+	border-top: 1px solid grey;
+}
+
 .drop-menu li {
 	display: flex;
 	justify-content: center;
@@ -236,10 +240,26 @@ textarea[name=description] {
 	/* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082), 0 3px 6px rgba(0,0,0,0.13); */
 }
 
-.material {
+.doc {
+	padding: 20px;
+	flex-direction: column;
 	border-radius: 3px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082), 0 3px 6px rgba(0, 0, 0, 0.13);
 	background: white;
+}
+
+.doc>h2 {
+	font-family: Roboto;
+	font-weight: 500;
+	font-size: 60px;
+	text-align: center;
+	color: rgb(198, 61, 15);
+
+}
+
+.doc>ul {
+	padding-left: 30px;
+	list-style-type: disc;
 }
 
 /*Button*/
@@ -280,6 +300,9 @@ textarea[name=description] {
 .main-footer ul {
 	display: flex;
 	flex-direction: row;
+}
+.main-footer li {
+	margin-right: 15px;
 }
 
 .stripes :nth-child(1) {

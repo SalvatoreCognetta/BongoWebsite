@@ -9,7 +9,7 @@
 	background: #fff;
 	border-radius: 3px;
 
-	padding: 12px auto;
+	padding: 12px;
 	/* max-width: 960px; */
 
 	z-index: 1;
@@ -28,6 +28,7 @@
 	background-color: #fafafa;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082), 0 3px 6px rgba(0,0,0,0.13);
 }
+
 
 .title-settings {
 	border-bottom: 1px solid grey;

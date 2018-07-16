@@ -24,7 +24,6 @@ require_once DIR_UTIL . 'query.php';
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
 	<link href="../css/event_page.css" rel="stylesheet" type="text/css">
 
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -149,10 +148,10 @@ require_once DIR_UTIL . 'query.php';
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

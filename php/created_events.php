@@ -34,14 +34,6 @@ if (!isLogged()){
 	<link href="../css/croppie_wrapper.css" rel="stylesheet" type="text/css">
 	
 
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
-
-
-	<!-- Croppie tool for image picker -->
-	<!-- <link rel="stylesheet" href="croppie.css" />
-	<script src="croppie.js"></script>
-
- -->
 
 </head>
 
@@ -68,7 +60,6 @@ if (!isLogged()){
 					<li class="is-over"><a href="./followed_events.php">Eventi in programma</a></li>
 					<li class="is-over"><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
 					<li class="is-over active"><a href="#">Eventi creati</a></li>
-					<li class="is-over"><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 			<?php
@@ -113,10 +104,10 @@ if (!isLogged()){
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

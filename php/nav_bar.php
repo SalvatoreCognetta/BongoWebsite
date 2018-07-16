@@ -11,22 +11,18 @@ include_once DIR_UTIL . 'sessionUtil.php';
 			<a href="./index.php">Bongo</a>
 		</h2>
 		<form class="search-form" action="search_page.php">
-			<!-- <input type="text" name="city" > -->
 			<input type="text" name="city" id="nav_city_input" list="nav_cities_list" autocomplete="off">
 			<datalist id="nav_cities_list">
 			</datalist>
 		</form>
 	</div>
 	<ul class="main-nav-list">
-		<!-- <li>
-			<a href="./index.php">Home</a>
-		</li> -->
 
 		<?php 
 		if (!isLogged()) { 
 		?>
 		<li>
-			<a onclick="document.getElementById('login-container').style.display='block'">Accedi</a>
+			<a onclick="document.getElementById('login-container').style.display='block'">Accedi/Registrati</a>
 		</li>
 		<?php } else { ?>
 		<li class="user-dropdown">
@@ -42,15 +38,15 @@ include_once DIR_UTIL . 'sessionUtil.php';
 			
 				<li><a href="./profile.php">Profilo</a></li>
 				<li><a href="./followed_events.php">Eventi</a></li>
-				<li style="border-top: 1px solid grey;">
-					<a href="./logout.php">Logout</a>
-				</li>
+				<li><a href="./created_events.php">Gestisci</a></li>
+				<li><a href="./logout.php">Logout</a></li>
+
 		</ul>
 		</li>
 		<?php } ?>
 
 		<li>
-			<a href="./help.php">Aiuto</a>
+			<a href="../html/help.html">Aiuto</a>
 		</li>
 		<li>
 			<a href="./about.php">Chi siamo</a>

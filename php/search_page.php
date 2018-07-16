@@ -18,7 +18,6 @@ require_once DIR_UTIL . 'query.php';
 	<script src="../js/comuni.js"></script>
 	<script src="../js/get_hint.js" defer></script>
 
-	<!-- <script src="../js/test.js"></script>	 -->
 	
 	<title>Bongo</title>
 	<link href="../css/search_page.css" rel="stylesheet" type="text/css">	
@@ -27,7 +26,6 @@ require_once DIR_UTIL . 'query.php';
 	<link href="../css/allpages.css" rel="stylesheet" type="text/css">	
 	<link href="../css/login.css" rel="stylesheet" type="text/css">	
 	
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -79,8 +77,6 @@ require_once DIR_UTIL . 'query.php';
 			<?php
 			include_once DIR_UTIL . 'utility.php';
 			include DIR_LAYOUT . 'card.php';  
-			if(!empty($_GET['title']))
-				echo "test";
 			
 			//Creo un array contenente i filtri inseriti dall'utente
 			$filter_values	= get_filter();
@@ -131,10 +127,10 @@ require_once DIR_UTIL . 'query.php';
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

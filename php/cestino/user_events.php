@@ -52,7 +52,7 @@ if (!isLogged()){
 		<div class="content">
 			<aside class="profile-side-menu">
 				<ul>
-					<li style="border-bottom: 1px solid grey;">Impostazioni Utente</li>
+					<li>Impostazioni Utente</li>
 					<li><a href='#'>Profilo</a></li>
 					<li>Eventi seguiti</li>
 					<li>Eventi creati</li>
@@ -67,10 +67,10 @@ if (!isLogged()){
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>

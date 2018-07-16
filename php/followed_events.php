@@ -17,8 +17,11 @@ if (!isLogged()){
 
 <head>
 	<script src="../js/login.js"></script>
+
+	<script src="../js/comuni.js"></script>
 	
-	<script src="../js/test.js"></script>
+	<script src="../js/get_hint.js" defer></script>
+	<script src="../js/utility.js" ></script>
 
 
 	<title>Bongo</title>
@@ -29,14 +32,7 @@ if (!isLogged()){
 	<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	<link href="../css/search_page.css" rel="stylesheet" type="text/css">
 
-	<link href="../css/styleTest.css" rel="stylesheet" type="text/css">
 
-
-	<!-- Croppie tool for image picker -->
-	<!-- <link rel="stylesheet" href="croppie.css" />
-	<script src="croppie.js"></script>
-
- -->
 
 </head>
 
@@ -64,7 +60,6 @@ if (!isLogged()){
 					<li class="is-over active"><a href="#">Eventi in programma</a></li>
 					<li class="is-over"><a href="./partecipated_events.php">Eventi a cui hai partecipato</a></li>
 					<li class="is-over"><a href="./created_events.php">Eventi creati</a></li>
-					<li class="is-over"><a href="./test.php">Test</a></li>
 				</ul>
 			</aside>
 			<?php
@@ -98,10 +93,10 @@ if (!isLogged()){
 	<footer class="main-footer">
 		<ul>
 			<li>
-				<a href="">Termini &amp; Condizioni</a>
+				 <a href="../html/help.html">Manuale utente</a>
 			</li>
 			<li>
-				<small>© copyright 2017 Example Corp.</small>
+				<small>  copyright 2018 Example Corp.</small>
 			</li>
 		</ul>
 	</footer>
