@@ -40,20 +40,19 @@ require_once DIR_UTIL . 'query.php';
 
 
 			$img = get_event_img_location($id_event);
-			$title = $row[$titlecol];
-			// $date = $row['date'];
+			$title = $row['title'];
 
-			$timestamp = strtotime($row[$datecol]);
+			$timestamp = strtotime($row['date']);
 			$date = date('d-m-Y', $timestamp);
 			$time = date('H:i', $timestamp);
 
 			$place = $row['city'];
 
-			$description = $row[$descol];	
+			$description = $row['description'];	
 			
 			$category = $row['category'];
 
-			$num_p = $row['numParticipants'];
+			$num_p = get_participants($id_event)->num_rows;
 
 			$price = $row['price'];
 

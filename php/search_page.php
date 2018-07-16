@@ -89,15 +89,15 @@ require_once DIR_UTIL . 'query.php';
 					// output data of each row
 					while($row = $result->fetch_assoc()) {						
 						//Inizializzo tutti i valori necessari per creare la card con i risultati presi dal db
-						$timestamp = strtotime($row[$datecol]);
+						$timestamp = strtotime($row['date']);
 						$date = date('d-m-Y', $timestamp);
 						$time = date('H:i', $timestamp);
 
-						$id = $row[$idcol];
+						$id = $row['idevent'];
 						$img = get_event_img_location($id);
-						$title = $row[$titlecol];
-						$description = $row[$descol];
-						$price = $row[$pricecol];
+						$title = $row['title'];
+						$description = $row['description'];
+						$price = $row['price'];
 
 						//Creo la card con la funzione presente in card.php
 						create_event_card($id, $img, $title, $description, $date, $time, $price);
