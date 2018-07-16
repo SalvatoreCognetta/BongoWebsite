@@ -20,6 +20,8 @@
 			} 
 
 			$parameters_type = "";
+
+			$started_categories_field = false; //Variabile che mi dice se ho iniziato già ad inserire i parametri categoria nella query
 			
 			foreach($params as $field) {
 	
@@ -31,10 +33,20 @@
 	
 				//I valori successivi dell'array contengono il valore $_GET['name'])
 				$parameters[] = $field->value;
+
+				//Se l'utente ha inserito più categorie le condizioni di OR, che devono essere concatenate con le AND seguenti, devono essere tra parentesi
+				if($field->name == 'category' && $started_categories_field == false) {
+					$query .= '(';
+					$started_categories_field = true;
+				}
 	
 				//Aggiorno la query concatenando le condizioni create in precedenza
 				$query .= $str;
 	
+				if($field->name == 'category' && $num_categories == 1) {
+					$query .= ')';
+				}
+
 				$num_params++;
 	
 				//Se non sto inserendo l'ultimo parametro allora aggiungo l'AND
